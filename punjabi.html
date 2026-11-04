@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Record — Punjab's Drug Economy</title>
+<meta name="description" content="66 lakh people. 7 lakh children. The numbers, the routes, the money, and the gap between claims and record. Bilingual. Sources on every screen." />
+<meta property="og:title" content="The Record — Punjab's Drug Economy" />
+<meta property="og:description" content="66 lakh people. 7 lakh children. Follow the money, the routes, and the record." />
+<meta property="og:type" content="article" />
+<meta name="theme-color" content="#0d0d12" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+Gurmukhi:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ─────── DESIGN TOKENS ─────── */
+:root {
+  --ink: #0d0d12;
+  --ink-2: #16161d;
+  --paper: #f5f0e6;
+  --paper-2: #ebe4d4;
+  --red: #c1272d;
+  --gold: #c9a961;
+  --muted-ink: rgba(245,240,230,0.62);
+  --muted-paper: rgba(26,26,31,0.62);
+  --line-ink: rgba(245,240,230,0.14);
+  --line-paper: rgba(26,26,31,0.14);
+  --serif: 'Fraunces', 'Noto Sans Gurmukhi', Georgia, serif;
+  --sans: 'Inter', 'Noto Sans Gurmukhi', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --pad: clamp(20px, 5vw, 56px);
+  --max: 760px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--ink); color: var(--ink);
+  font-family: var(--sans); font-size: 18px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+::selection { background: var(--red); color: var(--paper); }
+
+[data-lang="en"] .pa { display: none !important; }
+[data-lang="pa"] .en { display: none !important; }
+
+/* ─────── PROGRESS BAR ─────── */
+.progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--red); width: 0; z-index: 200;
+  transition: width 0.1s linear;
+}
+
+/* ─────── HEADER ─────── */
+.top {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,13,18,0.94);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line-ink);
+  padding: 14px var(--pad);
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--ink);
+}
+.brand {
+  font-family: var(--serif); font-weight: 900;
+  font-size: 15px; letter-spacing: 0.02em; color: var(--paper);
+}
+.brand .dot { color: var(--red); }
+.lang-toggle {
+  display: flex; gap: 2px; background: rgba(245,240,230,0.06);
+  border: 1px solid var(--line-ink); border-radius: 999px; padding: 3px;
+}
+.lang-toggle button {
+  background: transparent; color: var(--muted-ink); border: 0;
+  padding: 6px 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
+  border-radius: 999px; cursor: pointer; font-family: var(--sans);
+  transition: background 0.2s, color 0.2s;
+}
+.lang-toggle button.active { background: var(--red); color: #fff; }
+.lang-toggle button:hover:not(.active) { color: var(--paper); }
+
+/* ─────── SECTION BASE ─────── */
+section.sec { padding: clamp(72px, 11vw, 140px) var(--pad); position: relative; }
+section.sec.ink { background: var(--ink); color: var(--paper); }
+section.sec.paper { background: var(--paper); color: var(--ink); }
+.inner { max-width: var(--max); margin: 0 auto; position: relative; }
+
+.folio {
+  font-family: var(--mono); font-weight: 700;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 12px;
+}
+.folio::after {
+  content: ""; flex: 1; height: 1px; background: var(--line-ink); max-width: 60px;
+}
+.paper .folio::after { background: var(--line-paper); }
+
+/* ─────── TYPOGRAPHY ─────── */
+h1, h2 {
+  font-family: var(--serif); font-weight: 900;
+  letter-spacing: -0.02em; line-height: 1.02;
+  font-variation-settings: "opsz" 100;
+}
+h1 { font-size: clamp(44px, 9vw, 92px); margin-bottom: 28px; }
+h2 { font-size: clamp(34px, 6vw, 60px); margin-bottom: 22px; }
+h2 em { font-style: italic; color: var(--red); }
+p.lede {
+  font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5;
+  max-width: 640px; margin-bottom: 28px;
+}
+.ink p.lede { color: var(--muted-ink); }
+.paper p.lede { color: var(--muted-paper); }
+p { font-size: 17px; line-height: 1.65; max-width: 660px; margin-bottom: 18px; }
+
+/* ─────── HERO ─────── */
+.hero {
+  min-height: 88vh; display: flex; flex-direction: column;
+  justify-content: center; padding: clamp(80px, 12vh, 140px) var(--pad) clamp(60px, 10vh, 100px);
+  background: var(--ink); color: var(--paper); position: relative;
+}
+.hero .inner { display: flex; flex-direction: column; justify-content: center; }
+.hero .kicker {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--red); font-weight: 700;
+  margin-bottom: 32px; display: flex; align-items: center; gap: 14px;
+}
+.hero .kicker::before {
+  content: ""; width: 36px; height: 1px; background: var(--red);
+}
+.hero h1 {
+  font-size: clamp(48px, 11vw, 128px); font-weight: 900;
+  line-height: 0.94; margin-bottom: 32px; letter-spacing: -0.035em;
+}
+.hero h1 .num {
+  font-family: var(--serif); font-style: italic;
+  color: var(--red); font-weight: 400;
+}
+.hero .deck {
+  font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px);
+  line-height: 1.35; font-weight: 400; max-width: 620px;
+  color: var(--muted-ink); margin-bottom: 40px;
+}
+.hero .deck strong { color: var(--paper); font-weight: 600; }
+.hero .scroll-hint {
+  position: absolute; bottom: 28px; left: var(--pad);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--muted-ink);
+  display: flex; align-items: center; gap: 10px;
+}
+.hero .scroll-hint::after {
+  content: ""; display: inline-block; width: 1px; height: 20px;
+  background: var(--red); animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.4; transform:translateY(0);} 50%{opacity:1; transform:translateY(3px);} }
+
+/* ─────── BIG NUMBER ─────── */
+.mega {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(96px, 22vw, 220px); line-height: 0.85;
+  letter-spacing: -0.045em; color: var(--red);
+  margin: 16px 0 12px; font-variation-settings: "opsz" 144;
+}
+.mega .unit {
+  font-size: 0.32em; font-weight: 600; letter-spacing: 0.02em;
+  vertical-align: 0.35em; margin-left: 8px;
+  font-family: var(--sans);
+}
+.paper .mega { color: var(--red); }
+.mega-label {
+  font-family: var(--sans); font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600; max-width: 560px; margin-bottom: 32px;
+}
+.ink .mega-label { color: var(--muted-ink); }
+.paper .mega-label { color: var(--muted-paper); }
+
+/* ─────── PULL QUOTE ─────── */
+.pull {
+  font-family: var(--serif); font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.3; font-style: italic; font-weight: 400;
+  padding-left: 28px; border-left: 3px solid var(--red);
+  margin: 40px 0; max-width: 640px;
+}
+.pull cite {
+  display: block; font-family: var(--sans); font-style: normal;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--red); margin-top: 16px;
+}
+
+/* ─────── STAT ROW (list) ─────── */
+.stat-rows { list-style: none; margin: 32px 0; border-top: 1px solid var(--line-ink); }
+.paper .stat-rows { border-top: 1px solid var(--line-paper); }
+.stat-rows li {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; padding: 22px 0; align-items: baseline;
+  border-bottom: 1px solid var(--line-ink);
+  font-size: clamp(17px, 2vw, 19px); line-height: 1.45;
+}
+.paper .stat-rows li { border-bottom: 1px solid var(--line-paper); }
+.stat-rows .num {
+  font-family: var(--serif); font-weight: 900;
+  font-size: clamp(28px, 4vw, 40px); color: var(--red);
+  letter-spacing: -0.02em; white-space: nowrap;
+}
+.stat-rows .num .u { font-size: 0.5em; color: inherit; font-weight: 600; font-family: var(--sans); vertical-align: 0.3em; }
+.stat-rows .desc { max-width: 480px; }
+.stat-rows .desc em { font-style: normal; font-weight: 700; }
+
+/* ─────── SOURCE TAP ─────── */
+.src {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1px solid currentColor; opacity: 0.42;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  margin-left: 6px; vertical-align: middle; cursor: pointer;
+  user-select: none; transition: opacity 0.2s, background 0.2s;
+  font-style: normal; color: inherit;
+}
+.src:hover, .src:focus-visible { opacity: 1; background: rgba(193,39,45,0.15); outline: none; }
+.src[aria-expanded="true"] { opacity: 1; background: var(--red); color: #fff; border-color: var(--red); }
+.src-note {
+  display: none; font-size: 12px; line-height: 1.5;
+  padding: 12px 16px; margin-top: 10px;
+  border-left: 2px solid var(--red);
+  font-family: var(--mono); letter-spacing: 0; font-weight: 500;
+  color: var(--muted-paper);
+}
+.ink .src-note { color: var(--muted-ink); }
+.src-note.open { display: block; }
+
+/* ─────── GRID 100 ─────── */
+.grid100 {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: 4px; max-width: 420px; margin: 28px 0 16px;
+}
+.grid100 span {
+  aspect-ratio: 1; background: rgba(13,13,18,0.08); border-radius: 1px;
+  transition: background 0.35s;
+}
+.paper .grid100 span { background: rgba(13,13,18,0.1); }
+.grid100 span.f { background: rgba(193,39,45,0.55); }
+.grid100 span.c { background: var(--red); }
+.grid100-caption {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em;
+  line-height: 1.6; color: var(--muted-paper); max-width: 420px;
+}
+.ink .grid100 span { background: rgba(245,240,230,0.1); }
+.ink .grid100 span.f { background: rgba(193,39,45,0.6); }
+.ink .grid100-caption { color: var(--muted-ink); }
+
+/* ─────── BAR COMPARISON ─────── */
+.bar-set { margin: 32px 0; }
+.bar {
+  display: grid; grid-template-columns: 130px 1fr 90px;
+  gap: 16px; align-items: center; margin-bottom: 14px;
+  font-size: 15px;
+}
+.bar .lbl { color: inherit; font-weight: 600; opacity: 0.75; }
+.bar .track { background: rgba(13,13,18,0.06); height: 36px; border-radius: 2px; overflow: hidden; }
+.ink .bar .track { background: rgba(245,240,230,0.08); }
+.bar .fill {
+  height: 100%; background: var(--red);
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 12px; color: #fff; font-weight: 800; font-size: 13px;
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(.2,.7,.2,1);
+  width: 0;
+}
+.bar .fill.muted { background: rgba(13,13,18,0.55); color: var(--paper); }
+.ink .bar .fill.muted { background: rgba(245,240,230,0.6); color: var(--ink); }
+.bar .v {
+  font-family: var(--mono); font-weight: 700; font-size: 16px;
+  text-align: right;
+}
+
+/* ─────── DOT GRID (100 dots) ─────── */
+.dots {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: 10px; max-width: 440px; margin: 28px 0 16px;
+}
+.dots span {
+  width: 100%; aspect-ratio: 1; border-radius: 50%;
+  background: rgba(13,13,18,0.08); transition: background 0.3s;
+}
+.ink .dots span { background: rgba(245,240,230,0.1); }
+.dots span.caught { background: var(--red); }
+.dots span.through { background: rgba(193,39,45,0.18); border: 1px solid rgba(193,39,45,0.5); }
+.dots-key { display: flex; gap: 28px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; flex-wrap: wrap; }
+.dots-key span { display: flex; align-items: center; gap: 8px; }
+.dots-key i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; font-style: normal; }
+.dots-key .k-caught { background: var(--red); }
+.dots-key .k-through { background: transparent; border: 1px solid var(--red); }
+
+/* ─────── ROUTE ─────── */
+.route {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 8px; align-items: center; margin: 32px 0;
+}
+.route .stop {
+  padding: 20px 8px; text-align: center; border-radius: 4px;
+  background: rgba(245,240,230,0.04); border: 1px solid var(--line-ink);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
+}
+.paper .route .stop { background: rgba(13,13,18,0.03); border-color: var(--line-paper); }
+.route .stop.dest { background: var(--red); border-color: var(--red); color: #fff; }
+.route .arr { color: var(--red); font-weight: 900; font-size: 18px; }
+
+/* ─────── CHAIN ─────── */
+.chain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 40px 0; }
+.chain .node {
+  padding: 28px 12px; text-align: center; font-size: 12px;
+  font-weight: 700; letter-spacing: 0.03em; position: relative;
+  background: rgba(245,240,230,0.03); border: 1px solid var(--line-ink);
+  border-right: 0; transition: background 0.2s;
+}
+.paper .chain .node { background: rgba(13,13,18,0.03); border-color: var(--line-paper); }
+.chain .node:last-child { border-right: 1px solid var(--line-ink); }
+.chain .node .n {
+  font-family: var(--serif); font-size: 28px; font-weight: 900;
+  color: var(--red); display: block; line-height: 1; margin-bottom: 8px;
+}
+.chain .node .k {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; opacity: 0.6;
+}
+.chain-caption {
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+  margin-top: 12px; color: var(--muted-paper);
+}
+.ink .chain-caption { color: var(--muted-ink); }
+
+/* ─────── PYRAMID ─────── */
+.pyr {
+  margin: 40px 0 24px; display: flex; flex-direction: column;
+  align-items: center; gap: 3px;
+}
+.pyr .r {
+  height: 42px; display: flex; align-items: center; justify-content: center;
+  background: var(--red); color: #fff; font-family: var(--sans);
+  font-weight: 800; font-size: 13px; letter-spacing: 0.02em;
+  transition: filter 0.2s;
+}
+.pyr .r.l1 { width: 20%; filter: brightness(0.5); }
+.pyr .r.l2 { width: 36%; filter: brightness(0.65); }
+.pyr .r.l3 { width: 54%; filter: brightness(0.8); }
+.pyr .r.l4 { width: 74%; filter: brightness(0.9); }
+.pyr .r.l5 { width: 100%; }
+.pyr-label {
+  text-align: center; font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.04em; opacity: 0.75; line-height: 1.6; margin-top: 8px;
+}
+
+/* ─────── NAMED ─────── */
+.named { list-style: none; margin: 32px 0; }
+.named li {
+  padding: 22px 0; border-bottom: 1px solid var(--line-ink);
+  display: grid; grid-template-columns: 1fr auto; gap: 16px;
+  align-items: flex-start; font-size: 16px; line-height: 1.5;
+}
+.paper .named li { border-bottom: 1px solid var(--line-paper); }
+.named .who { font-weight: 800; font-size: 17px; display: block; margin-bottom: 4px; }
+.named .who small { font-weight: 500; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; display: block; margin-top: 3px; }
+.named .desc { color: inherit; opacity: 0.78; font-size: 15px; }
+.tag {
+  display: inline-block; font-family: var(--mono); font-size: 9px;
+  font-weight: 700; letter-spacing: 0.1em; padding: 3px 7px;
+  border-radius: 2px; text-transform: uppercase; white-space: nowrap;
+}
+.tag.conv { background: var(--red); color: #fff; }
+.tag.charged { background: rgba(193,39,45,0.12); color: var(--red); border: 1px solid var(--red); }
+.tag.no { background: transparent; color: currentColor; border: 1px dashed currentColor; opacity: 0.55; }
+.tag.off { background: rgba(13,13,18,0.1); color: inherit; }
+.paper .tag.off { background: rgba(13,13,18,0.08); }
+
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px 20px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.04em; opacity: 0.7; margin-bottom: 24px;
+}
+.legend strong { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
+
+/* ─────── CLAIMS VS RECORD ─────── */
+.cr-item {
+  border-top: 1px solid var(--line-paper);
+  padding: 32px 0; cursor: pointer;
+  transition: background 0.2s;
+}
+.cr-item:last-child { border-bottom: 1px solid var(--line-paper); }
+.cr-item .claim {
+  font-family: var(--serif); font-size: clamp(20px, 2.6vw, 26px);
+  line-height: 1.3; font-weight: 400; position: relative; padding-right: 40px;
+}
+.cr-item .claim::before {
+  content: "“"; font-family: var(--serif); font-size: 3em;
+  color: var(--red); position: absolute; left: -28px; top: -10px;
+  line-height: 1; opacity: 0.6;
+}
+.cr-item .claim::after {
+  content: "＋"; position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%); font-size: 22px; color: var(--red);
+  font-weight: 400; font-family: var(--sans);
+  transition: transform 0.3s;
+}
+.cr-item[data-open="true"] .claim::after { content: "−"; }
+.cr-item .who-said {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--red);
+  font-weight: 700; margin-top: 12px;
+}
+.cr-item .record {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(.2,.7,.2,1), margin 0.3s;
+}
+.cr-item[data-open="true"] .record {
+  max-height: 600px; margin-top: 22px;
+}
+.cr-item .record p {
+  font-size: 16px; line-height: 1.6; margin-bottom: 12px;
+  border-left: 2px solid var(--red); padding-left: 18px;
+}
+.cr-item .record .num {
+  font-family: var(--serif); font-size: 30px; font-weight: 900;
+  color: var(--red); display: inline-block; margin-right: 4px;
+}
+.cr-item .record .source-mini {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+  opacity: 0.6; margin-top: 6px;
+}
+
+/* ─────── TESTS ─────── */
+.tests { display: grid; gap: 2px; margin-top: 32px; }
+.test {
+  display: grid; grid-template-columns: 80px 1fr; gap: 28px;
+  padding: 40px 0; border-top: 1px solid var(--line-ink);
+  align-items: baseline;
+}
+.paper .test { border-top: 1px solid var(--line-paper); }
+.test:last-child { border-bottom: 1px solid var(--line-ink); }
+.paper .test:last-child { border-bottom: 1px solid var(--line-paper); }
+.test .tn {
+  font-family: var(--serif); font-size: clamp(48px, 7vw, 80px);
+  font-weight: 900; color: var(--red); line-height: 0.85;
+  font-variation-settings: "opsz" 144;
+}
+.test h3 {
+  font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 600; line-height: 1.25; margin-bottom: 12px;
+}
+.test p { font-size: 16px; line-height: 1.6; opacity: 0.82; max-width: 500px; }
+.test .q {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--red); font-weight: 700;
+  margin-top: 14px;
+}
+
+/* ─────── ACTION ─────── */
+.actions { display: grid; gap: 2px; margin-top: 32px; }
+.action {
+  display: grid; grid-template-columns: 60px 1fr; gap: 24px;
+  padding: 28px 0; border-top: 1px solid var(--line-paper);
+  align-items: baseline;
+}
+.action:last-child { border-bottom: 1px solid var(--line-paper); }
+.action .an {
+  font-family: var(--mono); font-weight: 700; font-size: 14px;
+  color: var(--red); letter-spacing: 0.06em;
+}
+.action h4 {
+  font-family: var(--serif); font-size: 20px; font-weight: 600;
+  margin-bottom: 6px; line-height: 1.3;
+}
+.action p { font-size: 15px; opacity: 0.78; line-height: 1.55; }
+
+/* ─────── FOOTER ─────── */
+footer {
+  padding: 72px var(--pad) 96px; background: var(--ink); color: var(--paper);
+  border-top: 1px solid var(--line-ink);
+}
+footer .inner { max-width: var(--max); margin: 0 auto; }
+footer h3 {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--red); font-weight: 700;
+  margin-bottom: 24px;
+}
+footer ul { list-style: none; margin-bottom: 40px; }
+footer li {
+  font-size: 13px; line-height: 1.6; padding: 12px 0;
+  border-bottom: 1px solid var(--line-ink);
+  font-family: var(--mono); letter-spacing: 0.01em; color: var(--muted-ink);
+}
+footer li strong { color: var(--paper); font-weight: 700; }
+footer .closing {
+  font-family: var(--serif); font-size: 17px; line-height: 1.6;
+  color: var(--muted-ink); margin-bottom: 32px; max-width: 620px;
+}
+footer .meta {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--muted-ink); opacity: 0.7;
+  display: flex; flex-wrap: wrap; gap: 20px;
+}
+
+/* ─────── REVEAL ─────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .hero .scroll-hint::after { animation: none; }
+  .bar .fill { transition: none; }
+}
+
+/* ─────── MOBILE ─────── */
+@media (max-width: 640px) {
+  section.sec { padding: 64px 20px; }
+  .hero { padding: 64px 20px 80px; min-height: 78vh; }
+  .hero h1 { font-size: clamp(44px, 12vw, 72px); }
+  .bar { grid-template-columns: 90px 1fr; gap: 10px; font-size: 13px; }
+  .bar .v { grid-column: 2; text-align: left; font-size: 14px; }
+  .stat-rows li { grid-template-columns: 1fr; gap: 6px; padding: 18px 0; }
+  .stat-rows .num { font-size: 32px; }
+  .route { grid-template-columns: 1fr; gap: 6px; }
+  .route .arr { transform: rotate(90deg); }
+  .chain { grid-template-columns: 1fr 1fr; }
+  .chain .node { border-right: 1px solid var(--line-ink); border-bottom: 0; }
+  .chain .node:nth-child(odd) { border-right: 0; }
+  .chain .node:nth-child(-n+2) { border-bottom: 0; }
+  .test { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
+  .test .tn { font-size: 48px; }
+  .cr-item { padding: 24px 0; }
+  .cr-item .claim { padding-right: 30px; }
+  .cr-item .claim::before { position: static; display: block; margin-bottom: 4px; }
+  .named li { grid-template-columns: 1fr; gap: 8px; }
+  .action { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
+  .mega { font-size: clamp(80px, 22vw, 140px); }
+  .dots { gap: 6px; }
+  .grid100 { gap: 3px; max-width: 320px; }
+}
+
+/* ─────── PRINT ─────── */
+@media print {
+  .progress, .top, .lang-toggle, .scroll-hint { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  section.sec { background: #fff !important; color: #000 !important; page-break-inside: avoid; padding: 24pt 0; }
+  section.sec.ink { background: #fff !important; color: #000 !important; }
+  h1, h2, .mega { color: #000 !important; }
+  .mega, .stat-rows .num { color: #000 !important; }
+  .red, em { color: #000 !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .bar .fill { width: 100% !important; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<header class="top">
+  <div class="brand">The Record<span class="dot">.</span></div>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button data-lang-btn="en" class="active">EN</button>
+    <button data-lang-btn="pa">ਪੰਜਾਬੀ</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ─────── HERO ─────── -->
+<section class="hero">
+  <div class="inner">
+    <div class="kicker">
+      <span class="en">Punjab · The Devastating Drug Problem · 2010–2026</span>
+      <span class="pa">ਪੰਜਾਬ · ਨਸ਼ਾ ਆਰਥਿਕਤਾ · 2010–2026</span>
+    </div>
+    <h1 class="reveal">
+      <span class="en"><span class="num">66</span> lakh<br/>people.</span>
+      <span class="pa"><span class="num">66</span> ਲੱਖ<br/>ਲੋਕ।</span>
+    </h1>
+    <p class="deck reveal">
+      <span class="en"><strong>Seven lakh</strong> of them are children. This is not a border problem. It is not a few districts. It is the next room.</span>
+      <span class="pa"><strong>ਸੱਤ ਲੱਖ</strong> ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ ਬੱਚੇ ਹਨ। ਇਹ ਸਰਹੱਦ ਦੀ ਸਮੱਸਿਆ ਨਹੀਂ। ਕੁਝ ਜ਼ਿਲ੍ਹਿਆਂ ਦੀ ਨਹੀਂ। ਇਹ ਅਗਲੇ ਕਮਰੇ ਵਿੱਚ ਹੈ।</span>
+    </p>
+    <p class="deck reveal" style="font-family:var(--mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--red);">
+      <span class="en">What follows is not opinion. It is the record.</span>
+      <span class="pa">ਅੱਗੇ ਜੋ ਹੈ ਉਹ ਰਾਏ ਨਹੀਂ। ਇਹ ਰਿਕਾਰਡ ਹੈ।</span>
+    </p>
+  </div>
+  <div class="scroll-hint">
+    <span class="en">Scroll</span><span class="pa">ਸਕ੍ਰੋਲ</span>
+  </div>
+</section>
+
+<!-- ─────── 01 · THE SCALE ─────── -->
+<section class="sec paper">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">01 · The Scale</span><span class="pa">01 · ਪੈਮਾਨਾ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">One in every five Punjabis. <em>Count the squares.</em></span>
+      <span class="pa">ਹਰ ਪੰਜਵਾਂ ਪੰਜਾਬੀ। <em>ਚੌਕਰ ਗਿਣੋ।</em></span>
+    </h2>
+    <p class="lede reveal">
+      <span class="en">The Parliamentary Standing Committee estimate is 66 lakh users. The NCB's figure, citing the Ministry of Social Justice, is 74 lakh. Both agree on one thing: <strong>nearly seven lakh children between 10 and 17.</strong></span>
+      <span class="pa">ਸੰਸਦੀ ਸਥਾਈ ਕਮੇਟੀ ਦਾ ਅਨੁਮਾਨ 66 ਲੱਖ ਉਪਭੋਗਤਾ ਹੈ। NCB ਦਾ ਅੰਕੜਾ, ਸਮਾਜਿਕ ਨਿਆਂ ਮੰਤਰਾਲੇ ਦਾ ਹਵਾਲਾ ਦਿੰਦੇ ਹੋਏ, 74 ਲੱਖ ਹੈ। ਦੋਵੇਂ ਇੱਕ ਗੱਲ 'ਤੇ ਸਹਿਮਤ ਹਨ: <strong>ਲਗਭਗ ਸੱਤ ਲੱਖ ਬੱਚੇ, 10 ਤੋਂ 17 ਸਾਲ ਦੇ।</strong></span>
+    </p>
+    <div class="grid100" id="grid100" aria-hidden="true"></div>
+    <div class="grid100-caption">
+      <span class="en">Each square ≈ 66,000 people. Red squares are children.</span>
+      <span class="pa">ਹਰ ਚੌਕਰ ≈ 66,000 ਲੋਕ। ਲਾਲ ਚੌਕਰ ਬੱਚੇ ਹਨ।</span>
+    </div>
+    <p class="src-note" id="src-scale" style="margin-top:20px;">
+      <span class="en">Sources: Parliamentary Standing Committee estimate, 2026. NCB citing Ministry of Social Justice committee report, March 2026. Range shown because the two primary estimates differ.</span>
+      <span class="pa">ਸਰੋਤ: ਸੰਸਦੀ ਸਥਾਈ ਕਮੇਟੀ ਅਨੁਮਾਨ, 2026। NCB, ਸਮਾਜਿਕ ਨਿਆਂ ਮੰਤਰਾਲੇ ਦੀ ਕਮੇਟੀ ਰਿਪੋਰਟ, ਮਾਰਚ 2026। ਰੇਂਜ ਦਿਖਾਈ ਗਈ ਕਿਉਂਕਿ ਦੋਵੇਂ ਪ੍ਰਾਇਮਰੀ ਅਨੁਮਾਨ ਵੱਖਰੇ ਹਨ।</span>
+    </p>
+  </div>
+</section>
+
+<!-- ─────── 02 · THE FACE ─────── -->
+<section class="sec ink">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">02 · The Face</span><span class="pa">02 · ਚਿਹਰਾ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">The face of Punjab's addiction <em>is a young man.</em></span>
+      <span class="pa">ਪੰਜਾਬ ਦੀ ਲਤ ਦਾ ਚਿਹਰਾ <em>ਇੱਕ ਜਵਾਨ ਆਦਮੀ ਹੈ।</em></span>
+    </h2>
+    <p class="lede reveal">
+      <span class="en">The years meant for study, work, marriage, building a life. Punjab is losing them.</span>
+      <span class="pa">ਪੜ੍ਹਾਈ, ਕੰਮ, ਵਿਆਹ, ਜੀਵਨ ਬਣਾਉਣ ਦੇ ਸਾਲ। ਪੰਜਾਬ ਇਹਨਾਂ ਨੂੰ ਗੁਆ ਰਿਹਾ ਹੈ।</span>
+    </p>
+    <div class="mega reveal">76<span class="unit">%</span></div>
+    <p class="mega-label">
+      <span class="en">of opioid-dependent people in Punjab are between 18 and 35.</span>
+      <span class="pa">ਅਫੀਮ 'ਤੇ ਨਿਰਭਰ ਲੋਕ ਪੰਜਾਬ ਵਿੱਚ 18 ਤੋਂ 35 ਸਾਲ ਦੇ ਵਿਚਕਾਰ ਹਨ।</span>
+    </p>
+    <ul class="stat-rows">
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Average age of first use</span>
+          <span class="pa">ਪਹਿਲੀ ਵਰਤੋਂ ਦੀ ਔਸਤ ਉਮਰ</span>
+          <button class="src" aria-expanded="false" aria-controls="src-age" data-src="src-age">i</button>
+        </div>
+        <div class="num">15.7<span class="u">yrs</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Teenage first-time use, one-year rise</span>
+          <span class="pa">ਕਿਸ਼ੋਰ ਪਹਿਲੀ ਵਰਤੋਂ, ਇੱਕ ਸਾਲ ਦਾ ਵਾਧਾ</span>
+        </div>
+        <div class="num">+23<span class="u">%</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">School dropout in affected districts</span>
+          <span class="pa">ਪ੍ਰਭਾਵਿਤ ਜ਼ਿਲ੍ਹਿਆਂ ਵਿੱਚ ਸਕੂਲ ਛੱਡਣਾ</span>
+        </div>
+        <div class="num">+19<span class="u">%</span></div>
+      </li>
+    </ul>
+    <div class="src-note" id="src-age">
+      <span class="en">Punjab opioid dependence survey, 2025; state education data. The +23% and +19% figures are reported state estimates.</span>
+      <span class="pa">ਪੰਜਾਬ ਅਫੀਮ ਨਿਰਭਰਤਾ ਸਰਵੇਖਣ, 2025; ਰਾਜ ਸਿੱਖਿਆ ਡੇਟਾ। +23% ਅਤੇ +19% ਅੰਕੜੇ ਰਿਪੋਰਟ ਕੀਤੇ ਰਾਜ ਅਨੁਮਾਨ ਹਨ।</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 03 · THE ROUTE ─────── -->
+<section class="sec paper">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">03 · The Route</span><span class="pa">03 · ਰਸਤਾ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">58 of every 100 grams of heroin seized in India are seized <em>in Punjab.</em></span>
+      <span class="pa">ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਤ ਹੋਏ ਹਰ 100 ਗ੍ਰਾਮ ਹੈਰੋਇਨ ਵਿੱਚੋਂ 58 ਗ੍ਰਾਮ <em>ਪੰਜਾਬ ਵਿੱਚ।</em></span>
+    </h2>
+    <div class="route reveal">
+      <div class="stop">
+        <span class="en">Afghanistan</span><span class="pa">ਅਫਗਾਨਿਸਤਾਨ</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="stop">
+        <span class="en">Pakistan</span><span class="pa">ਪਾਕਿਸਤਾਨ</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="stop">
+        <span class="en">Iran</span><span class="pa">ਈਰਾਨ</span>
+      </div>
+      <div class="arr">→</div>
+      <div class="stop dest">
+        <span class="en">Punjab</span><span class="pa">ਪੰਜਾਬ</span>
+      </div>
+    </div>
+    <div class="bar-set reveal">
+      <div class="bar">
+        <div class="lbl"><span class="en">Heroin 2025</span><span class="pa">ਹੈਰੋਇਨ 2025</span></div>
+        <div class="track"><div class="fill" data-w="100">2,085 kg</div></div>
+        <div class="v">100%</div>
+      </div>
+      <div class="bar">
+        <div class="lbl"><span class="en">Drone drops</span><span class="pa">ਡਰੋਨ ਡ੍ਰੌਪ</span></div>
+        <div class="track"><div class="fill" data-w="97.7">305</div></div>
+        <div class="v">97.7%</div>
+      </div>
+      <div class="bar">
+        <div class="lbl"><span class="en">Cough syrup</span><span class="pa">ਖੰਗ ਸ਼ਰਬਤ</span></div>
+        <div class="track"><div class="fill muted" data-w="57">8 lakh</div></div>
+        <div class="v">57%</div>
+      </div>
+    </div>
+    <div class="grid100-caption" style="margin-top:0;">
+      <span class="en">All three bars are Punjab's share of India's national total in that category, 2025.</span>
+      <span class="pa">ਤਿੰਨੇ ਥੰਮ੍ਹ ਪੰਜਾਬ ਦਾ ਹਿੱਸਾ ਹਨ ਉਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਭਾਰਤ ਦੇ ਕੁੱਲ ਦਾ, 2025।</span>
+    </div>
+    <ul class="stat-rows" style="margin-top:32px;">
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Drone incidents in Punjab, 2025</span>
+          <span class="pa">ਪੰਜਾਬ ਵਿੱਚ ਡਰੋਨ ਘਟਨਾਵਾਂ, 2025</span>
+        </div>
+        <div class="num">289<span class="u">of 305</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Pharma tablets seized in Punjab, 2024</span>
+          <span class="pa">ਪੰਜਾਬ ਵਿੱਚ ਫਾਰਮਾ ਗੋਲੀਆਂ, 2024</span>
+        </div>
+        <div class="num">2.94<span class="u">cr of 5.13cr</span></div>
+      </li>
+    </ul>
+    <div class="src-note" id="src-route">
+      <span class="en">NCB 2025 annual report; Punjab Police seizure data. The route is the Golden Crescent: Afghanistan → Pakistan → Iran → across the border into Punjab.</span>
+      <span class="pa">NCB 2025 ਸਾਲਾਨਾ ਰਿਪੋਰਟ; ਪੰਜਾਬ ਪੁਲਿਸ ਜ਼ਬਤੀ ਡੇਟਾ। ਰਸਤਾ ਗੋਲਡਨ ਕ੍ਰੈਸੈਂਟ ਹੈ: ਅਫਗਾਨਿਸਤਾਨ → ਪਾਕਿਸਤਾਨ → ਈਰਾਨ → ਸਰਹੱਦ ਪਾਰ ਪੰਜਾਬ।</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 04 · THE MONEY ─────── -->
+<section class="sec ink">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">04 · The Money</span><span class="pa">04 · ਪੈਸਾ</span>
+    </div>
+    <div class="mega reveal">₹6,000<span class="unit">Cr</span></div>
+    <p class="mega-label reveal">
+      <span class="en">One racket. A former DSP at the centre. The financial trail led to a 10-acre farmhouse in Doraha and a planned ₹16-crore hotel in Goa.</span>
+      <span class="pa">ਇੱਕ ਰੈਕੇਟ। ਕੇਂਦਰ ਵਿੱਚ ਇੱਕ ਸਾਬਕਾ DSP। ਵਿੱਤੀ ਟ੍ਰੇਲ ਦੋਰਾਹਾ ਵਿੱਚ 10 ਏਕੜ ਦੇ ਫਾਰਮਹਾਊਸ ਅਤੇ ਗੋਆ ਵਿੱਚ ₹16 ਕਰੋੜ ਦੇ ਯੋਜਨਾਬੱਧ ਹੋਟਲ ਤੱਕ ਲੈ ਗਿਆ।</span>
+    </p>
+    <div class="chain reveal">
+      <div class="node">
+        <span class="n">01</span>
+        <span class="en">Trafficker<br/>moves goods</span>
+        <span class="pa">ਤਸਕਰ<br/>ਸਮਾਨ ਲੈ ਜਾਂਦਾ</span>
+      </div>
+      <div class="node">
+        <span class="n">02</span>
+        <span class="en">Hawala<br/>moves cash</span>
+        <span class="pa">ਹਵਾਲਾ<br/>ਨਕਦ ਭੇਜਦਾ</span>
+      </div>
+      <div class="node">
+        <span class="n">03</span>
+        <span class="en">Assets<br/>buy silence</span>
+        <span class="pa">ਸੰਪਤੀ<br/>ਚੁੱਪ ਖਰੀਦਦੀ</span>
+      </div>
+      <div class="node">
+        <span class="n">04</span>
+        <span class="en">Protection<br/>makes it safe</span>
+        <span class="pa">ਸੁਰੱਖਿਆ<br/>ਸੁਰੱਖਿਅਤ ਬਣਾਉਂਦੀ</span>
+      </div>
+    </div>
+    <div class="chain-caption">
+      <span class="en">When the chain is cut at the bottom, the top survives.</span>
+      <span class="pa">ਜਦੋਂ ਜ਼ੰਜੀਰ ਹੇਠਾਂ ਤੋਂ ਕੱਟੀ ਜਾਂਦੀ ਹੈ, ਉੱਪਰ ਬਚ ਜਾਂਦਾ ਹੈ।</span>
+    </div>
+    <ul class="stat-rows" style="margin-top:40px;">
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Drug assets frozen since 2022</span>
+          <span class="pa">2022 ਤੋਂ ਜ਼ਬਤ ਨਸ਼ਾ ਸੰਪਤੀਆਂ</span>
+        </div>
+        <div class="num">₹830<span class="u">Cr+</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Recovery as share of one racket's value</span>
+          <span class="pa">ਇੱਕ ਰੈਕੇਟ ਦੀ ਕੀਮਤ ਦਾ ਹਿੱਸਾ</span>
+        </div>
+        <div class="num">~14<span class="u">%</span></div>
+      </li>
+    </ul>
+    <div class="src-note" id="src-money">
+      <span class="en">Tribune, 2014 (Bhola assets); Punjab Police DGP, 2026 (₹830 crore frozen across all NDPS cases since 2022). Hawala routes: Turkey, UAE, West Asia — reported by SATP, 2025.</span>
+      <span class="pa">ਟ੍ਰਿਬਿਊਨ, 2014 (ਭੋਲਾ ਸੰਪਤੀਆਂ); ਪੰਜਾਬ ਪੁਲਿਸ DGP, 2026 (₹830 ਕਰੋੜ 2022 ਤੋਂ ਸਾਰੇ NDPS ਕੇਸਾਂ ਵਿੱਚ ਜ਼ਬਤ)। ਹਵਾਲਾ ਰਸਤੇ: ਤੁਰਕੀ, UAE, ਪੱਛਮੀ ਏਸ਼ੀਆ — SATP, 2025।</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 05 · THE PROTECTION ─────── -->
+<section class="sec paper">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">05 · The Protection</span><span class="pa">05 · ਸੁਰੱਖਿਆ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">The higher the rank, <em>the fewer the prosecutions.</em></span>
+      <span class="pa">ਜਿੰਨਾ ਉੱਚਾ ਰੁਤਬਾ, <em>ਓਨੀ ਘੱਟ ਕਾਰਵਾਈ।</em></span>
+    </h2>
+    <div class="legend reveal">
+      <strong><span class="tag conv">Convicted</span> Court finding</strong>
+      <strong><span class="tag charged">Charged</span> Case pending</strong>
+      <strong><span class="tag no">Alleged</span> Not proven</strong>
+      <strong><span class="tag off">Official</span> State record</strong>
+    </div>
+
+    <div class="pyr reveal" role="img" aria-label="Inverted pyramid: 700+ constables arrested, 17 inspectors, 3 DSPs, 1 politician charged, 0 financiers convicted">
+      <div class="r l1"><span class="en">0 financiers convicted</span><span class="pa">0 ਵਿੱਤੀ ਦੋਸ਼ੀ</span></div>
+      <div class="r l2"><span class="en">1 politician charged</span><span class="pa">1 ਸਿਆਸਤਦਾਨ ਦੋਸ਼ੀ</span></div>
+      <div class="r l3"><span class="en">3 DSPs arrested</span><span class="pa">3 DSP ਗ੍ਰਿਫਤਾਰ</span></div>
+      <div class="r l4"><span class="en">17 Inspectors arrested</span><span class="pa">17 ਇੰਸਪੈਕਟਰ ਗ੍ਰਿਫਤਾਰ</span></div>
+      <div class="r l5"><span class="en">700+ constables arrested · 127 police in drug-corruption cases</span><span class="pa">700+ ਕਾਂਸਟੇਬਲ · 127 ਪੁਲਿਸ ਨਸ਼ਾ-ਭ੍ਰਿਸ਼ਟਾਚਾਰ ਵਿੱਚ</span></div>
+    </div>
+    <p class="pyr-label">
+      <span class="en">The pyramid of impunity. The wider the base, the more the system can show. The narrower the top, the less it will touch.</span>
+      <span class="pa">ਦੰਡਮੁਕਤੀ ਦਾ ਪਿਰਾਮਿਡ। ਜਿੰਨਾ ਚੌੜਾ ਅਧਾਰ, ਓਨਾ ਜ਼ਿਆਦਾ ਸਿਸਟਮ ਦਿਖਾ ਸਕਦਾ। ਜਿੰਨਾ ਤੰਗ ਸਿਖਰ, ਓਨਾ ਘੱਟ ਛੂਹੇਗਾ।</span>
+    </p>
+
+    <ul class="named">
+      <li class="reveal">
+        <div>
+          <span class="who">Jagdish Bhola<small><span class="en">Former DSP · Bhola racket</span><span class="pa">ਸਾਬਕਾ DSP · ਭੋਲਾ ਰੈਕੇਟ</span></small></span>
+          <span class="desc"><span class="en">Ran the ₹6,000-crore network. Convicted. The case established that the police can be the trafficker.</span><span class="pa">₹6,000 ਕਰੋੜ ਦਾ ਨੈੱਟਵਰਕ ਚਲਾਇਆ। ਦੋਸ਼ੀ। ਕੇਸ ਨੇ ਸਾਬਤ ਕੀਤਾ ਕਿ ਪੁਲਿਸ ਹੀ ਤਸਕਰ ਹੋ ਸਕਦੀ ਹੈ।</span></span>
+        </div>
+        <span class="tag conv">Convicted</span>
+      </li>
+      <li class="reveal">
+        <div>
+          <span class="who">Bikram Singh Majithia<small><span class="en">SAD · 2026 SIT summons</span><span class="pa">SAD · 2026 SIT ਸੰਮਨ</span></small></span>
+          <span class="desc"><span class="en">Charged in the ₹6,000-crore drug case. SIT summoned him for questioning in 2026. He denies wrongdoing. The case is pending.</span><span class="pa">₹6,000 ਕਰੋੜ ਦੇ ਨਸ਼ਾ ਕੇਸ ਵਿੱਚ ਦੋਸ਼ ਲੱਗੇ। SIT ਨੇ 2026 ਵਿੱਚ ਪੁੱਛਗਿੱਛ ਲਈ ਬੁਲਾਇਆ। ਉਹ ਇਨਕਾਰ ਕਰਦੇ ਹਨ। ਕੇਸ ਲੰਬਿਤ।</span></span>
+        </div>
+        <span class="tag charged">Charged</span>
+      </li>
+      <li class="reveal">
+        <div>
+          <span class="who"><span class="en">3 DSPs · 17 Inspectors</span><span class="pa">3 DSP · 17 ਇੰਸਪੈਕਟਰ</span><small><span class="en">Vigilance Bureau · Feb 2025</span><span class="pa">ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ · ਫਰਵਰੀ 2025</span></small></span>
+          <span class="desc"><span class="en">Arrested over a network alleged to have moved narcotics worth ₹200 crore+ in uniform.</span><span class="pa">ਵਰਦੀ ਵਿੱਚ ₹200 ਕਰੋੜ+ ਨਸ਼ਾ ਲਿਜਾਣ ਵਾਲੇ ਨੈੱਟਵਰਕ 'ਤੇ ਗ੍ਰਿਫਤਾਰ।</span></span>
+        </div>
+        <span class="tag off">Official</span>
+      </li>
+      <li class="reveal">
+        <div>
+          <span class="who"><span class="en">127 police personnel</span><span class="pa">127 ਪੁਲਿਸ ਮੁਲਾਜ਼ਮ</span><small><span class="en">Jan 2024 – Apr 2025</span><span class="pa">ਜਨ 2024 – ਅਪ੍ਰੈਲ 2025</span></small></span>
+          <span class="desc"><span class="en">Named in drug-corruption cases registered by the Vigilance Bureau.</span><span class="pa">ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ ਦੁਆਰਾ ਦਰਜ ਨਸ਼ਾ-ਭ੍ਰਿਸ਼ਟਾਚਾਰ ਮਾਮਲਿਆਂ ਵਿੱਚ ਨਾਮਜ਼ਦ।</span></span>
+        </div>
+        <span class="tag off">Official</span>
+      </li>
+      <li class="reveal">
+        <div>
+          <span class="who">Arvind Kejriwal · AAP<small><span class="en">Public record, as of Nov 2026</span><span class="pa">ਜਨਤਕ ਰਿਕਾਰਡ, ਨਵੰਬਰ 2026</span></small></span>
+          <span class="desc"><span class="en">No court has convicted Kejriwal or any AAP leader of drug involvement. Allegations exist (including a drug-census claim by Sunil Jakhar). The public record does not establish personal involvement. Presented here because the accusation exists, not because it is proven.</span><span class="pa">ਕਿਸੇ ਅਦਾਲਤ ਨੇ ਕੇਜਰੀਵਾਲ ਜਾਂ ਕਿਸੇ AAP ਆਗੂ ਨੂੰ ਨਸ਼ੇ ਵਿੱਚ ਦੋਸ਼ੀ ਨਹੀਂ ਠਹਿਰਾਇਆ। ਦੋਸ਼ ਹਨ (ਸੁਨੀਲ ਜਾਖੜ ਦਾ ਡਰੱਗ-ਸੈਂਸਸ ਦਾਅਵਾ ਸਮੇਤ)। ਜਨਤਕ ਰਿਕਾਰਡ ਨਿੱਜੀ ਸ਼ਮੂਲੀਅਤ ਸਥਾਪਿਤ ਨਹੀਂ ਕਰਦਾ। ਇੱਥੇ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਕਿਉਂਕਿ ਦੋਸ਼ ਮੌਜੂਦ ਹੈ, ਇਸ ਲਈ ਨਹੀਂ ਕਿ ਸਾਬਤ ਹੈ।</span></span>
+        </div>
+        <span class="tag no">No conviction</span>
+      </li>
+    </ul>
+
+    <div class="src-note" id="src-protection">
+      <span class="en">The Print; Punjab Vigilance Bureau releases, Feb 2025 and 2024–25; court records, 2026. Names are tagged by their current evidentiary status — not by party affiliation. Every party has been accused of something on this page. The tags say what each accusation has actually produced in court.</span>
+      <span class="pa">The Print; ਪੰਜਾਬ ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ ਰਿਲੀਜ਼, ਫਰਵਰੀ 2025 ਅਤੇ 2024–25; ਅਦਾਲਤੀ ਰਿਕਾਰਡ, 2026। ਨਾਵਾਂ ਨੂੰ ਉਹਨਾਂ ਦੀ ਮੌਜੂਦਾ ਸਬੂਤ ਸਥਿਤੀ ਦੁਆਰਾ ਟੈਗ ਕੀਤਾ ਗਿਆ ਹੈ — ਪਾਰਟੀ ਸੰਬੰਧ ਦੁਆਰਾ ਨਹੀਂ। ਇਸ ਪੰਨੇ 'ਤੇ ਹਰ ਪਾਰਟੀ 'ਤੇ ਕੁਝ ਦੋਸ਼ ਲੱਗਾ ਹੈ। ਟੈਗ ਦੱਸਦੇ ਹਨ ਕਿ ਹਰ ਦੋਸ਼ ਨੇ ਅਦਾਲਤ ਵਿੱਚ ਅਸਲ ਵਿੱਚ ਕੀ ਪੈਦਾ ਕੀਤਾ ਹੈ।</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 06 · THE GAP ─────── -->
+<section class="sec ink">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">06 · The Gap</span><span class="pa">06 · ਗੈਪ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">If 30 shipments are caught, <em>70 reach the street.</em></span>
+      <span class="pa">ਜੇ 30 ਖੇਪਾਂ ਫੜੀਆਂ, <em>70 ਗਲੀ ਤੱਕ ਪਹੁੰਚਦੀਆਂ।</em></span>
+    </h2>
+    <p class="lede reveal">
+      <span class="en">Every 100 shipments that cross the border. This is the arithmetic of why enforcement has not stopped the supply.</span>
+      <span class="pa">ਹਰ 100 ਖੇਪਾਂ ਜੋ ਸਰਹੱਦ ਪਾਰ ਕਰਦੀਆਂ। ਇਹ ਹਿਸਾਬ ਹੈ ਕਿ ਕਿਉਂ ਐਨਫੋਰਸਮੈਂਟ ਨੇ ਸਪਲਾਈ ਨਹੀਂ ਰੋਕੀ।</span>
+    </p>
+    <div class="dots reveal" id="dots" aria-hidden="true"></div>
+    <div class="dots-key reveal">
+      <span><i class="k-caught"></i><span class="en">30 caught</span><span class="pa">30 ਫੜੇ</span></span>
+      <span><i class="k-through"></i><span class="en">70 get through</span><span class="pa">70 ਲੰਘੇ</span></span>
+    </div>
+    <p class="grid100-caption" style="margin-top:16px;">
+      <span class="en">Intelligence estimates cited in 2025. The 30% interception figure is reported, not published as an official statistic.</span>
+      <span class="pa">2025 ਵਿੱਚ ਉੱਧਰਤ ਖੁਫੀਆ ਅਨੁਮਾਨ। 30% ਰੋਕ ਅੰਕੜਾ ਰਿਪੋਰਟ ਕੀਤਾ ਗਿਆ ਹੈ, ਅਧਿਕਾਰਤ ਅੰਕੜੇ ਵਜੋਂ ਪ੍ਰਕਾਸ਼ਿਤ ਨਹੀਂ।</span>
+    </p>
+
+    <ul class="stat-rows" style="margin-top:48px;">
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Treatment centres running at</span>
+          <span class="pa">ਇਲਾਜ ਕੇਂਦਰ ਚੱਲ ਰਹੇ</span>
+        </div>
+        <div class="num">182<span class="u">%</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Average wait for admission</span>
+          <span class="pa">ਦਾਖਲੇ ਦੀ ਔਸਤ ਉਡੀਕ</span>
+        </div>
+        <div class="num">3–4<span class="u">mo</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Relapse rate</span>
+          <span class="pa">ਮੁੜ ਵਸੇਬਾ ਦਰ</span>
+        </div>
+        <div class="num">64<span class="u">%</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Wanted smugglers still at large</span>
+          <span class="pa">ਲੋੜੀਂਦੇ ਤਸਕਰ ਅਜੇ ਫਰਾਰ</span>
+        </div>
+        <div class="num">971<span class="u">of 1,846</span></div>
+      </li>
+      <li class="reveal">
+        <div class="desc">
+          <span class="en">Drug cases pending in court</span>
+          <span class="pa">ਅਦਾਲਤ ਵਿੱਚ ਲੰਬਿਤ ਨਸ਼ਾ ਕੇਸ</span>
+        </div>
+        <div class="num">23,700</div>
+      </li>
+    </ul>
+    <div class="src-note" id="src-gap">
+      <span class="en">Punjab State AIDS Control Society, 2025 (capacity, relapse); Punjab courts, April 2025 (pendency); court submission, 2025 (971 smugglers at large). The 30% interception estimate is intelligence-sourced, not an official statistic.</span>
+      <span class="pa">ਪੰਜਾਬ ਰਾਜ ਏਡਜ਼ ਕੰਟਰੋਲ ਸੋਸਾਇਟੀ, 2025 (ਸਮਰੱਥਾ, ਮੁੜ ਵਸੇਬਾ); ਪੰਜਾਬ ਅਦਾਲਤਾਂ, ਅਪ੍ਰੈਲ 2025 (ਲੰਬਿਤ); ਅਦਾਲਤੀ ਬਿਆਨ, 2025 (971 ਤਸਕਰ ਫਰਾਰ)। 30% ਰੋਕ ਅਨੁਮਾਨ ਖੁਫੀਆ ਸਰੋਤ ਹੈ, ਅਧਿਕਾਰਤ ਅੰਕੜਾ ਨਹੀਂ।</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 07 · CLAIMS VS RECORD ─────── -->
+<section class="sec paper">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">07 · Claims vs Record</span><span class="pa">07 · ਦਾਅਵੇ ਬਨਾਮ ਰਿਕਾਰਡ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">What they said. <em>What the record shows.</em></span>
+      <span class="pa">ਉਹਨਾਂ ਕੀ ਕਿਹਾ। <em>ਰਿਕਾਰਡ ਕੀ ਦਿਖਾਉਂਦਾ।</em></span>
+    </h2>
+    <p class="lede reveal">
+      <span class="en">Tap each claim to see what the record says. We do not say the government lied. We show what it said, and what the data shows. You decide.</span>
+      <span class="pa">ਹਰ ਦਾਅਵੇ 'ਤੇ ਟੈਪ ਕਰੋ ਕਿ ਰਿਕਾਰਡ ਕੀ ਕਹਿੰਦਾ ਹੈ। ਅਸੀਂ ਨਹੀਂ ਕਹਿੰਦੇ ਸਰਕਾਰ ਨੇ ਝੂਠ ਬੋਲਿਆ। ਅਸੀਂ ਦਿਖਾਉਂਦੇ ਹਾਂ ਉਹਨਾਂ ਕੀ ਕਿਹਾ, ਅਤੇ ਡੇਟਾ ਕੀ ਦਿਖਾਉਂਦਾ। ਤੁਸੀਂ ਫੈਸਲਾ ਕਰੋ।</span>
+    </p>
+
+    <div class="cr-item" data-open="false">
+      <div class="claim">
+        <span class="en">“Punjab is becoming drug-free. We have seized record quantities and achieved an 88% conviction rate.”</span>
+        <span class="pa">“ਪੰਜਾਬ ਨਸ਼ਾ-ਮੁਕਤ ਹੋ ਰਿਹਾ ਹੈ। ਅਸੀਂ ਰਿਕਾਰਡ ਮਾਤਰਾ ਜ਼ਬਤ ਕੀਤੀ ਅਤੇ 88% ਸਜ਼ਾ ਦਰ ਹਾਸਲ ਕੀਤੀ।”</span>
+      </div>
+      <div class="who-said">
+        <span class="en">Punjab DGP / Chief Minister, 2025–26</span>
+        <span class="pa">ਪੰਜਾਬ DGP / ਮੁੱਖ ਮੰਤਰੀ, 2025–26</span>
+      </div>
+      <div class="record">
+        <p>
+          <span class="en"><span class="num">971</span> of 1,846 wanted smugglers were still at large — a fact the police admitted in court. <span class="num">127</span> police personnel were named in drug-corruption cases in 15 months, including 3 DSPs and 17 Inspectors arrested in one operation. Record seizures are real. So is the fact that the men who carry the packets are being caught while the men who finance them are not.</span>
+          <span class="pa"><span class="num">971</span> ਤਸਕਰ 1,846 ਵਿੱਚੋਂ ਅਜੇ ਵੀ ਫਰਾਰ — ਇਹ ਤੱਥ ਪੁਲਿਸ ਨੇ ਅਦਾਲਤ ਵਿੱਚ ਸਵੀਕਾਰ ਕੀਤਾ। <span class="num">127</span> ਪੁਲਿਸ ਮੁਲਾਜ਼ਮ 15 ਮਹੀਨਿਆਂ ਵਿੱਚ ਨਸ਼ਾ-ਭ੍ਰਿਸ਼ਟਾਚਾਰ ਮਾਮਲਿਆਂ ਵਿੱਚ ਨਾਮਜ਼ਦ, ਜਿਨ੍ਹਾਂ ਵਿੱਚ 3 DSP ਅਤੇ 17 ਇੰਸਪੈਕਟਰ ਇੱਕ ਕਾਰਵਾਈ ਵਿੱਚ ਗ੍ਰਿਫਤਾਰ। ਰਿਕਾਰਡ ਜ਼ਬਤੀਆਂ ਅਸਲੀ ਹਨ। ਇਹ ਵੀ ਅਸਲੀ ਹੈ ਕਿ ਪੈਕਟ ਢੋਣ ਵਾਲੇ ਫੜੇ ਜਾਂਦੇ ਹਨ, ਪੈਸਾ ਦੇਣ ਵਾਲੇ ਨਹੀਂ।</span>
+        </p>
+        <div class="source-mini">
+          <span class="en">Court submission, 2025 · Punjab Vigilance Bureau, Feb 2025</span>
+          <span class="pa">ਅਦਾਲਤੀ ਬਿਆਨ, 2025 · ਪੰਜਾਬ ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ, ਫਰਵਰੀ 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-item" data-open="false">
+      <div class="claim">
+        <span class="en">“Only 106 people died of drug overdose in Punjab in 2024.”</span>
+        <span class="pa">“2024 ਵਿੱਚ ਪੰਜਾਬ ਵਿੱਚ ਸਿਰਫ 106 ਲੋਕਾਂ ਦੀ ਓਵਰਡੋਜ਼ ਨਾਲ ਮੌਤ ਹੋਈ।”</span>
+      </div>
+      <div class="who-said">
+        <span class="en">NCRB official count, 2024</span>
+        <span class="pa">NCRB ਅਧਿਕਾਰਤ ਗਿਣਤੀ, 2024</span>
+      </div>
+      <div class="record">
+        <p>
+          <span class="en">The State Health Department recorded <span class="num">782</span> confirmed overdose deaths between January 2024 and April 2025 — more than seven times the NCRB figure. PGIMER experts estimate the real number is <span class="num">2–3×</span> higher again, because families conceal addiction deaths to protect the family name. One number is a census. The other is a floor.</span>
+          <span class="pa">ਰਾਜ ਸਿਹਤ ਵਿਭਾਗ ਨੇ ਜਨਵਰੀ 2024 ਤੋਂ ਅਪ੍ਰੈਲ 2025 ਦਰਮਿਆਨ <span class="num">782</span> ਪੁਸ਼ਟੀਕ੍ਰਿਤ ਓਵਰਡੋਜ਼ ਮੌਤਾਂ ਦਰਜ ਕੀਤੀਆਂ — NCRB ਅੰਕੜੇ ਤੋਂ ਸੱਤ ਗੁਣਾ ਵੱਧ। PGIMER ਮਾਹਿਰਾਂ ਦਾ ਅਨੁਮਾਨ ਹੈ ਅਸਲ ਗਿਣਤੀ <span class="num">2–3×</span> ਹੋਰ ਵੱਧ ਹੈ, ਕਿਉਂਕਿ ਪਰਿਵਾਰ ਨਾਂ ਬਚਾਉਣ ਲਈ ਲਤ ਦੀਆਂ ਮੌਤਾਂ ਲੁਕਾਉਂਦੇ ਹਨ। ਇੱਕ ਅੰਕੜਾ ਜਨਗਣਨਾ ਹੈ। ਦੂਜਾ ਘੱਟੋ-ਘੱਟ ਹੱਦ।</span>
+        </p>
+        <div class="source-mini">
+          <span class="en">NCRB 2024 · State Health Department data, Jan 2024–Apr 2025 · PGIMER expert estimates</span>
+          <span class="pa">NCRB 2024 · ਰਾਜ ਸਿਹਤ ਵਿਭਾਗ ਡੇਟਾ, ਜਨ 2024–ਅਪ੍ਰੈਲ 2025 · PGIMER ਮਾਹਿਰ ਅਨੁਮਾਨ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-item" data-open="false">
+      <div class="claim">
+        <span class="en">“Treatment is available. Anyone who wants help can get it.”</span>
+        <span class="pa">“ਇਲਾਜ ਉਪਲਬਧ ਹੈ। ਜੋ ਵੀ ਮਦਦ ਚਾਹੁੰਦਾ ਹੈ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦਾ।”</span>
+      </div>
+      <div class="who-said">
+        <span class="en">State Health Department, 2025</span>
+        <span class="pa">ਰਾਜ ਸਿਹਤ ਵਿਭਾਗ, 2025</span>
+      </div>
+      <div class="record">
+        <p>
+          <span class="en">Treatment centres are running at <span class="num">182%</span> of intended capacity. A patient waits <span class="num">3–4 months</span> for admission. When admitted, <span class="num">64%</span> relapse. A father who asks for help on Monday is told to come back in April.</span>
+          <span class="pa">ਇਲਾਜ ਕੇਂਦਰ <span class="num">182%</span> ਸਮਰੱਥਾ 'ਤੇ ਚੱਲ ਰਹੇ। ਮਰੀਜ਼ <span class="num">3–4 ਮਹੀਨੇ</span> ਉਡੀਕਦਾ। ਦਾਖਲ ਹੋਣ 'ਤੇ <span class="num">64%</span> ਮੁੜ ਵਸਦੇ। ਸੋਮਵਾਰ ਮਦਦ ਮੰਗਣ ਵਾਲੇ ਪਿਤਾ ਨੂੰ ਅਪ੍ਰੈਲ ਵਿੱਚ ਵਾਪਸ ਆਉਣ ਲਈ ਕਿਹਾ ਜਾਂਦਾ।</span>
+        </p>
+        <div class="source-mini">
+          <span class="en">Punjab State AIDS Control Society, 2025</span>
+          <span class="pa">ਪੰਜਾਬ ਰਾਜ ਏਡਜ਼ ਕੰਟਰੋਲ ਸੋਸਾਇਟੀ, 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-item" data-open="false">
+      <div class="claim">
+        <span class="en">“The drug problem is a border problem. Pakistan sends it; we stop it.”</span>
+        <span class="pa">“ਨਸ਼ਾ ਸਰਹੱਦ ਦੀ ਸਮੱਸਿਆ ਹੈ। ਪਾਕਿਸਤਾਨ ਭੇਜਦਾ ਹੈ; ਅਸੀਂ ਰੋਕਦੇ ਹਾਂ।”</span>
+      </div>
+      <div class="who-said">
+        <span class="en">Recurring state framing, 2022–present</span>
+        <span class="pa">ਆਵਰਤੀ ਰਾਜ ਫਰੇਮਿੰਗ, 2022–ਵਰਤਮਾਨ</span>
+      </div>
+      <div class="record">
+        <p>
+          <span class="en">Punjab accounted for <span class="num">2.94 crore</span> of the <span class="num">5.13 crore</span> pharmaceutical drug units seized nationally in 2024 — 57% of India's total, from inside the legal supply chain. In 2025, Punjab seized <span class="num">8 lakh</span> cough-syrup bottles, the highest in the country. The border is real. So is the pharmacy.</span>
+          <span class="pa">ਪੰਜਾਬ ਨੇ 2024 ਵਿੱਚ ਰਾਸ਼ਟਰੀ ਤੌਰ 'ਤੇ ਜ਼ਬਤ <span class="num">5.13 ਕਰੋੜ</span> ਫਾਰਮਾ ਯੂਨਿਟਾਂ ਵਿੱਚੋਂ <span class="num">2.94 ਕਰੋੜ</span> ਜ਼ਬਤ ਕੀਤੇ — ਭਾਰਤ ਦੇ ਕੁੱਲ ਦਾ 57%, ਕਾਨੂੰਨੀ ਸਪਲਾਈ ਚੇਨ ਦੇ ਅੰਦਰੋਂ। 2025 ਵਿੱਚ ਪੰਜਾਬ ਨੇ <span class="num">8 ਲੱਖ</span> ਖੰਗ ਸ਼ਰਬਤ ਬੋਤਲਾਂ ਜ਼ਬਤ ਕੀਤੀਆਂ, ਦੇਸ਼ ਵਿੱਚ ਸਭ ਤੋਂ ਵੱਧ। ਸਰਹੱਦ ਅਸਲੀ ਹੈ। ਫਾਰਮੇਸੀ ਵੀ।</span>
+        </p>
+        <div class="source-mini">
+          <span class="en">NCB 2024 and 2025 annual reports</span>
+          <span class="pa">NCB 2024 ਅਤੇ 2025 ਸਾਲਾਨਾ ਰਿਪੋਰਟਾਂ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-item" data-open="false">
+      <div class="claim">
+        <span class="en">“Anti-drug operations are at record levels. We have frozen ₹830 crore in drug assets since 2022.”</span>
+        <span class="pa">“ਨਸ਼ਾ ਵਿਰੋਧੀ ਕਾਰਵਾਈਆਂ ਰਿਕਾਰਡ ਪੱਧਰ 'ਤੇ ਹਨ। 2022 ਤੋਂ ₹830 ਕਰੋੜ ਦੀਆਂ ਨਸ਼ਾ ਸੰਪਤੀਆਂ ਜ਼ਬਤ ਕੀਤੀਆਂ।”</span>
+      </div>
+      <div class="who-said">
+        <span class="en">Punjab DGP, 2026</span>
+        <span class="pa">ਪੰਜਾਬ DGP, 2026</span>
+      </div>
+      <div class="record">
+        <p>
+          <span class="en">₹830 crore is real. So is the <span class="num">₹6,000 crore</span> value of the Bhola racket alone — 14% of one case, recovered in four years. The question the number does not answer: how many <em>financiers</em> have been convicted using those frozen assets? The answer, on the current record, is zero.</span>
+          <span class="pa">₹830 ਕਰੋੜ ਅਸਲੀ ਹੈ। ਭੋਲਾ ਰੈਕੇਟ ਦੀ <span class="num">₹6,000 ਕਰੋੜ</span> ਕੀਮਤ ਵੀ ਅਸਲੀ — ਇੱਕ ਕੇਸ ਦਾ 14%, ਚਾਰ ਸਾਲਾਂ ਵਿੱਚ ਵਸੂਲਿਆ। ਜੋ ਸਵਾਲ ਅੰਕੜਾ ਜਵਾਬ ਨਹੀਂ ਦਿੰਦਾ: ਉਹਨਾਂ ਜ਼ਬਤ ਸੰਪਤੀਆਂ ਨਾਲ ਕਿੰਨੇ <em>ਵਿੱਤੀ</em> ਦੋਸ਼ੀ ਠਹਿਰਾਏ ਗਏ? ਮੌਜੂਦਾ ਰਿਕਾਰਡ 'ਤੇ ਜਵਾਬ ਹੈ ਜ਼ੀਰੋ।</span>
+        </p>
+        <div class="source-mini">
+          <span class="en">Punjab Police DGP, 2026 · Tribune, 2014 (Bhola valuation)</span>
+          <span class="pa">ਪੰਜਾਬ ਪੁਲਿਸ DGP, 2026 · ਟ੍ਰਿਬਿਊਨ, 2014 (ਭੋਲਾ ਮੁੱਲ)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 08 · THREE TESTS ─────── -->
+<section class="sec ink">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">08 · Three Tests</span><span class="pa">08 · ਤਿੰਨ ਟੈਸਟ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">Three questions <em>no government has answered.</em></span>
+      <span class="pa">ਤਿੰਨ ਸਵਾਲ <em>ਜਿਨ੍ਹਾਂ ਦਾ ਕਿਸੇ ਸਰਕਾਰ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ।</em></span>
+    </h2>
+
+    <div class="tests">
+      <div class="test reveal">
+        <div class="tn">01</div>
+        <div>
+          <h3 class="en">Name the financiers, not just the addicts.</h3>
+          <h3 class="pa">ਵਿੱਤੀਆਂ ਦੇ ਨਾਂ ਦੱਸੋ, ਸਿਰਫ ਨਸ਼ੇੜੀਆਂ ਦੇ ਨਹੀਂ।</h3>
+          <p class="en">Has any state government convicted the men who own the ₹6,000-crore network — not just the men who carry the packets?</p>
+          <p class="pa">ਕੀ ਕਿਸੇ ਰਾਜ ਸਰਕਾਰ ਨੇ ₹6,000 ਕਰੋੜ ਦੇ ਨੈੱਟਵਰਕ ਦੇ ਮਾਲਕਾਂ ਨੂੰ ਦੋਸ਼ੀ ਠਹਿਰਾਇਆ — ਸਿਰਫ ਪੈਕਟ ਢੋਣ ਵਾਲਿਆਂ ਨੂੰ ਨਹੀਂ?</p>
+          <div class="q"><span class="en">Has this happened? →</span><span class="pa">ਕੀ ਇਹ ਹੋਇਆ? →</span></div>
+        </div>
+      </div>
+      <div class="test reveal">
+        <div class="tn">02</div>
+        <div>
+          <h3 class="en">Admit a patient the day he asks.</h3>
+          <h3 class="pa">ਮਰੀਜ਼ ਨੂੰ ਉਸ ਦਿਨ ਦਾਖਲ ਕਰੋ ਜਿਸ ਦਿਨ ਉਹ ਮੰਗਦਾ।</h3>
+          <p class="en">With 182% capacity and 3–4 month waits, can a father get his son into treatment on the day he asks for help?</p>
+          <p class="pa">182% ਸਮਰੱਥਾ ਅਤੇ 3–4 ਮਹੀਨਿਆਂ ਦੀ ਉਡੀਕ ਨਾਲ, ਕੀ ਇੱਕ ਪਿਤਾ ਉਸ ਦਿਨ ਆਪਣੇ ਪੁੱਤਰ ਨੂੰ ਇਲਾਜ ਵਿੱਚ ਦਾਖਲ ਕਰ ਸਕਦਾ ਜਿਸ ਦਿਨ ਉਹ ਮਦਦ ਮੰਗਦਾ?</p>
+          <div class="q"><span class="en">Has this happened? →</span><span class="pa">ਕੀ ਇਹ ਹੋਇਆ? →</span></div>
+        </div>
+      </div>
+      <div class="test reveal">
+        <div class="tn">03</div>
+        <div>
+          <h3 class="en">Show a drop in new users, not a rise in arrests.</h3>
+          <h3 class="pa">ਨਵੇਂ ਉਪਭੋਗਤਾਵਾਂ ਵਿੱਚ ਕਮੀ ਦਿਖਾਓ, ਗ੍ਰਿਫਤਾਰੀਆਂ ਨਹੀਂ।</h3>
+          <p class="en">With first use at 15.7 and teenage initiation up 23%, has any government shown fewer children starting — not more FIRs?</p>
+          <p class="pa">ਪਹਿਲੀ ਵਰਤੋਂ 15.7 'ਤੇ ਅਤੇ ਕਿਸ਼ੋਰ ਸ਼ੁਰੂਆਤ 23% ਵੱਧ, ਕੀ ਕਿਸੇ ਸਰਕਾਰ ਨੇ ਘੱਟ ਬੱਚੇ ਸ਼ੁਰੂ ਕਰਦੇ ਦਿਖਾਏ — ਵਧੇਰੇ FIR ਨਹੀਂ?</p>
+          <div class="q"><span class="en">Has this happened? →</span><span class="pa">ਕੀ ਇਹ ਹੋਇਆ? →</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── 09 · WHAT YOU CAN DO ─────── -->
+<section class="sec paper">
+  <div class="inner">
+    <div class="folio">
+      <span class="en">09 · What You Can Do</span><span class="pa">09 · ਤੁਸੀਂ ਕੀ ਕਰ ਸਕਦੇ</span>
+    </div>
+    <h2 class="reveal">
+      <span class="en">Four small things. <em>Each one is doable today.</em></span>
+      <span class="pa">ਚਾਰ ਛੋਟੀਆਂ ਚੀਜ਼ਾਂ। <em>ਹਰ ਇੱਕ ਅੱਜ ਕੀਤੀ ਜਾ ਸਕਦੀ।</em></span>
+    </h2>
+
+    <div class="actions">
+      <div class="action reveal">
+        <div class="an">01</div>
+        <div>
+          <h4 class="en">Memorize one number.</h4>
+          <h4 class="pa">ਇੱਕ ਅੰਕੜਾ ਯਾਦ ਰੱਖੋ।</h4>
+          <p class="en">Pick one: <strong>66 lakh users</strong>, <strong>7 lakh children</strong>, <strong>30% intercepted</strong>, or <strong>971 at large</strong>. Ask it at the next town hall. Ask it in a letter to your MLA. A number asked repeatedly is harder to wave away than an opinion.</p>
+          <p class="pa">ਇੱਕ ਚੁਣੋ: <strong>66 ਲੱਖ ਉਪਭੋਗਤਾ</strong>, <strong>7 ਲੱਖ ਬੱਚੇ</strong>, <strong>30% ਰੋਕੇ</strong>, ਜਾਂ <strong>971 ਫਰਾਰ</strong>। ਅਗਲੀ ਪੰਚਾਇਤ ਵਿੱਚ ਪੁੱਛੋ। ਆਪਣੇ ਵਿਧਾਇਕ ਨੂੰ ਚਿੱਠੀ ਵਿੱਚ ਪੁੱਛੋ। ਵਾਰ-ਵਾਰ ਪੁੱਛਿਆ ਅੰਕੜਾ ਰਾਏ ਨਾਲੋਂ ਔਖਾ ਹੁੰਦਾ ਹੈ।</p>
+        </div>
+      </div>
+      <div class="action reveal">
+        <div class="an">02</div>
+        <div>
+          <h4 class="en">Show this page to one person.</h4>
+          <h4 class="pa">ਇਹ ਪੰਨਾ ਇੱਕ ਵਿਅਕਤੀ ਨੂੰ ਦਿਖਾਓ।</h4>
+          <p class="en">Not on Facebook. Not on WhatsApp. In person, on your phone, with the language button on ਪੰਜਾਬੀ. A page that is scrolled through together is remembered differently than a link that is forwarded.</p>
+          <p class="pa">ਫੇਸਬੁੱਕ 'ਤੇ ਨਹੀਂ। ਵਟਸਐਪ 'ਤੇ ਨਹੀਂ। ਆਹਮੋ-ਸਾਹਮਣੇ, ਤੁਹਾਡੇ ਫੋਨ 'ਤੇ, ਭਾਸ਼ਾ ਬਟਨ ਪੰਜਾਬੀ 'ਤੇ। ਨਾਲ ਸਕ੍ਰੋਲ ਕੀਤਾ ਪੰਨਾ ਫਾਰਵਰਡ ਲਿੰਕ ਨਾਲੋਂ ਵੱਖਰਾ ਯਾਦ ਰਹਿੰਦਾ।</p>
+        </div>
+      </div>
+      <div class="action reveal">
+        <div class="an">03</div>
+        <div>
+          <h4 class="en">Ask three questions at the next election.</h4>
+          <h4 class="pa">ਅਗਲੀ ਚੋਣ 'ਤੇ ਤਿੰਨ ਸਵਾਲ ਪੁੱਛੋ।</h4>
+          <p class="en">Every candidate will say "the other party did it." The test is not which party they attack. The test is whether they can name a financier convicted, a treatment bed added, or a teenager who did not start. Ask all three. To every party.</p>
+          <p class="pa">ਹਰ ਉਮੀਦਵਾਰ ਕਹੇਗਾ "ਦੂਜੀ ਪਾਰਟੀ ਨੇ ਕੀਤਾ।" ਟੈਸਟ ਇਹ ਨਹੀਂ ਕਿ ਉਹ ਕਿਹੜੀ ਪਾਰਟੀ 'ਤੇ ਹਮਲਾ ਕਰਦੇ। ਟੈਸਟ ਇਹ ਹੈ ਕਿ ਕੀ ਉਹ ਇੱਕ ਵਿੱਤੀ ਦੋਸ਼ੀ, ਇੱਕ ਇਲਾਜ ਬੈੱਡ, ਜਾਂ ਇੱਕ ਕਿਸ਼ੋਰ ਦਾ ਨਾਂ ਲੈ ਸਕਦੇ ਜਿਸਨੇ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ। ਤਿੰਨੇ ਪੁੱਛੋ। ਹਰ ਪਾਰਟੀ ਨੂੰ।</p>
+        </div>
+      </div>
+      <div class="action reveal">
+        <div class="an">04</div>
+        <div>
+          <h4 class="en">Keep this page. Print it. Put it on a wall.</h4>
+          <h4 class="pa">ਇਹ ਪੰਨਾ ਰੱਖੋ। ਪ੍ਰਿੰਟ ਕਰੋ। ਕੰਧ 'ਤੇ ਲਾਓ।</h4>
+          <p class="en">This page prints cleanly (Ctrl/Cmd + P). Put a copy in a school staffroom, a clinic waiting area, a gurudwara noticeboard, a panchayat office. The record is only as useful as the number of people who can reach it.</p>
+          <p class="pa">ਇਹ ਪੰਨਾ ਸਾਫ਼ ਪ੍ਰਿੰਟ ਹੁੰਦਾ (Ctrl/Cmd + P)। ਸਕੂਲ ਸਟਾਫਰੂਮ, ਕਲੀਨਿਕ ਵੇਟਿੰਗ ਏਰੀਆ, ਗੁਰਦੁਆਰਾ ਨੋਟਿਸ ਬੋਰਡ, ਪੰਚਾਇਤ ਦਫ਼ਤਰ ਵਿੱਚ ਕਾਪੀ ਰੱਖੋ। ਰਿਕਾਰਡ ਉੱਨਾ ਹੀ ਕੰਮ ਦਾ ਹੈ ਜਿੰਨੇ ਲੋਕ ਇਸ ਤੱਕ ਪਹੁੰਚ ਸਕਦੇ।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <h3><span class="en">Sources & how we checked</span><span class="pa">ਸਰੋਤ ਅਤੇ ਅਸੀਂ ਕਿਵੇਂ ਜਾਂਚਿਆ</span></h3>
+    <ul>
+      <li><span class="en"><strong>Scale:</strong> Parliamentary Standing Committee, 2026. NCB citing Ministry of Social Justice committee report, March 2026. The two primary estimates differ (66 lakh vs 74 lakh); both are shown, neither is averaged.</span><span class="pa"><strong>ਪੈਮਾਨਾ:</strong> ਸੰਸਦੀ ਸਥਾਈ ਕਮੇਟੀ, 2026। NCB, ਸਮਾਜਿਕ ਨਿਆਂ ਮੰਤਰਾਲੇ ਦੀ ਕਮੇਟੀ ਰਿਪੋਰਟ, ਮਾਰਚ 2026। ਦੋਵੇਂ ਪ੍ਰਾਇਮਰੀ ਅਨੁਮਾਨ ਵੱਖਰੇ (66 ਬਨਾਮ 74 ਲੱਖ); ਦੋਵੇਂ ਦਿਖਾਏ, ਕੋਈ ਔਸਤ ਨਹੀਂ।</span></li>
+      <li><span class="en"><strong>Age:</strong> Punjab opioid dependence survey, 2025; state education data.</span><span class="pa"><strong>ਉਮਰ:</strong> ਪੰਜਾਬ ਅਫੀਮ ਨਿਰਭਰਤਾ ਸਰਵੇਖਣ, 2025; ਰਾਜ ਸਿੱਖਿਆ ਡੇਟਾ।</span></li>
+      <li><span class="en"><strong>Route & seizures:</strong> NCB 2025 annual report. Bhola assets: Tribune, 2014. Hawala routes: SATP, 2025.</span><span class="pa"><strong>ਰਸਤਾ ਅਤੇ ਜ਼ਬਤੀਆਂ:</strong> NCB 2025 ਸਾਲਾਨਾ ਰਿਪੋਰਟ। ਭੋਲਾ ਸੰਪਤੀਆਂ: ਟ੍ਰਿਬਿਊਨ, 2014। ਹਵਾਲਾ ਰਸਤੇ: SATP, 2025।</span></li>
+      <li><span class="en"><strong>Protection:</strong> The Print. Punjab Vigilance Bureau releases, Feb 2025. Court records, 2026.</span><span class="pa"><strong>ਸੁਰੱਖਿਆ:</strong> The Print। ਪੰਜਾਬ ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ ਰਿਲੀਜ਼, ਫਰਵਰੀ 2025। ਅਦਾਲਤੀ ਰਿਕਾਰਡ, 2026।</span></li>
+      <li><span class="en"><strong>Gap:</strong> Punjab State AIDS Control Society, 2025. Punjab courts, April 2025. Court submission, 2025. Intelligence estimate, 2025.</span><span class="pa"><strong>ਗੈਪ:</strong> ਪੰਜਾਬ ਰਾਜ ਏਡਜ਼ ਕੰਟਰੋਲ ਸੋਸਾਇਟੀ, 2025। ਪੰਜਾਬ ਅਦਾਲਤਾਂ, ਅਪ੍ਰੈਲ 2025। ਅਦਾਲਤੀ ਬਿਆਨ, 2025। ਖੁਫੀਆ ਅਨੁਮਾਨ, 2025।</span></li>
+      <li><span class="en"><strong>Claims:</strong> NCRB 2024. State Health Department data, Jan 2024–Apr 2025. PGIMER expert estimates. Punjab DGP, 2026. NCB 2024.</span><span class="pa"><strong>ਦਾਅਵੇ:</strong> NCRB 2024। ਰਾਜ ਸਿਹਤ ਵਿਭਾਗ ਡੇਟਾ, ਜਨ 2024–ਅਪ੍ਰੈਲ 2025। PGIMER ਮਾਹਿਰ ਅਨੁਮਾਨ। ਪੰਜਾਬ DGP, 2026। NCB 2024।</span></li>
+    </ul>
+    <p class="closing">
+      <span class="en"><strong>What we do not say:</strong> We do not say any party is guilty of running the drug economy. We do not say any named individual is guilty beyond what a court has established. Every name on this page carries an evidence tag, on the same screen as the name. Where sources disagree, both are shown. Where a figure is an estimate, it is labelled as one. Corrections are welcome — open an issue on the repository.</span>
+      <span class="pa"><strong>ਅਸੀਂ ਕੀ ਨਹੀਂ ਕਹਿੰਦੇ:</strong> ਅਸੀਂ ਨਹੀਂ ਕਹਿੰਦੇ ਕਿ ਕੋਈ ਪਾਰਟੀ ਨਸ਼ਾ ਆਰਥਿਕਤਾ ਚਲਾਉਣ ਦੀ ਦੋਸ਼ੀ ਹੈ। ਅਸੀਂ ਨਹੀਂ ਕਹਿੰਦੇ ਕਿ ਕੋਈ ਨਾਮਜ਼ਦ ਵਿਅਕਤੀ ਅਦਾਲਤ ਤੋਂ ਬਾਹਰ ਦੋਸ਼ੀ ਹੈ। ਇਸ ਪੰਨੇ 'ਤੇ ਹਰ ਨਾਮ ਦੇ ਨਾਲ ਸਬੂਤ ਟੈਗ ਹੈ, ਉਸੇ ਸਕ੍ਰੀਨ 'ਤੇ। ਜਿੱਥੇ ਸਰੋਤ ਅਸਹਿਮਤ, ਦੋਵੇਂ ਦਿਖਾਏ। ਜਿੱਥੇ ਅੰਕੜਾ ਅਨੁਮਾਨ, ਉੱਥੇ ਲੇਬਲ ਕੀਤਾ। ਸੋਧਾਂ ਦਾ ਸਵਾਗਤ — ਰਿਪੋਜ਼ਟਰੀ 'ਤੇ ਇਸ਼ੂ ਖੋਲ੍ਹੋ।</span>
+    </p>
+    <div class="meta">
+      <span>Last updated · Nov 2026</span>
+      <span>Text CC BY-SA 4.0</span>
+      <span>Code MIT</span>
+      <span><span class="en">Print-friendly</span><span class="pa">ਪ੍ਰਿੰਟ-ਅਨੁਕੂਲ</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Language ─────────────────────────────── */
+  var html = document.documentElement;
+  var langBtns = document.querySelectorAll('[data-lang-btn]');
+  function setLang(lang) {
+    html.setAttribute('data-lang', lang);
+    html.setAttribute('lang', lang);
+    langBtns.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
+    });
+    try { localStorage.setItem('punjab-lang', lang); } catch(e) {}
+  }
+  langBtns.forEach(function(b) {
+    b.addEventListener('click', function() { setLang(b.getAttribute('data-lang-btn')); });
+  });
+  try {
+    var saved = localStorage.getItem('punjab-lang');
+    if (saved === 'pa' || saved === 'en') setLang(saved);
+  } catch(e) {}
+
+  /* ── Progress bar ─────────────────────────── */
+  var progress = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── 10×10 grid ───────────────────────────── */
+  var grid = document.getElementById('grid100');
+  if (grid) {
+    var childIdx = { 3:1, 14:1, 27:1, 38:1, 49:1, 60:1, 71:1 };
+    for (var i = 0; i < 100; i++) {
+      var s = document.createElement('span');
+      if (i < 66) s.className = 'f';
+      if (childIdx[i]) s.className = 'c';
+      grid.appendChild(s);
+    }
+  }
+
+  /* ── 100 dots (30/70) ─────────────────────── */
+  var dots = document.getElementById('dots');
+  if (dots) {
+    for (var d = 0; d < 100; d++) {
+      var dot = document.createElement('span');
+      dot.className = d < 30 ? 'caught' : 'through';
+      dots.appendChild(dot);
+    }
+  }
+
+  /* ── Source toggles ───────────────────────── */
+  document.querySelectorAll('.src').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.getAttribute('data-src'));
+      if (!target) return;
+      var open = target.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  /* ── Claims vs record (tap-to-open) ──────── */
+  document.querySelectorAll('.cr-item').forEach(function(item) {
+    var claim = item.querySelector('.claim');
+    if (!claim) return;
+    claim.setAttribute('role', 'button');
+    claim.setAttribute('tabindex', '0');
+    claim.addEventListener('click', function() {
+      var open = item.getAttribute('data-open') === 'true';
+      item.setAttribute('data-open', open ? 'false' : 'true');
+    });
+    claim.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        claim.click();
+      }
+    });
+  });
+
+  /* ── Reveal on scroll ─────────────────────── */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('in'); });
+  }
+
+  /* ── Bar fill animation ───────────────────── */
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var barIo = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var fill = e.target.querySelector('.fill');
+          if (fill && !fill.dataset.animated) {
+            fill.dataset.animated = '1';
+            fill.style.width = fill.getAttribute('data-w') + '%';
+          }
+          barIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.bar').forEach(function(b) { barIo.observe(b); });
+  } else {
+    document.querySelectorAll('.fill').forEach(function(f) {
+      f.style.width = f.getAttribute('data-w') + '%';
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

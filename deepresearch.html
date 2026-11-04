@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow the Protection — Punjab's Drug Economy (2010–2031)</title>
+<style>
+  :root{
+    --bg:#f7f6f2; --ink:#1a1a1a; --muted:#5c5c5c; --card:#ffffff; --line:#e3e0d8;
+    --red:#b3261e; --amber:#b07d18; --blue:#1d5fbf; --green:#2e7d32; --grey:#6b6b6b;
+    --dark:#141414; --accent:#c9a227;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  .sans{font-family:'Segoe UI',system-ui,Arial,sans-serif}
+  header{background:var(--dark);color:#f4f1ea;padding:56px 24px 40px;text-align:center}
+  header h1{font-size:clamp(28px,4.5vw,46px);line-height:1.15;max-width:900px;margin:0 auto 14px}
+  header .sub{color:#b9b4a6;max-width:760px;margin:0 auto 8px;font-size:15px}
+  header .date{font-size:13px;color:#8a857a;letter-spacing:.12em;text-transform:uppercase}
+  nav{position:sticky;top:0;z-index:50;background:#201f1c;border-bottom:1px solid #38362f;overflow-x:auto;white-space:nowrap}
+  nav a{display:inline-block;color:#d8d3c5;text-decoration:none;font:600 13px/44px 'Segoe UI',sans-serif;padding:0 14px}
+  nav a:hover{color:#fff;background:#2e2c26}
+  main{max-width:1080px;margin:0 auto;padding:24px 16px 80px}
+  section{margin-top:52px}
+  h2{font-size:clamp(22px,3vw,30px);border-bottom:3px solid var(--ink);padding-bottom:8px;margin-bottom:6px}
+  h2 .k{color:var(--red)}
+  .lede{font-size:17px;color:var(--muted);margin:10px 0 20px;max-width:860px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:16px 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .card h3{font-size:19px;margin-bottom:8px}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .badge{display:inline-block;font:700 10.5px/1 'Segoe UI',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:4px;vertical-align:middle}
+  .b-proven{background:#dcefdc;color:#1d5c20;border:1px solid #b3d6b5}
+  .b-charged{background:#f3e3cf;color:#7a4d10;border:1px solid #dcbd93}
+  .b-doc{background:#dfe9f7;color:#174a85;border:1px solid #b5cdea}
+  .b-undoc{background:#efe7f5;color:#5d3d7a;border:1px solid #d3bcd9}
+  .b-pol{background:#f5d9d7;color:#8a1f18;border:1px solid #e5b1ad}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;font:14px/1.45 'Segoe UI',sans-serif}
+  th{background:#efece4;text-align:left;padding:9px 10px;border:1px solid var(--line);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  td{padding:9px 10px;border:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#faf9f5}
+  .num{font-variant-numeric:tabular-nums;font-weight:700}
+  .money{font-size:26px;font-weight:800;font-family:'Segoe UI',sans-serif}
+  .bigcard{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:10px;padding:18px 20px}
+  .bigcard .lbl{font:600 12px 'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+  .bigcard .who{font-size:14px;color:var(--muted);margin-top:8px}
+  .verdict{background:#fff8e6;border:2px solid var(--accent);border-radius:10px;padding:20px 22px;margin:18px 0}
+  .verdict h3{font-size:18px;margin-bottom:8px;color:#6b5300}
+  .callout{border-left:4px solid var(--red);background:#fdf0ef;padding:14px 18px;margin:14px 0;border-radius:0 8px 8px 0}
+  .callout.ok{border-left-color:var(--green);background:#eef7ee}
+  .callout.info{border-left-color:var(--blue);background:#edf3fb}
+  .person{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .person h3{font-size:18px}
+  .person .role{font:600 12px 'Segoe UI',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+  .person ul{margin:8px 0 8px 18px}
+  .person li{margin:4px 0;font-size:14.5px}
+  .party{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+  .party .head{padding:12px 18px;font-weight:800;font-size:18px;color:#fff}
+  .p-sad .head{background:#7a1f1a}.p-bjp .head{background:#8a3d12}.p-cong .head{background:#1d4d8a}.p-aap .head{background:#8a6d10}
+  .party .body{padding:16px 18px}
+  .party .row{margin:10px 0;font-size:14.5px}
+  .party .row b{display:block;font:700 11.5px 'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+  .row .lab-d{color:var(--red)}.row .lab-f{color:var(--amber)}.row .lab-r{color:var(--green)}.row .lab-u{color:var(--grey)}
+  a{color:var(--blue)}
+  .src{font-size:13px;color:var(--muted)}
+  .filterbar{margin:10px 0;display:flex;gap:8px;flex-wrap:wrap}
+  .filterbar button{font:600 12px 'Segoe UI',sans-serif;padding:6px 12px;border:1px solid var(--line);background:#fff;border-radius:20px;cursor:pointer}
+  .filterbar button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .hide{display:none}
+  footer{background:var(--dark);color:#9a958a;padding:32px 20px;font-size:13px;text-align:center}
+  footer b{color:#d8d3c5}
+  .timeline{list-style:none;margin-top:8px}
+  .timeline li{padding:10px 0 10px 18px;border-left:2px solid var(--line);position:relative;font-size:14.5px}
+  .timeline li::before{content:'';position:absolute;left:-6px;top:16px;width:10px;height:10px;background:var(--ink);border-radius:50%}
+  .timeline .yr{font-weight:800;font-family:'Segoe UI',sans-serif;font-size:13px;color:var(--red)}
+  @media(max-width:700px){table{font-size:12.5px}th,td{padding:7px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="date">Research Dossier · Compiled 3 November 2026 · Plain-language edition</div>
+  <h1>Follow the Protection</h1>
+  <p class="sub">Punjab's drug economy, political patronage, and the accountability gap, 2010–2031.<br>
+  Names. Amounts. The money trail. Who, and why. Every claim is tagged: what is <b>proven</b>, what is <b>charged</b>, what is <b>alleged with documents</b>, and what is a <b>political claim with no evidence</b>. No party gets a pass. No party gets a presumption of guilt.</p>
+</header>
+
+<nav class="sans">
+  <a href="#short">The Short Answer</a>
+  <a href="#money">The Money</a>
+  <a href="#matrix">Allegation Matrix</a>
+  <a href="#how">How Protection Works</a>
+  <a href="#people">Who's Who</a>
+  <a href="#parties">Party Records</a>
+  <a href="#kejriwal">The Kejriwal Question</a>
+  <a href="#paradox">The Enforcement Paradox</a>
+  <a href="#fix">What Must Happen</a>
+  <a href="#verify">How to Verify Yourself</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+
+<div class="legend sans" style="margin-top:26px">
+  <span class="badge b-proven">Proven — court or official record</span>
+  <span class="badge b-charged">Charged — formal chargesheet filed, trial pending</span>
+  <span class="badge b-doc">Alleged with documents</span>
+  <span class="badge b-undoc">Alleged, no documents found</span>
+  <span class="badge b-pol">Political claim — speech/press release only</span>
+</div>
+
+<!-- ================= SHORT ANSWER ================= -->
+<section id="short">
+  <h2>1. The Short Answer <span class="k">— read this first</span></h2>
+  <p class="lede">Five things the record actually shows. Everything else in this document is detail.</p>
+
+  <div class="card">
+    <ol style="margin-left:20px">
+      <li style="margin:12px 0"><b>A police officer ran the biggest documented racket.</b> Jagdish Bhola, a dismissed DSP and former international wrestler, was <b>convicted twice</b> — 24 years (2019, CBI court) and 10 years (2024, PMLA court) — in the racket the Enforcement Directorate valued at <b>₹6,000 crore</b>. He named SAD leader <b>Bikram Singh Majithia</b> in his 2014 ED statement. <span class="badge b-proven">Proven</span> for the convictions; <span class="badge b-charged">Charged</span> for Majithia, trial ongoing.</li>
+      <li style="margin:12px 0"><b>The money trail into politics is real but unfinished.</b> Majithia was arrested in June 2025 for allegedly laundering <b>₹540 crore</b> of "drug money" — including <b>₹161 crore in unexplained cash</b> deposited in his family companies in 2007–09 and <b>₹141 crore routed through suspected foreign entities</b>. A 40,000-page chargesheet was filed in August 2025. The High Court denied bail in December 2025, calling them "serious economic offences." <span class="badge b-charged">Charged — not yet convicted.</span></li>
+      <li style="margin:12px 0"><b>Protection works through five known mechanisms</b> — police transfers and reinstatements, prison and parole failures, regulatory appointments, sealed-court reports that sit for years, and political accusation replacing accountability. Every mechanism has a documented example in this dossier. <span class="badge b-proven">Mechanisms proven</span> — the <i>political direction</i> behind most of them is not.</li>
+      <li style="margin:12px 0"><b>On Arvind Kejriwal: no credible evidence on the public record that he personally profited from or directed the drug economy.</b> What <i>is</i> documented: a ₹150–250 crore drug census whose report has not been released; a drug inspector arrested with ₹7+ crore in assets who is reported — not independently confirmed — to have been reinstated to a headquarters posting; documented prison drug rackets; and the killing of an anti-drug activist in 2026. The leap to "Kejriwal ran a commercial drug strategy" is, so far, a BJP leader's press conference, not evidence. <span class="badge b-proven">Failures documented</span> <span class="badge b-pol">Personal-involvement claim: political assertion</span></li>
+      <li style="margin:12px 0"><b>The single biggest accountability gap is a locked envelope.</b> The 2018 Special Task Force report on the drug-police-politics nexus sat in a <b>sealed cover</b> at the Punjab & Haryana High Court for over three years. It is the source document for the Majithia case and for findings on senior police officers. Until it is fully unsealed, every party's claims rest on the same incomplete record. <span class="badge b-proven">Sealed status proven</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= MONEY ================= -->
+<section id="money">
+  <h2>2. The Money <span class="k">— the numbers that matter</span></h2>
+  <p class="lede">Every figure below has a source in the Sources section. "Alleged" means the number comes from a chargesheet, an investigation, or an official estimate — it is a claim under test, not a court verdict.</p>
+
+  <div class="grid g3">
+    <div class="bigcard"><div class="lbl">The Bhola racket (ED valuation)</div><div class="money">₹6,000 Cr</div><div class="who">ED concluded in 2014 the Jagdish Bhola synthetic-drug racket was worth this. Police initially estimated ₹700 Cr. Chargesheet filed 12 Jul 2017; 17 convicted in the PMLA case (2024).</div></div>
+    <div class="bigcard"><div class="lbl">Majithia DA case — alleged laundered drug money</div><div class="money">₹540 Cr</div><div class="who">Vigilance Bureau, Jun 2025. Breakdown: ₹161 Cr unexplained cash in family companies (2007–09) · ₹141 Cr via suspected foreign entities · ₹236 Cr excess deposits in company statements.</div></div>
+    <div class="bigcard"><div class="lbl">Majithia DA case — total assets claimed</div><div class="money">~₹700 Cr</div><div class="who">40,000-page VB chargesheet, Aug 2025: properties, revenue records, bank accounts, movable + immovable property "linked to SAD leader."</div></div>
+    <div class="bigcard"><div class="lbl">Drug inspector Shishan Mittal — frozen/recovered</div><div class="money">₹7.09 Cr</div><div class="who">24 bank accounts frozen + ₹1.49 Cr cash + 260 g gold + foreign currency + ₹2.40 Cr real estate. DGP called him the "kingpin" of a prison-linked network. Arrested Sep 2024.</div></div>
+    <div class="bigcard"><div class="lbl">Punjab drug census (AAP government)</div><div class="money">₹150–250 Cr</div><div class="who">Launched Apr 2026. State budget allocation reportedly ₹150 Cr; BJP says ₹250 Cr was spent. ~28,000 employees; 55–65 lakh households. <b>Report not released as of Nov 2026.</b></div></div>
+    <div class="bigcard"><div class="lbl">AAP-era confiscations claimed (Mar–Dec 2025)</div><div class="money">₹299 Cr</div><div class="who">Government-claimed property value bulldozed/frozen. Same period: 29,352 NDPS cases, 39,981 arrests, 1,849 kg heroin seized. <span class="src">Official claim — figures are government-reported.</span></div></div>
+    <div class="bigcard"><div class="lbl">NCB pharma-diversion freeze, Nov 2026</div><div class="money">₹20.10 Cr</div><div class="who">25 properties frozen in an inter-state pharmaceutical diversion case originating from 5,000 Tramadol tablets seized in Amritsar, Feb 2025. The new frontier: diverted medicines.</div></div>
+    <div class="bigcard"><div class="lbl">Punjab police drug cases, AAP term (Mar 2022–Dec 2025)</div><div class="money">63,053</div><div class="who">Cases registered, per CM statement. 85,000+ peddlers arrested. Conviction rate 88% in 2025 — the highest the state has claimed. Arrests ≠ dismantling.</div></div>
+    <div class="bigcard"><div class="lbl">Pregabalin (pharma drug) seizures, 2024 alone</div><div class="money">72 Lakh+</div><div class="who">Formulations seized by Punjab FDA per Lok Sabha answer, Apr 2025. 12 firm licences cancelled, 46 suspended. This is the "medical nasha" shift.</div></div>
+  </div>
+
+  <div class="card" style="margin-top:22px">
+    <h3>The Bhola money trail, step by step</h3>
+    <table>
+      <tr><th style="width:110px">Step</th><th style="width:200px">Who</th><th>What the record says</th></tr>
+      <tr><td>2013</td><td>Jagdish Bhola (ex-DSP)</td><td>Busted in a multi-FIR drug operation (Patiala, Fatehgarh Sahib, Mohali). 10 kg heroin + cash recovered from his house; he went underground before arrest in Nov 2013.</td></tr>
+      <tr><td>2013–14</td><td>ED (central)</td><td>Opens PMLA investigation. Values the racket at ₹6,000 Cr. Bhola and co-accused give statements naming <b>Satpreet Singh "Satta" and Parminder Singh "Pindi"</b> (Canada-based) as key operators.</td></tr>
+      <tr><td>Jan 2014</td><td>Bhola → ED</td><td>Names <b>Bikram Singh Majithia</b>: co-accused Maninder Singh Aulakh told ED that Satta was "introduced to me by Bikram Singh Majithia in 2007" and that Majithia said Satta "was coordinating" the trade. Bhola disclosed he sourced ICE/pseudoephedrine/ephedrine through connected persons.</td></tr>
+      <tr><td>Dec 2014</td><td>Majithia → ED</td><td>Majithia examined by ED in Jalandhar, "likely 50 questions" on links to three NRIs and money laundering. He denied involvement (per reports).</td></tr>
+      <tr><td>Jul 2017</td><td>ED chargesheet</td><td>6th chargesheet names 12 accused: <b>Sarwan Singh Phillaur (former SAD Jail Minister), his son Damanvir, Avinash Chander (former SAD MLA/CPS)</b>, businessman Jagjit Singh Chahal (who allegedly made Ice from ephedrine in Baddi/Damtal units) and others. ED has attached ~₹180 Cr of properties by then; Chahal's attach alone: ₹65 Cr.</td></tr>
+      <tr><td>Oct 2018</td><td>Special PMLA Court, Mohali</td><td>Charges framed against all 12 under Section 4 PMLA. Pleads not guilty. Trial continues.</td></tr>
+      <tr><td>Feb 2019</td><td>Special CBI Court, Mohali</td><td>Bhola convicted in 3 NDPS cases: <b>24 years' rigorous imprisonment</b>, concurrent.</td></tr>
+      <tr><td>Jul 2024</td><td>Special PMLA Court, Mohali</td><td>17 accused convicted in the 2013 Bhola drug-money case. Bhola: 10 years + ₹50,000 fine. Father-in-law Dalip Singh Mann: 3 years. Others: 3–10 years.</td></tr>
+      <tr><td>May 2025</td><td>P&H High Court</td><td>Bhola granted bail after ~12 years in jail (₹5 L bond, 2 sureties, monthly reporting, passport surrendered).</td></tr>
+      <tr><td>Oct 2026</td><td>SIT, Patiala</td><td>SIT summons <b>both Bhola and Majithia</b> for questioning (5 Oct 2026) in the 2021 drug case. Majithia skipped the summons; Bhola named Majithia in 2014 court proceedings.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>The Majithia money trail, step by step</h3>
+    <table>
+      <tr><th style="width:110px">Step</th><th style="width:220px">What happened</th><th>Status</th></tr>
+      <tr><td>2007–09</td><td>₹161.72 Cr in cash deposits in <b>Saraya Industries Ltd</b> (Majithia holds 11.63%) and family companies — far beyond business receipts per cash registers, per the Dec 2025 HC order. "There is no explanation for this." (Court words.)</td><td><span class="badge b-charged">Charged</span></td></tr>
+      <tr><td>2007–17</td><td>~₹196 Cr allegedly pumped from a foreign-linked entity into Majithia firms; minimal returns shown (₹3.5 Cr return on ₹35 Cr in one instance, per HC order).</td><td><span class="badge b-charged">Charged</span></td></tr>
+      <tr><td>2014</td><td>ED statement: Bhola/Aulakh name him as introducer to Canada-based operator Satta. STF (2018, sealed) adds: ₹35 Lakh allegedly paid to Majithia in 7–8 instalments (2007–12) "for election purposes," per Jagjit Singh Chahal's ED statement.</td><td><span class="badge b-doc">Documented in sealed STF report / ED notes</span></td></tr>
+      <tr><td>20 Dec 2021</td><td>FIR No. 02/2021 under NDPS §§25, 27A, 29 registered against Majithia at P.S. State Crime, SAS Nagar — based on the 2018 STF (Harpreet Sidhu) report. Filed under the Congress govt, 8 weeks before the 2022 elections. SAD: political vendetta. AAP also called it "election drama."</td><td><span class="badge b-charged">Charged — bail granted 10 Aug 2022; SC upheld bail 25 Apr 2025</span></td></tr>
+      <tr><td>7 Jun 2025</td><td>SIT (led by Patiala SSP Varun Sharma) submits report finding ₹540 Cr of alleged drug-money laundering.</td><td><span class="badge b-proven">Report filed</span></td></tr>
+      <tr><td>25 Jun 2025</td><td>Vigilance Bureau arrests Majithia (PC Act §§13(1)(b), 13(2) — disproportionate assets).</td><td><span class="badge b-proven">Arrest on record</span></td></tr>
+      <tr><td>22 Aug 2025</td><td>40,000-page VB chargesheet filed in Mohali court.</td><td><span class="badge b-charged">Charged</span></td></tr>
+      <tr><td>2 Jul 2025</td><td>ED sources (via TOI) say the ₹540 Cr laundering charges are "prima facie based on conjectures," resting on assumptions and accused statements, "lacking solid evidence." ED has not put this in a public order.</td><td><span class="badge b-doc">Reported — key unresolved fact</span></td></tr>
+      <tr><td>4 Dec 2025</td><td>P&H HC (Justice Tribhuvan Dahiya, 20-page order) denies bail: "serious economic offences… a class apart." Orders VB to finish investigation in 3 months.</td><td><span class="badge b-proven">Order on record</span></td></tr>
+      <tr><td>19 Dec 2025 / 2 Feb 2026</td><td>SC issues notice on Majithia's bail SLP in the DA case; listed 19 Jan 2026; SLP 20469/2025 before SC (order dated 02 Feb 2026 on record).</td><td><span class="badge b-proven">Before SC</span></td></tr>
+    </table>
+    <div class="callout" style="margin-top:14px"><b>Read this carefully.</b> The DA case proves <i>if convicted</i> that his assets don't match his income — corruption, and per the VB, corruption funded by drug money. It is <b>not</b> yet a conviction that he trafficked drugs. The NDPS case (2021) is the direct drug-connection case, and there he is <b>on bail</b> — the SC upheld it in April 2025, noting he had cooperated and been out on bail 2.5 years. Both cases are sub judice. Neither verdict has come. <b>He is a charged former minister, not a convicted one — and not an innocent man either. The court is deciding.</b></div>
+  </div>
+</section>
+
+<!-- ================= MATRIX ================= -->
+<section id="matrix">
+  <h2>3. The Allegation Matrix <span class="k">— everything, on one table</span></h2>
+  <p class="lede">Every major claim against every party and leader, with who made it and what it actually rests on. Use the filter buttons to isolate a status.</p>
+
+  <div class="filterbar sans" id="filterbar">
+    <button class="on" data-f="all">All</button>
+    <button data-f="proven">Proven</button>
+    <button data-f="charged">Charged</button>
+    <button data-f="doc">Alleged + documents</button>
+    <button data-f="undoc">Alleged, no docs</button>
+    <button data-f="pol">Political claims</button>
+  </div>
+
+  <div style="overflow-x:auto">
+  <table id="matrix-table">
+    <tr><th>Allegation</th><th>Whom it hits</th><th>Made by</th><th>Status</th><th>What would resolve it</th></tr>
+
+    <tr data-s="proven"><td>Bhola ran a multi-crore synthetic drug racket; sentenced 24 yrs (2019) + 10 yrs PMLA (2024)</td><td>Jagdish Bhola (ex-DSP)</td><td>CBI + PMLA courts</td><td><span class="badge b-proven">Proven</span></td><td>Done. Convictions on record.</td></tr>
+    <tr data-s="proven"><td>Racket worth ₹6,000 Cr (vs ₹700 Cr police initial estimate)</td><td>Bhola network</td><td>ED, 2014</td><td><span class="badge b-proven">Proven (official finding)</span></td><td>—</td></tr>
+    <tr data-s="charged"><td>Majithia facilitated the international drug racket; ₹35 L taken in instalments "for election purposes"</td><td>Bikram Singh Majithia (SAD)</td><td>Bhola/Aulakh ED statements; 2018 STF; 2021 FIR</td><td><span class="badge b-charged">Charged (NDPS) — on bail</span></td><td>Trial outcome; unsealing of full STF report</td></tr>
+    <tr data-s="charged"><td>₹540 Cr of drug money laundered; ₹161 Cr unexplained cash; ₹141 Cr foreign routing; ~₹700 Cr assets</td><td>Majithia + wife/family firms</td><td>Punjab Vigilance Bureau, 2025; 40,000-pg chargesheet</td><td><span class="badge b-charged">Charged (PC Act) — in custody; bail denied</span></td><td>DA trial. Note: ED reportedly called the laundering case "conjectural" (2 Jul 2025) — unresolved tension</td></tr>
+    <tr data-s="charged"><td>SAD ministers Sarwan Singh Phillaur, son Damanvir, ex-MLA Avinash Chander laundered drug money</td><td>Phillaur family, Chander</td><td>ED chargesheet 12 Jul 2017; charges framed Oct 2018</td><td><span class="badge b-charged">Charged (PMLA)</span></td><td>PMLA trial outcome</td></tr>
+    <tr data-s="doc"><td>ED internal notes on Majithia existed before 2017 and were shared by HC with the STF</td><td>Majithia</td><td>P&H HC orders; The Wire (Dec 2021)</td><td><span class="badge b-doc">Documented</span></td><td>Full ED notes published</td></tr>
+    <tr data-s="doc"><td>Senior police in the drug nexus: ex-SSP Raj Jit Hundal — ₹13 Cr unexplained bank transactions, sudden asset rise from 2013; SIT found "definite scope for further inquiry"</td><td>Raj Jit Hundal (ex-SSP, Moga); ex-Inspector Inderjit Singh (dismissed)</td><td>HC-constituted SIT (Chattopadhyaya) 2018 reports; HC refused anticipatory bail Oct 2023</td><td><span class="badge b-doc">Documented in SIT reports (partially opened 2023)</span></td><td>One report (May 8, 2018, personal) still sealed; inquiry on Hundal's lenders' financial capacity</td></tr>
+    <tr data-s="doc"><td>68 security personnel (53 Punjab Police, 7 jail dept, 4 BSF…) arrested in the drug trade since 2014</td><td>State security forces</td><td>Kiren Rijiju, Union MoS Home, in Rajya Sabha, Jun 2016</td><td><span class="badge b-proven">Parliamentary record</span></td><td>—</td></tr>
+    <tr data-s="doc"><td>Drug inspector Shishan Mittal in touch with jailed traffickers, ran their outside network, frequent unauthorised foreign travel; ₹7.09 Cr frozen + cash/gold/foreign currency</td><td>Shishan Mittal (Drug Inspector, Mansa/Fazilka)</td><td>DIPR Punjab official release, 8 Aug 2024; DGP Gaurav Yadav</td><td><span class="badge b-proven">Official finding — case ongoing</span></td><td>His trial; whether reinstatement was improper</td></tr>
+    <tr data-s="undoc"><td>Mittal reinstated in 2025 after bail and posted at headquarters overseeing drug samples; no ED referral despite money-laundering evidence</td><td>AAP Punjab government (Mann govt)</td><td>Sunil Jakhar (ex-BJP chief) to HM Shah, 17 Oct 2026; carried by Tribune, NIE etc.</td><td><span class="badge b-undoc">Reported — no govt document confirms or denies</span></td><td>Punjab govt to publish the appointment order + bail conditions; RTI possible</td></tr>
+    <tr data-s="proven"><td>Prison drug rackets: Hoshiarpur Central Jail — 12 arrested incl. Dy Superintendent Harbhajan Singh + warden (Jul 2026); Ferozepur — fresh probe vs senior/retired DIGs (Jul 2026); earlier: 64 inmate drug-deaths alleged 2005–12</td><td>Punjab jails / prison officials</td><td>Police SIT, jail dept complaints; Indian Express/India Today/Tribune Jul 2026</td><td><span class="badge b-proven">Arrests + probes documented</span></td><td>Trials; whether any political direction (no evidence so far)</td></tr>
+    <tr data-s="undoc"><td>Convict "Harry" (20-yr murder sentence + 7 cases) got parole in 2024 via Fazilka DC/SSP, absconded to Dubai, runs trafficking/extortion Abohar→Ludhiana, file closed</td><td>Fazilka DC/SSP (named office, not names); AAP govt (patronage implied)</td><td>Sunil Jakhar, 26 Oct 2026</td><td><span class="badge b-undoc">Alleged — no parole record or absconding case located</span></td><td>Publish the parole order + absconding FIR status</td></tr>
+    <tr data-s="doc"><td>Anti-drone constable Karam Singh (Baaz unit, Tarn Taran) caught with heroin (15 kg per NCB/BSF op reports; Jakhar says 25 kg + 24 more consignments admitted)</td><td>Karam Singh; question of senior complicity open</td><td>NCB/BSF joint op (Oct 2026, local reports); Jakhar</td><td><span class="badge b-doc">Arrest reported — quantity in dispute (15 vs 25 kg)</span></td><td>Official Punjab Police/NIB press release; confessional record</td></tr>
+    <tr data-s="proven"><td>Anti-drug activist Parvinder Singh Jhota shot dead in Mansa, 13 Oct 2026, by chemist-owner Ashwani Kumar (5 prior cases since 2020); state shutdown; SHO suspended; Centre demanded a report; PIL seeking CBI probe filed 15 Oct</td><td>Law & order failure under AAP govt; accused identified</td><td>The Hindu, NDTV, Frontline, TOI; PIL in P&H HC</td><td><span class="badge b-proven">Killing + investigation status documented</span></td><td>Trial of Kumar; whether there were payers behind the gun (no evidence yet)</td></tr>
+    <tr data-s="pol"><td>The ₹250 Cr drug census was a commercial mapping of the supply chain "for improper commercial purposes"; strategy "from Kejriwal and Sisodia"</td><td>Kejriwal, Sisodia, AAP govt</td><td>Sunil Jakhar press conference, 26 Oct 2026 (IANS)</td><td><span class="badge b-pol">Political claim — zero documentary evidence offered</span></td><td>Release the census report + methodology; independent audit of expenditure</td></tr>
+    <tr data-s="doc"><td>The census exists: launched Apr 2026, ~28,000 staff, 55–65 lakh households; report not released; budget allocation reportedly ₹150 Cr</td><td>AAP govt (transparency duty)</td><td>The Statesman, NDTV; state budget</td><td><span class="badge b-proven">Census documented</span> + <span class="badge b-charged">Non-release = open accountability question</span></td><td>Report published</td></tr>
+    <tr data-s="pol"><td>BJP leaders "equally involved" in the drug trade</td><td>BJP</td><td>Partap Singh Bajwa (PPCC president), Aug 2015; CBI probe demand in HC</td><td><span class="badge b-pol">Political claim — no chargesheet ever followed</span></td><td>Names + documents, or drop it</td></tr>
+    <tr data-s="doc"><td>BJP worker Sanjeev Talwar + associate "clubbed with 17 drug smugglers" but no FIR registered</td><td>Sanjeev Talwar (BJP, PS to MP)</td><td>AAP demand, Feb 2016</td><td><span class="badge b-undoc">Alleged — FIR status unverified</span></td><td>Punjab Police records</td></tr>
+    <tr data-s="pol"><td>BJP cancelled Amit Shah's anti-drug yatra in Jan 2016 at the last minute — doubt on its intent</td><td>BJP</td><td>Sukhpal Singh Khaira, Feb 2016</td><td><span class="badge b-pol">Political claim</span></td><td>— (moot, 10 years old)</td></tr>
+    <tr data-s="pol"><td>Congress "failed to curb the menace" 2017–22; STF report suppressed by Amarinder govt for 3 years</td><td>Congress (Amarinder era)</td><td>Navjot Singh Sidhu (PPCC chief, his own party), Nov 2021; opposition generally</td><td><span class="badge b-doc">Report sat sealed 2018–21: documented</span>; suppression motive <span class="badge b-pol">disputed</span></td><td>Unsealing + why FIR came only Dec 2021 (8 wks before polls)</td></tr>
+    <tr data-s="pol"><td>Pargat Singh (Congress state chief) "standing in support of drug traffickers"</td><td>Pargat Singh</td><td>AAP on X, 15 Oct 2026 (via ANI)</td><td><span class="badge b-pol">Political claim — AAP has offered no document</span></td><td>AAP to produce one piece of evidence. His public record that month: demanding Mann's resignation, mourning Jhota</td></tr>
+    <tr data-s="charged"><td>MLA Sukhpal Singh Khaira — NDPS/Fazilka case; AAP govt alleged drug links in Assembly, led to his suspension (Oct 2026); he cites SC stay (Jun 2024)</td><td>Khaira (Congress)</td><td>Assembly statements; SC stay order</td><td><span class="badge b-charged">Case sub judice</span></td><td>Trial</td></tr>
+    <tr data-s="doc"><td>Kejriwal (AAP convener) alleged Majithia's drug links, then <b>publicly apologized and withdrew the claim</b>, 15 Mar 2018; Majithia dropped the defamation suit</td><td>Kejriwal (credibility data point)</td><td>TOI, NIE, Mar 2018</td><td><span class="badge b-proven">Retraction on record</span></td><td>—</td></tr>
+    <tr data-s="proven"><td>10,000 police personnel transferred after AAP govt realised peddler–police nexus</td><td>Punjab Police (systemic)</td><td>CM Bhagwant Mann, Feb 2025 (The Hindu)</td><td><span class="badge b-official">Official claim</span></td><td>Transfer orders published</td></tr>
+    <tr data-s="doc"><td>ED attached ₹180 Cr of properties of Bhola-case accused (2017); Chahal alone ₹65 Cr; NCB froze ₹57 Cr in one Chandigarh ZU case (2022–24)</td><td>Bhola-network businessmen</td><td>ED; NCB records</td><td><span class="badge b-proven">Official</span></td><td>—</td></tr>
+    <tr data-s="proven"><td>Pharma shift: ~80% of pharma drugs in Punjab come from other states; 11.54 Lakh tablets seized since 2025; NCB froze ₹20.10 Cr (Nov 2026)</td><td>Inter-state supply chains</td><td>Punjab Police/DGP (HT, Sep 2026); NCB order 30 Oct 2026</td><td><span class="badge b-proven">Official data</span></td><td>Central licensing action on source states</td></tr>
+  </table>
+  </div>
+
+  <div class="callout" style="margin-top:16px"><b>How to read statuses.</b> <span class="badge b-proven">Proven</span> = court or official record. <span class="badge b-charged">Charged</span> = chargesheet filed, verdict pending — assume innocence until trial ends, but the state has formally alleged. <span class="badge b-doc">Alleged + documents</span> = there is a paper trail (SIT report, official note, arrest record). <span class="badge b-undoc">Alleged, no docs</span> = a named person said it in a public forum, papers not yet produced. <span class="badge b-pol">Political claim</span> = speech/press release/social post only. <b>Not all accusations are equal.</b></div>
+</section>
+
+<!-- ================= HOW ================= -->
+<section id="how">
+  <h2>4. How Protection Works <span class="k">— the five mechanisms</span></h2>
+  <p class="lede">Protection in Punjab is not a cartoon. It's a set of institutional pressure points. Each mechanism below has at least one documented example. The open question is always: who benefits, and who signed the order?</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Mechanism 1 · Police transfers & reinstatements</h3>
+      <ul style="margin-left:18px;font-size:14.5px">
+        <li>CM Mann: <b>10,000 police transferred</b> after finding the peddler–police nexus (Feb 2025).</li>
+        <li>IPS <b>Paramraj Singh Umranangal</b> — suspended 2019 as accused in the 2015 Bargari firing + an NDPS case — <b>reinstated Jul 2024</b> on an HC order. Court-ordered, not political — but the suspension/reinstation cycle shows how officers with drug cases come back.</li>
+        <li>Ex-SSP <b>Raj Jit Hundal</b> — SIT found ₹13 Cr of unexplained transactions and "sudden rise in assets"; HC refused him anticipatory bail (Oct 2023).</li>
+        <li>Retired DGP <b>Shashi Kant</b> (who ran 17-year anti-drug operations) publicly stated parties, sitting and former ministers, MLAs, and senior officers are "hand-in-glove" with smugglers; his 90-name list was handed to the SAD-BJP government and did not produce prosecutions.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Mechanism 2 · Prisons & parole</h3>
+      <ul style="margin-left:18px;font-size:14.5px">
+        <li><b>Hoshiarpur Central Jail (Jul 2026):</b> inmate video goes viral → SIT → 12 arrests incl. <b>Dy Superintendent Harbhajan Singh</b> and warden — phones, drugs, and lakh-scale transactions inside a central jail.</li>
+        <li><b>Ferozepur jail (Jul 2026):</b> fresh probe against senior jail officers — 2005–12 racket allegations, 64 drug deaths, 256-case list claimed by a former official.</li>
+        <li><b>Shishan Mittal</b> — the drug inspector whose arrest was officially described as a link <i>between jails and street networks</i>.</li>
+        <li><b>"Harry"</b> — alleged parole-and-flee (Fazilka → Dubai). Not verified. If true, the DC/SSP who signed are the protectors, not the party.</li>
+        <li>Central action: NCB's PITNDPS detentions (2024–25) moving kingpins like Billa Havellian to high-security jails <i>outside Punjab</i> — showing prisons are a known operational risk.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Mechanism 3 · Regulatory appointments & licensing</h3>
+      <ul style="margin-left:18px;font-size:14.5px">
+        <li>The <b>drug inspector</b> is the person who licenses, inspects, and raids the very trade. Mittal's case — arrested as a "kingpin," then reported reinstated to a headquarters drug-samples post — is the single strongest regulatory-capture candidate on record. <b>Confirm or deny: publish the appointment order.</b></li>
+        <li>Pharma licensing (FDA, Punjab) is a state power: 72 Lakh pregabalin units seized in 2024; 520 chemist licences suspended and 22 cancelled Apr 2025–Sep 2026. The volume shows how much flows through <i>licensed</i> channels.</li>
+        <li>NCB's Nov 2026 freeze (₹20.10 Cr, 25 properties) shows the diversion pipeline runs from manufacturers in other states — Punjab is the consumption market, not the source.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Mechanism 4 · The sealed envelope</h3>
+      <ul style="margin-left:18px;font-size:14.5px">
+        <li><b>Feb 2018:</b> STF chief Harpreet Sidhu files his report on the drug-police-politics nexus in <b>sealed cover</b> at the P&H HC. A copy goes to the ED's Niranjan Singh. The state files its "opinion-cum-status report" — also sealed. May 2018.</li>
+        <li><b>Dec 2017–May 2018:</b> the HC-constituted SIT (Chattopadhyaya) files four sealed reports on police complicity (Hundal, Inderjit Singh, asset jumps). Three opened in <b>2023</b> — five years later. The HC's wording then: action on the reports is up to the state <i>"in case they wish to do so."</i></li>
+        <li><b>Dec 2021:</b> the 2018 STF report finally becomes the basis of the Majithia FIR — 3+ years later, under a new CM, 8 weeks before elections.</li>
+        <li>This is the quietest and most effective protection mechanism: <b>the evidence exists, is filed, and waits.</b> It serves every government and punishes nobody.</li>
+      </ul>
+    </div>
+    <div class="card" style="grid-column:1/-1">
+      <h3>Mechanism 5 · Political accusation as a substitute for accountability</h3>
+      <p style="font-size:14.5px">Since 2014, every government in Punjab has accused its predecessor of protecting drugs — and every opposition has accused the incumbent of the same. The pattern:</p>
+      <ul style="margin-left:18px;font-size:14.5px">
+        <li><b>2015–17 (SAD-BJP in power):</b> Congress demands court-monitored CBI probe; Congress files HC petitions; AAP joins. No CBI probe ever granted for the political-nexus angle.</li>
+        <li><b>2017–22 (Congress in power):</b> STF formed; report sealed; Majithia FIR filed 8 weeks before the 2022 polls; own party's president (Sidhu) accuses the CM's office of suppressing the report.</li>
+        <li><b>2022–now (AAP in power):</b> Majithia arrested Jun 2025 (DA case); Jhota killed; BJP's Nasha Mukt Punjab Yatra (Sep 2026); Shah's "drug-free Punjab by 31 Dec 2029" promise; Jakhar's three-part allegation burst (Oct 2026); AAP hits back that drugs now flow from BJP-ruled states.</li>
+        <li><b>The structural problem:</b> the agency that should break the party nexus (central agencies under a BJP that was the SAD's ally 2007–17) is the same party running the loudest campaign. Cross-party verification does not exist. That is why a court-supervised, party-neutral mechanism (Part 8) is the only durable fix.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PEOPLE ================= -->
+<section id="people">
+  <h2>5. Who's Who <span class="k">— names, numbers, verdicts so far</span></h2>
+  <p class="lede">Each card: who they are, the money and facts, and the honest verdict on the current record. "Convicted/charged" = legal status. "Unresolved" = what's still open.</p>
+
+  <div class="grid g2">
+
+    <div class="person">
+      <h3>Jagdish Singh Bhola</h3>
+      <div class="role">Ex-DSP, Punjab Police (dismissed) · ex-Arjuna wrestler · kingpin of the ₹6,000 Cr racket</div>
+      <ul>
+        <li><b>Convicted 2019:</b> 24 years, CBI court, 3 NDPS cases.</li>
+        <li><b>Convicted 2024:</b> 10 years + ₹50k fine, PMLA court (with 16 others).</li>
+        <li><b>Assets:</b> 35 acres, bungalows, luxury cars, armed guards — all confiscated.</li>
+        <li><b>Named</b> Majithia in his 2014 ED statement; named in 2014 court proceedings; SIT summoned him and Majithia together in Oct 2026.</li>
+        <li><b>On bail since 21 May 2025</b> after ~12 years — the bail itself (stringent conditions) is now a political flashpoint.</li>
+      </ul>
+      <p><span class="badge b-proven">Proven: the racket + convictions</span> <span class="badge b-charged">His naming of Majithia = evidence in a live case, not a verdict</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Bikram Singh Majithia</h3>
+      <div class="role">SAD · MLA since 2007 · Revenue Minister · brother-in-law of SAD president Sukhbir Badal · 2014 BJP Amritsar campaign manager for Jaitley</div>
+      <ul>
+        <li>NDPS FIR 20 Dec 2021 (Bhola-racket nexus): <b>on bail since 10 Aug 2022</b>; SC upheld bail 25 Apr 2025.</li>
+        <li>DA arrest 25 Jun 2025: <b>₹540 Cr alleged laundering, ~₹700 Cr assets</b>; 40,000-page chargesheet; in custody; <b>HC denied bail 4 Dec 2025</b> ("serious economic offences"); before SC (notice issued 19 Dec 2025).</li>
+        <li>Counterweight on record: ED sources said the laundering case rests on "conjectures" (2 Jul 2025); the HC's own bail order (NDPS case) noted he cooperated for 2.5 years on bail.</li>
+        <li>Skipped the 5 Oct 2026 SIT summons (reported).</li>
+      </ul>
+      <p><b>Verdict so far:</b> the most seriously documented politician in this dossier — named by a convicted kingpin, charged twice, a 40,000-page chargesheet. Also: <b>not yet convicted of anything.</b> The DA trial is the money-trail verdict; the NDPS trial is the drug-nexus verdict. Both pending.</p>
+    </div>
+
+    <div class="person">
+      <h3>Sarwan Singh Phillaur & Damanvir · Avinash Chander</h3>
+      <div class="role">Former SAD Jail Minister + son · former SAD MLA/CPS</div>
+      <ul>
+        <li>Named in the ED's 6th chargesheet (12 Jul 2017) under PMLA for the Bhola racket's money side.</li>
+        <li>Charges framed Oct 2018; pleaded not guilty; trial ongoing.</li>
+        <li>ED attached ~₹180 Cr across the case's accused (Chahal's share alone ₹65 Cr).</li>
+      </ul>
+      <p><span class="badge b-charged">Charged — these are the SAD names where the money paper trail is strongest</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Jagjit Singh Chahal (businessman)</h3>
+      <div class="role">Accused in Bhola racket · not a politician — the business layer</div>
+      <ul>
+        <li>Allegedly manufactured <b>ICE from ephedrine</b> (medicine-grade) in pharma units at Baddi/Damtal — the documented bridge from drugs to the pharma economy.</li>
+        <li>His ED statement: ₹35 Lakh to Majithia in instalments 2007–12 "for election purposes."</li>
+        <li>₹65 Cr of his property attached by ED.</li>
+      </ul>
+      <p><span class="badge b-charged">Charged (PMLA)</span> <span class="badge b-doc">His statements are key evidence against Majithia</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Shishan Mittal</h3>
+      <div class="role">Drug Inspector (Mansa/Fazilka) · arrested Sep 2024 by the Anti-Narcotics Task Force</div>
+      <ul>
+        <li>DGP (official): in regular touch with jailed traffickers, facilitated their outside network, frequent foreign travel without leave.</li>
+        <li>Assets: ₹7.09 Cr in 24 accounts (frozen) + ₹1.49 Cr cash + 260 g gold + dirhams + ₹2.40 Cr real estate.</li>
+        <li><b>Open question:</b> Jakhar says he was reinstated in 2025 and posted at HQ over drug samples, and no ED referral followed. Government has not confirmed or denied in any located document.</li>
+      </ul>
+      <p><span class="badge b-proven">Arrest + assets: official</span> <span class="badge b-undoc">Reinstatement/posting: reported, unconfirmed — this is the single most checkable claim in this dossier (one RTI, one order to publish)</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Arvind Kejriwal</h3>
+      <div class="role">AAP convener · the question this dossier was asked to answer head-on</div>
+      <ul>
+        <li><b>2016:</b> alleged Majithia's drug links; <b>publicly apologized and withdrew</b>, Mar 2018 (TOI). The defamation case was dropped.</li>
+        <li><b>2024 (Delhi):</b> CBI/ED excise-scam chargesheet named him "kingpin" — a different scam, but it shows the pattern of how AAP leadership is (or isn't) implicated in money cases. <i>This dossier is about Punjab drugs — the Delhi case has no Punjab-drug evidence.</i></li>
+        <li><b>2025–26:</b> personally led Punjab's anti-drug drives (Yudh Nashian Virudh; village yatras; "traffickers must leave Punjab or stop selling").</li>
+        <li><b>Oct 2026:</b> Jakhar attributes the "sinister plan" behind the census to Kejriwal + Sisodia, "only this duo was capable." No document, no witness, no exhibit.</li>
+      </ul>
+      <p><b>Verdict:</b> see Part 7. Short version — <b>no credible, independently verifiable evidence on the public record that Kejriwal personally profited from or directed the drug economy.</b> There are documented governmental failures he is accountable for as party convener. That is a real and serious charge. It is not the charge being made at press conferences.</p>
+    </div>
+
+    <div class="person">
+      <h3>Bhagwant Singh Mann</h3>
+      <div class="role">AAP · Chief Minister of Punjab since 2022</div>
+      <ul>
+        <li>Launched Yudh Nashian Virudh (1 Mar 2025); 63,053 cases in 3.5 yrs (claimed); 88% conviction (2025, claimed — and supported by MHA data).</li>
+        <li>Transferred 10,000 police after finding the nexus; anti-drone systems on the border; property bulldozing (₹299 Cr claimed, Mar–Dec 2025).</li>
+        <li><b>Failures on record:</b> the drug census report is unreleased; Jhota was killed on his watch with a state-wide shutdown; Mittal's case (as reported) handled without an ED referral; jail rackets exposed <i>after</i> viral videos, not by audit.</li>
+      </ul>
+      <p><span class="badge b-proven">Enforcement numbers: official (self-reported — audit pending)</span> <span class="badge b-charged">Census non-release: open accountability question</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Navjot Singh Sidhu</h3>
+      <div class="role">PPCC (Congress) president 2020–21 · ex-actor/BJP MP/cricketer</div>
+      <ul>
+        <li>As Congress chief he <b>demanded the STF report be made public</b> (Nov 2021) and accused his own CM Amarinder of suppressing it; Amarinder denied, citing the sealed cover.</li>
+        <li>Also the namesake-confusion note: the STF chief was <b>Harpreet Singh Sidhu</b> (IPS) — a distant relative of Majithia per the STF's own record; SAD has used this to allege bias. The conflict-of-interest question is fair and unresolved.</li>
+      </ul>
+      <p><span class="badge b-doc">Documented: the internal Congress fight over the report</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Pargat Singh</h3>
+      <div class="role">Punjab Congress president (from Oct 2026) · MLA Jalandhar Cantonment · former Education Minister</div>
+      <ul>
+        <li>The AAP allegation (15 Oct 2026, X post): he is "standing in support of the drug traffickers." <b>No evidence produced.</b></li>
+        <li>His observable public record that same month: joined the Mansa protest for Jhota's family, demanded CM Mann's resignation, called for impartial investigation of Jhota and the "Daljit Singh" death, questioned Centre and Shah on the supply chain.</li>
+        <li>In the Assembly (Oct 2026) he said AAP minister Harpal Cheema violated decorum by accusing him of drug-trade links.</li>
+      </ul>
+      <p><span class="badge b-pol">The "supporting traffickers" claim: political assertion, currently unsupported by any document</span> — and a useful example of why this dossier tags claims</p>
+    </div>
+
+    <div class="person">
+      <h3>Sunil Jakhar</h3>
+      <div class="role">Former Punjab BJP president · former MP · the main accuser of the AAP govt (Oct 2026)</div>
+      <ul>
+        <li>17 Oct 2026: letter to HM Amit Shah — NIA probe into prison-run drug trade, ED probe into Mittal's laundering, "at whose behest" was Mittal posted.</li>
+        <li>26 Oct 2026: three-part press conference — census as commercial map (Kejriwal/Sisodia), Harry's parole-and-flee, Karam Singh's 25 kg + 24 consignments.</li>
+        <li>His record matters for calibration: these are serious, specific, and mostly checkable — but as of 3 Nov 2026, <b>none of the three pillars has a produced document</b> (no parole order, no reinstatement order, no census "business model" exhibit). The Statesman's own summary: "require independent investigation."</li>
+      </ul>
+      <p><span class="badge b-pol">Claims: political assertions — but specific enough to be testable, which is more than most political accusations</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Harbhajan Singh (Dy Jail Superintendent) & "Manna"</h3>
+      <div class="role">Hoshiarpur Central Jail · inmate Manpreet Singh a/k/a Manna</div>
+      <ul>
+        <li>14 Jun 2026: Manna's video of drugs/phones inside the jail goes viral.</li>
+        <li>Jul 2026: SIT arrests 12 — including Dy Superintendent Harbhajan Singh and warden Ravinder Singh; phones + lakh-scale transactions recovered.</li>
+        <li>This is the clearest documented case of the <b>institutional failure</b> type: officials inside the system running the trade. No political direction evidenced so far.</li>
+      </ul>
+      <p><span class="badge b-proven">Arrests documented</span> <span class="badge b-undoc">Who, if anyone, above the warder knew — open</span></p>
+    </div>
+
+    <div class="person">
+      <h3>Constable Karam Singh (Baaz anti-drone unit)</h3>
+      <div class="role">Punjab Police, Tarn Taran · deployed on the anti-drone vehicle meant to catch cross-border drops</div>
+      <ul>
+        <li>Arrested in an NCB+BSF joint op (mid-Oct 2026): local reports say <b>15 kg heroin</b> recovered; Jakhar says <b>25 kg</b> + a confession to arranging 24 more consignments.</li>
+        <li>The irony is the story: the man watching the border for drug drones was moving heroin.</li>
+      </ul>
+      <p><span class="badge b-doc">Arrest reported by local media + Jakhar; quantity in dispute</span> <b>Ask:</b> an official NCB/Punjab Police press release with the exact FIR number.</p>
+    </div>
+
+    <div class="person">
+      <h3>Parvinder Singh Jhota (1986–2026)</h3>
+      <div class="role">Anti-drug activist, Mansa · shot dead 13 Oct 2026</div>
+      <ul>
+        <li>Died confronting chemist-owner <b>Ashwani Kumar</b> (licensed pistol, 5 prior cases since 2020) over drug sales. State shutdown; markets/schools closed; SHO suspended.</li>
+        <li>Context: Jhota himself had 2023 cases (assault, rioting); was a former AAP supporter turned disillusioned critic; police initially said "personal enmity."</li>
+        <li>PIL (15 Oct) seeks HC-monitored CBI probe + inquiry into drug/arms licences. Centre demanded a state report. Case not yet heard as of 3 Nov 2026.</li>
+      </ul>
+      <p><span class="badge b-proven">The killing is proven; the shooter is identified</span> <span class="badge b-undoc">Whether he acted alone — no evidence either way yet. This establishes law-and-order failure, not yet political complicity.</span></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= PARTIES ================= -->
+<section id="parties">
+  <h2>6. Party-by-Party Record <span class="k">— no pass, no presumption</span></h2>
+  <p class="lede">Four columns per party: what's documented as involvement, documented failure, documented reform, and what remains unresolved.</p>
+
+  <div class="grid g2">
+    <div class="party p-sad">
+      <div class="head">Shiromani Akali Dal (SAD) · in power 2007–17 (with BJP), 2017–22 (with Congress)</div>
+      <div class="body">
+        <div class="row"><b class="lab-d">Documented involvement</b>Majithia: named by convicted kingpin in ED (2014), NDPS FIR (2021), DA chargesheet (2025). Phillaur + Damanvir + Avinash Chander: ED PMLA chargesheet (2017), charges framed (2018). SAD was the ruling party when the ₹6,000 Cr racket was busted (2013).</div>
+        <div class="row"><b class="lab-f">Documented failure</b>The probe into its own minister was slow-paced during its 2007–17 rule; Shashi Kant's 90-name list was received and produced no prosecutions; SAD's own leaders (Bittu Aulakh etc.) named in the racket's statements.</div>
+        <div class="row"><b class="lab-r">Documented reform</b>None located. Its strongest act was the 2016–17 period's "war on drugs" rhetoric — which Congress and AAP both weaponised successfully in 2017 and 2022.</div>
+        <div class="row"><b class="lab-u">Unresolved</b>Majithia's two trials; whether the SAD-BJP years included suppression (ED notes existed by 2014–15); whether the "political vendetta" claim has any legal basis beyond politics.</div>
+      </div>
+    </div>
+
+    <div class="party p-bjp">
+      <div class="head">Bharatiya Janata Party (BJP) · coalition partner 2007–17 · central government 2014–present</div>
+      <div class="body">
+        <div class="row"><b class="lab-d">Documented involvement</b>None in a drug case — no BJP leader charged or convicted in a Punjab drug matter is on the public record. The 2015 Congress claim ("BJP leaders equally involved") never produced a chargesheet. Sanjeev Talwar allegation (no FIR, unverified) is the only named case and it is unproven.</div>
+        <div class="row"><b class="lab-f">Documented failure / contradiction</b>(a) It was the SAD's coalition partner during the expansion years. (b) As Centre it controls NCB, NIA, ED, BSF — the only agencies able to hit cross-border and money flows — yet the most politically charged cases against Punjab politicians (Majithia) are <i>state</i> cases; central referral happened for the 2013 racket's money trail but the political-nexus SIT reports have not been taken up by NIA/ED as of this writing. (c) Congress noted in 2015 that Modi's own full-page ad (30 Apr 2014) admitted the scale of the mafia.</div>
+        <div class="row"><b class="lab-r">Documented reform</b>Nasha Mukt Bharat programme; BSF jurisdiction extended 50 km into Punjab (2021); anti-drone intelligence wing; PITNDPS detentions of Punjab kingpins; NCB asset freezes (₹20 Cr pharma, Nov 2026).</div>
+        <div class="row"><b class="lab-u">Unresolved</b>Is the current anti-AAP campaign proportional to its 2007–17 co-rule? Are central agencies selectively deployed? The "decide by 31 Dec 2029" promise is a deadline, not a mechanism. RSS's Mazhabi Sikh outreach boosted its vote share (18.56% in 2024 LS) — political outreach, not operational involvement; <b>no evidence of RSS-linked persons in the trade was found.</b></div>
+      </div>
+    </div>
+
+    <div class="party p-cong">
+      <div class="head">Indian National Congress (Congress) · in power 2017–22</div>
+      <div class="body">
+        <div class="row"><b class="lab-d">Documented involvement</b>No Congress leader charged in a Punjab drug case on public record. The Pargat Singh "supporting traffickers" allegation (AAP, 2026) has no document behind it. Khaira's NDPS case is sub judice (SC stay, 2024).</div>
+        <div class="row"><b class="lab-f">Documented failure</b>The STF's 2018 report on the drug-police-politics nexus <b>sit sealed under a Congress government for three years</b>; the FIR based on it was registered 8 weeks before the 2022 elections; the STF chief (Harpreet Sidhu) is a distant relative of Majithia and the bias question was never resolved; its own president publicly accused the CM's office of suppression — an unambiguous internal accountability failure. Amarinder's exit (2021) was tied to inaction on the drug mafia and sacrilege.</div>
+        <div class="row"><b class="lab-r">Documented reform</b>STF formed (Mar 2017) with a free hand; 4,819 NDPS cases + 5,556 arrests in its first ~4 months (2017); Majithia FIR (Dec 2021) — the only political-level FIR in this era.</div>
+        <div class="row"><b class="lab-u">Unresolved</b>Why the 2018 report was not acted on earlier; whether the Dec 2021 FIR's timing was political; the Khaira case; whether "failure to curb the menace" (2017–22) was policy failure, enforcement failure, or something more — the sealed reports will decide.</div>
+      </div>
+    </div>
+
+    <div class="party p-aap">
+      <div class="head">Aam Aadmi Party (AAP) · in power 2022–present</div>
+      <div class="body">
+        <div class="row"><b class="lab-d">Documented involvement</b><b>None at the personal level for Kejriwal, Mann, or any AAP leader.</b> No chargesheet, no court observation, no document connects AAP leadership to drug profit or direction. (Kejriwal's Delhi excise case is a different state, a different trade, and this dossier does not conflate them.)</div>
+        <div class="row"><b class="lab-f">Documented failure</b>Census report unreleased (launched Apr 2026; the government is "moving toward analyzing" it — months later); Jhota's killing on 13 Oct 2026 with a state shutdown in its wake; Mittal's reported reinstatement without (as alleged) an ED referral; jail rackets (Hoshiarpur, Ferozepur) exposed by videos and complaints, not by audit; the government's own DGP has described the Mittal inspector as a "kingpin" of a prison-linked network — meaning the state's anti-drug police identified a rot inside the state's regulatory cadre.</div>
+        <div class="row"><b class="lab-r">Documented reform</b>Highest claimed conviction rate (88%, 2025, backed by MHA data); 63,053 cases in 3.5 yrs; 10,000 police transfers; anti-drone systems (490 drone activities detected, 252 drones recovered in 2025 per govt); 520+ chemist licences suspended in 18 months; methadone/de-addiction scaling; the one party (along with BJP) that has kept the issue central rather than fading it.</div>
+        <div class="row"><b class="lab-u">Unresolved</b>The census report's contents and release; the Mittal appointment order; the Harry parole question; whether the DGP's "80% pharma" figure (widely cited since 2025) has a published basis — it is the hinge on which the whole "they're moving to pharmaceuticals" argument turns.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KEJRIWAL ================= -->
+<section id="kejriwal">
+  <h2>7. The Kejriwal Question, Answered Honestly <span class="k">— the required section</span></h2>
+  <p class="lede">The user asked directly whether Arvind Kejriwal is connected to Punjab's drug economy. The answer, on the public record as of 3 November 2026, follows. It is not a verdict — it is a state-of-the-evidence.</p>
+
+  <div class="card">
+    <h3>(a) Every specific allegation</h3>
+    <table>
+      <tr><th style="width:34%">Allegation</th><th>Source & date</th><th>Evidence offered</th></tr>
+      <tr><td>Kejriwal + Sisodia "devised a strategy" to map Punjab's drug supply chain "for improper commercial purposes" and "take control of the illicit business"</td><td>Sunil Jakhar, press conference, 26 Oct 2026 (IANS; Tribune; NIE)</td><td><b>None.</b> No document, no witness, no exhibit. The argument chain is: DGP said 80% of abuse is pharma → therefore a census was a supply-chain map → therefore the govt wants to run the business. Three "therefores," zero documents.</td></tr>
+      <tr><td>The drug inspector (Mittal) who was arrested as a "kingpin" was "brought into the government's fold, reinstated, and appointed Drug Controller"</td><td>Jakhar, 17 & 26 Oct 2026</td><td>Arrest and ₹7.09 Cr: <b>official and real</b>. Reinstatement + HQ posting: reported by Jakhar and carried by press; <b>no government order located</b>. "Appointed Drug Controller": the Drug Controller's office is a separate statutory post — this conflation has not been corrected by any official record either way.</td></tr>
+      <tr><td>Drug trade "operating from prisons under government patronage"; NIA probe needed</td><td>Jakhar letter to HM Shah, 17 Oct 2026</td><td>Prison rackets: <b>real</b> (Hoshiarpur 12 arrests; Ferozepur probe). "Government patronage": <b>no evidence</b>. The documented pattern is warder/DyS-level rot, not political direction.</td></tr>
+      <tr><td>Govt failed to protect anti-drug voices (Jhota killing)</td><td>Opposition + civil society, Oct 2026</td><td>The killing: real. The shooter: identified, on trial track. State failure of law & order: plausible. AAP <i>complicity</i>: <b>no evidence</b> — and note Jhota had his own criminal cases and was a former AAP supporter who turned critic, which the state may have disliked. That is a motive for the police, not the party.</td></tr>
+      <tr><td>Kejriwal's historical allegations on Majithia were later retracted</td><td>TOI/NIE, Mar 2018</td><td><b>Documented apology and retraction</b> — a credibility data point showing AAP's 2016-era drug accusations on named SAD leaders were not backed up and were formally withdrawn.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>(b) The evidence offered — assessed</h3>
+    <p style="font-size:14.5px">Strip away the rhetoric and the case against personal Kejriwal involvement rests on four items: an un-released census (a public-health survey with a real budget line), a reported (unconfirmed) reinstatement of an inspector (an administrative decision with a paper trail that simply hasn't been published), prison drug rackets (real, but at warder level in every documented case), and a murder (real, but the gun is identified). <b>None of these four items, even if all true, is evidence that Kejriwal personally profited from or directed the drug economy.</b> The "business strategy from Kejriwal and Sisodia" line is, in the words of the press agency that carried it, Jakhar's claim that "only this duo was capable of hatching up such a sinister plan" — an assertion about motive, not a finding of fact.</p>
+  </div>
+
+  <div class="card">
+    <h3>(c) The AAP government's response</h3>
+    <p style="font-size:14.5px">As of 3 Nov 2026: <b>no formal, document-backed response to Jakhar's three-part allegation has been published</b> (The Statesman: "No fresh response from the AAP government… was available"). AAP's standing position is that the census is a dependency-assessment for rehabilitation, that its anti-drug drive has produced record convictions and seizures, and it has counter-charged that 80% of drug trade now comes via BJP-ruled states and central ports (Kejriwal, 15 Sep 2026). A non-response to a specific, checkable allegation is itself an accountability data point — it leaves the claimable facts (Mittal's appointment order, Harry's parole file, the census report) unpublished.</p>
+  </div>
+
+  <div class="verdict">
+    <h3>(d) The verdict, in plain words</h3>
+    <p style="font-size:15.5px"><b>On the current public record: there is no credible, independently verifiable evidence that Arvind Kejriwal personally profited from or directed Punjab's drug economy. If the answer is "no on the current record," this dossier says exactly that.</b></p>
+    <p style="font-size:15.5px;margin-top:8px">What the record <b>does</b> establish, without editorialising:</p>
+    <ul style="margin-left:18px;font-size:15px">
+      <li><b>Institutional failure under the AAP government:</b> documented (jail rackets, the Mittal arrest inside its own cadre, Jhota's death, an unreleased ₹150–250 Cr survey).</li>
+      <li><b>A transparency failure:</b> documented (census report, Mittal appointment order, Harry's parole file — all claimable, none published).</li>
+      <li><b>Governmental complicity in the trade:</b> <b>not established.</b> No document links the Mann government or any AAP leader to directing, financing, or profiting from trafficking.</li>
+      <li><b>Personal involvement by Kejriwal:</b> <b>not established. No evidence exists on the public record.</b> The 2016 Majithia allegation was made and formally retracted. The 2026 "sinister plan" allegation is a press-conference claim.</li>
+    </ul>
+    <p style="font-size:15.5px;margin-top:8px"><b>What would change this verdict:</b> (1) a court order or ED/CBI finding tying AAP leadership to drug money; (2) the census report containing commercial-mapping data that has no public-health purpose; (3) the Mittal appointment order showing political direction; (4) Harry's parole file showing executive-level intervention. None of these has appeared. Until one does, the honest answer stays: <b>documented failure, documented transparency gap, no documented personal involvement.</b></p>
+  </div>
+</section>
+
+<!-- ================= PARADOX ================= -->
+<section id="paradox">
+  <h2>8. The Enforcement Paradox <span class="k">— why the arrests aren't working</span></h2>
+
+  <div class="grid g3">
+    <div class="bigcard"><div class="lbl">NDPS cases, Punjab</div><div class="money">12,442 → 9,025</div><div class="who">2022 → 2024 (MHA data). Still the 2nd-highest state. Fewer cases ≠ less drugs; the 2015–24 period saw 51,000+ cases and 4,600+ kg heroin seized.</div></div>
+    <div class="bigcard"><div class="lbl">Conviction rate</div><div class="money">80% → 88%</div><div class="who">2022 → 2025. 21,625 convictions out of 25,797 decided (Jan 2022–Nov 2025, per MHA/TOI). Best in the country, by the state's count.</div></div>
+    <div class="bigcard"><div class="lbl">Heroin seized, 2024</div><div class="money">1,150 kg</div><div class="who">Highest of any state (NCB). Punjab is where the heroin lands — the Amritsar–Tarn Taran–Ferozepur–Gurdaspur corridor.</div></div>
+    <div class="bigcard"><div class="lbl">Drone droppings</div><div class="money">3 → 200+</div><div class="who">2021 → 2025 (BSF). 305 drone-related cases in 2025 alone. The border is losing the tech race.</div></div>
+    <div class="bigcard"><div class="lbl">Addiction prevalence</div><div class="money">15.4%</div><div class="who">PGIMER 2022 survey: ~1 in 7 Punjabis used some substance. 44.3% of border-area addicts under 25 (IDC study).</div></div>
+    <div class="bigcard"><div class="lbl">Overdose deaths (registered)</div><div class="money">78 / 144 / 89</div><div class="who">2021 / 2022 / 2023 (NCRB). Registered deaths undercount the problem — but even the low numbers are the problem.</div></div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>Why tens of thousands of arrests haven't dismantled the economy</h3>
+    <ul style="margin-left:18px;font-size:14.5px">
+      <li><b>The arrest pyramid is upside down.</b> 85,000 peddlers and users arrested (AAP term) vs. a handful of financier-level prosecutions and zero political-level convictions. MHA's own data shows convictions track cases — and cases are registered mostly at the street level. The "30% interception" problem: researchers and the DGP have both said a fixed share of supply is simply never caught; the rest is caught at the bottom where it's easiest and cheapest.</li>
+      <li><b>Conviction rate measures the bottom, not the top.</b> 88% is an achievement of prosecution discipline (60-point checklists, trained IOs, special courts) — not evidence the big fish are falling. NCB's national conviction rate is ~60%; Punjab's state-level 88% comes from small-case throughput.</li>
+      <li><b>Asset enforcement is the weak link.</b> ED attached ₹180 Cr in the Bhola case (2017). The Majithia DA case shows the state's own mechanism (Vigilance) is the one chasing politician assets — and it took 11 years from Bhola's arrest to that chargesheet. Financier money keeps circulating while street money is frozen.</li>
+      <li><b>Substitution, not eradication.</b> Poppy husk restricted → heroin. Heroin pricier/scarcer → <b>pharma (pregabalin, tramadol, alprazolam)</b>. The DGP's "80% pharma" figure (2025) — widely cited, sourcing not yet published — and NCB's Nov 2026 ₹20.10 Cr freeze show the market already moved. Enforcement chasing heroin in 2026 is fighting the 2015 war.</li>
+      <li><b>The border is a losing fight on current tech.</b> 3 drone droppings in 2021, 200+ in 2025, by day. Anti-drone guns and "Baaz" help; the smugglers adapt faster. Central (BSF) responsibility, state pain.</li>
+    </ul>
+    <div class="callout ok"><b>Bottom line:</b> the arrest numbers are real and impressive. They are also structurally incapable of breaking the economy, because they stop where the money and the protection start. Every government in Punjab since 2014 has run this same pyramid. The difference between governments is what they do <i>above</i> the pyramid — and on the record, nobody has done enough, and the mechanisms that would do it (independent probes, published records, asset tracing) have never been built.</div>
+  </div>
+</section>
+
+<!-- ================= FIX ================= -->
+<section id="fix">
+  <h2>9. What Must Happen <span class="k">— the accountability agenda</span></h2>
+  <p class="lede">Specific, checkable, not a manifesto. Six demands, each tied to a document or a court.</p>
+
+  <div class="card">
+    <ol style="margin-left:20px;font-size:15px">
+      <li style="margin:12px 0"><b>Unseal everything.</b> The 2018 STF (Harpreet Sidhu) report and the 2018 SIT (Chattopadhyaya) reports — including the still-sealed personal report of 8 May 2018 — to be unsealed with a national-security review by an independent judicial panel, not the state government. This is the single highest-leverage action: it contains the findings on police and political complicity that everyone argues about and nobody has read in full.</li>
+      <li style="margin:12px 0"><b>Release the drug census.</b> Report, methodology, and raw data — to an independent public-health body (PGIMER is the obvious home). If the "commercial map" theory is right, the data will show it. If it's wrong, the government gets its reputation. Either way, the ₹150–250 Cr question is answered by a document, not a press conference.</li>
+      <li style="margin:12px 0"><b>Publish the Mittal file.</b> Bail order + conditions, suspension order, reinstatement order, appointment order, and whether any ED referral was recommended or rejected. One RTI + one gazette notification. The most checkable allegation in this dossier should not remain uncheckable.</li>
+      <li style="margin:12px 0"><b>Independent probe into prison rackets.</b> Hoshiarpur and Ferozepur (and the 2005–12 Ferozepur allegations, 64 deaths) before a CBI or judicial commission — because the state police investigating the state's own jail rot has a conflict of interest that voters can see.</li>
+      <li style="margin:12px 0"><b>Parole reform + the Harry file.</b> Publish parole/furlough orders for NDPS and organised-crime convicts 2022–2026; a parole board with published criteria. Produce Harry's parole order and absconding FIR status — or confirm the claim is false.</li>
+      <li style="margin:12px 0"><b>Make protection expensive and visible.</b> (a) Transfer orders for SHO+ published with rationale. (b) Any drug-cadre official arrested on corruption/NDPS charges suspended pending trial, by rule not discretion. (c) Quarterly public register of assets attached/frozen in drug cases (ED + VB + NCB), with case numbers — so citizens can see if the money trail is being pursued. (d) HC protocol: automatic review of sealed investigative reports after a fixed period.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>The 2027–2031 picture (flagged: projection, not fact)</h3>
+    <p style="font-size:14.5px">The election is 11 months away (AAP term ends 16 Mar 2027). Drugs are now the defining issue: BJP's Nasha Mukt Yatra + Shah's "31 Dec 2029" deadline; AAP's conviction-rate war; Congress mining Jhota; SAD defending its leader from the DA trial. Two AAP MLAs (incl. a former IPS) defecting to BJP on 2 Nov 2026 shows the stakes. <b>Forecast, clearly labelled:</b> if the Majithia DA trial concludes before 2027, the case will dominate the election either way it lands. If the census report is released mid-cycle, it will re-frame the pharma-shift argument. If the sealed reports stay sealed past the election, the next government inherits the same fog — and the same alibi. The structural fix (Part 9, items 1 and 6) is the only thing that survives the next election cycle; everything else is campaign material for 2027 and 2032 alike.</p>
+  </div>
+</section>
+
+<!-- ================= VERIFY ================= -->
+<section id="verify">
+  <h2>10. How to Verify This Yourself <span class="k">— the citizen's checklist</span></h2>
+  <p class="lede">Every claim in this dossier traces to a checkable record. Here's where to look, in order of difficulty.</p>
+
+  <table>
+    <tr><th style="width:230px">What to check</th><th>Where</th><th style="width:180px">Cost / effort</th></tr>
+    <tr><td>Majithia NDPS + DA case orders (bail, 20-page Dec 2025 order, SC SLP 20469/2025)</td><td>indiankanoon.org (search "Bikram Singh Majithia"); api.sci.gov.in for SC PDFs; P&H HC cause lists</td><td>Free · 1 hour</td></tr>
+    <tr><td>Bhola convictions (2019, 2024) and bail (May 2025)</td><td>Court orders on indiankanoon / CourtKutchehry; press: HT 13 Feb 2019, Tribune 30 Jul 2024, Express 21 May 2025</td><td>Free · 1 hour</td></tr>
+    <tr><td>ED chargesheets (12 Jul 2017; charges framed Oct 2018)</td><td>MOhali special PMLA court records; TOI/HT/NDTV 12–14 Jul 2017</td><td>Free (press) / RTI (file)</td></tr>
+    <tr><td>Sealed STF/SIT reports status</td><td>P&H HC CWP 20359 of 2013 (suo motu drug case) — the 4 Apr 2023 order opening three of four SIT reports is public (Indian Express, 14 Apr 2023)</td><td>Free · 1 hour</td></tr>
+    <tr><td>Mittal arrest + assets</td><td>Official DIPR Punjab release, 8 Aug 2024 — ipr.punjab.gov.in</td><td>Free · 5 min</td></tr>
+    <tr><td>Mittal reinstatement/posting</td><td>RTI to Punjab Health/FDA dept: "order of reinstatement and posting of Drug Inspector Shishan Mittal, with date and sanctioning authority"</td><td>₹10 RTI · days–weeks</td></tr>
+    <tr><td>Drug census existence, budget, scope</td><td>Punjab state budget documents; The Statesman 26 Oct 2026; RTI to Health dept for the report + methodology</td><td>Free (press) · RTI for data</td></tr>
+    <tr><td>Enforcement numbers (cases, convictions, seizures)</td><td>MHA answers: LS Unstarred Q 2597 (16 Dec 2025), RS Q 1987 (17 Dec 2025), RS Starred Q 37 (22 Jul 2026) — mha.gov.in and sansad.in PDFs</td><td>Free · 1 hour</td></tr>
+    <tr><td>Jail rackets (Hoshiarpur, Ferozepur)</td><td>FIRs at Hoshiarpur City PS (14 Jun 2026); SSP statements; India Today 6 Jul 2026; Tribune 26 Jul 2026</td><td>Free · 30 min</td></tr>
+    <tr><td>Jhota killing + PIL</td><td>P&H HC PIL filed 15 Oct 2026 (TOI 15 Oct 2026); Frontline 29 Oct 2026; Centre's demand letter (The Statesman 16 Oct 2026)</td><td>Free · 30 min</td></tr>
+    <tr><td>Pharma shift (DGP "80%" figure)</td><td>Ask (RTI/PA): "the survey or data on which the DGP based the 80% pharmaceutical-abuse statement, with date and source" — the hinge fact for the whole pharma argument</td><td>₹10 RTI · days–weeks</td></tr>
+    <tr><td>The Jakhar allegations (Harry, Karam Singh, census "plan")</td><td>His own letters/statements (IANS, 17 & 26 Oct 2026) — then check: Fazilka jail parole register (RTI), Karam Singh FIR number (NCB press releases, narcoticsindia.nic.in), census report (not yet released = open)</td><td>Free (press) · RTIs for the rest</td></tr>
+  </table>
+</section>
+
+<!-- ================= SOURCES ================= -->
+<section id="sources">
+  <h2>11. Sources & Confidence Tags</h2>
+  <p class="lede">Tag key: <b>V</b> = Verified (court/official) · <b>O</b> = Official claim (govt-reported) · <b>R</b> = Reported (named-source journalism) · <b>D</b> = Disputed · <b>U</b> = Unverified political assertion</p>
+
+  <div class="card src">
+    <h3 style="font-size:15px">Court records <span class="badge b-proven">V</span></h3>
+    <p>P&H HC: Majithia CRM-M-51341-2025 (4 Dec 2025, 20-pg order); Majithia CWP-20359-2013 bail (10 Aug 2022); HC suo motu drug case order (4 Apr 2023, opening 3 of 4 SIT reports); HC anticipatory-bail refusal re Hundal (Oct 2023); Bhola bail (21 May 2025); Bhola HC bail-refusal + speedy-trial ruling (11 Sep 2026). SC: SLP dismissal re Majithia NDPS bail (25 Apr 2025); SLP 20469/2025 (02 Feb 2026 order; notice 19 Dec 2025). Special courts: CBI court convictions (Feb 2019); PMLA court 17-accused convictions (30 Jul 2024); PMLA charge-framing (Oct 2018).</p>
+
+    <h3 style="font-size:15px;margin-top:14px">Official government documents <span class="badge b-proven">V</span> / <span class="badge b-charged">O</span></h3>
+    <p>ED chargesheet No. 6 (12 Jul 2017). MHA: LS Unstarred Q 2597 (16 Dec 2025); RS Unstarred Q 1987 (17 Dec 2025); RS Starred Q 37 (22 Jul 2026). Lok Sabha Starred Q 494, pregabalin (Apr 2025). NCB: PITNDPS detention orders (Mar 2025); press note 27 Mar 2025; pharma-diversion freeze order (30 Oct 2026). Punjab DIPR: Mittal STF release (8 Aug 2024). Punjab Vigilance Bureau: arrest statement (25 Jun 2025); 40,000-pg chargesheet (22/23 Aug 2025). Punjab FDA: 16,788 inspections / 542 licence actions (Apr 2025–Sep 2026, via NIE 15 Oct 2026). Kiren Rijiju Rajya Sabha statement on 68 security arrests (Jun 2016).</p>
+
+    <h3 style="font-size:15px;margin-top:14px">Journalism (named sourcing) <span class="badge b-doc">R</span></h3>
+    <p>The Hindu (Vasudeva; drug-menace explainers Oct–Nov 2026); Frontline (Jhota feature, 29 Oct 2026); Indian Express (Majithia bail Dec 2025; STF/SIT sealed-report series Apr 2023; Umranangal reinstatement Jul 2024; Karam Singh context); The Tribune (Majithia arrest Jun 2025; conviction-rate data Apr 2026; Jakhar 26 Oct 2026; Ferozepur probe Jul 2026); Hindustan Times (ED chargesheet Jul 2017; DGP pharma data Sep 2026; police-performance Dec 2025); NDTV (Majithia custody Jun 2025; census row 30 Oct 2026; Jhota 13 Oct 2026); The Statesman (Majithia SC notice Dec 2025; census 26 Oct 2026 — incl. the "require independent investigation" line); New Indian Express (Jakhar letters 17/26 Oct 2026; Pargat 30 Oct 2026; NCB freeze 1 Nov 2026); The Wire (Majithia FIR explainer Dec 2021; drug-deaths 2022); The Caravan (Bal, Jan 2017 — the Aulakh/Satta statement detail); India Today (political-nexus feature 2014; election-war analysis Sep 2026); ANI (AAP-Pargat exchange, Oct 2026); The Print (CBI Delhi excise case context, Feb 2026); ORF research (Jun 2023); Springer/PGIMER narrative review (2025); IANS (Jakhar statements, Oct 2026).</p>
+
+    <h3 style="font-size:15px;margin-top:14px">Political statements — treated as claims, never as evidence <span class="badge b-pol">U</span> / <span class="badge b-undoc">D</span></h3>
+    <p>Jakhar press conference + HM Shah letters (17, 26 Oct 2026). AAP X post re Pargat Singh (15 Oct 2026). Bajwa "BJP equally involved" (Aug 2015). AAP SAD-BJP-nexus demand (Feb 2016). Kejriwal apology to Majithia (15 Mar 2018 — the retraction is itself <b>V</b>). Sidhu vs Amarinder over the STF report (Nov 2021, <b>D</b>). Shah's 31-Dec-2029 promise (30 Sep 2026). Kejriwal "80% from BJP-ruled states" (15 Sep 2026, <b>U</b>). Mann's 10,000-transfers claim (Feb 2025, <b>O</b>).</p>
+  </div>
+
+  <div class="callout" style="margin-top:16px"><b>Known thin spots (flagged per the dossier brief):</b> (1) the DGP "80% pharma" figure — no published survey located; (2) Mittal's reinstatement — reported, no order located; (3) Harry's parole/flee — unverified; (4) Karam Singh quantity — 15 vs 25 kg discrepancy; (5) the full contents of the sealed 2018 reports — publicly unread; (6) the drug census report — does not yet exist publicly. Everything else in this document traces to the records above. Where a claim is fast-moving (trials, 2027 election), the status date is 3 November 2026.</div>
+</section>
+
+</main>
+
+<footer class="sans">
+  <p><b>Follow the Protection</b> · Plain-language research dossier · Compiled 3 November 2026 · Single-file HTML, no tracking, no external requests.</p>
+  <p style="margin-top:8px">Not legal advice. Persons named as accused are presumed innocent until convicted. Political claims are labelled as such. The sealed 2018 reports and the unreleased census are the two documents that will change the most in this dossier — check them first (Part 10).</p>
+</footer>
+
+<script>
+  // Matrix filter
+  const bar = document.getElementById('filterbar');
+  bar.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    bar.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+    e.target.classList.add('on');
+    const f = e.target.dataset.f;
+    document.querySelectorAll('#matrix-table tr[data-s]').forEach(tr => {
+      tr.classList.toggle('hide', !(f === 'all' || tr.dataset.s === f));
+    });
+  });
+</script>
+</body>
+</html>

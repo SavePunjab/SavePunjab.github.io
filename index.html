@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chitta Pandemic — A Data Investigation into Punjab's Drug Crisis, 2010–2026</title>
+<meta name="description" content="An evidence-graded, data-driven investigation into Punjab (India)'s drug pandemic: consumption, crime, politics, money flows, prices and deaths, 2010 to 2026.">
+<style>
+  :root{
+    --bg:#0b0e11;
+    --bg2:#11151a;
+    --panel:#151a21;
+    --panel2:#1a212b;
+    --line:#262f3a;
+    --ink:#e8ecef;
+    --ink2:#aab4bf;
+    --ink3:#78848f;
+    --red:#e5484d;
+    --amber:#f5a623;
+    --green:#46a758;
+    --blue:#5ca8ff;
+    --violet:#a78bfa;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+
+  /* header */
+  header.hero{padding:88px 0 56px;border-bottom:1px solid var(--line);background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(229,72,77,.14), transparent 60%),
+    radial-gradient(900px 420px at 10% 0%, rgba(92,168,255,.08), transparent 55%), var(--bg)}
+  .kicker{font:600 12px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+  h1{font-family:Georgia,serif;font-size:clamp(34px,5.4vw,58px);line-height:1.08;font-weight:700;max-width:900px}
+  h1 em{font-style:normal;color:var(--red)}
+  .sub{margin-top:20px;max-width:760px;color:var(--ink2);font-size:18px}
+  .meta{margin-top:26px;font:13px/1.6 var(--mono);color:var(--ink3)}
+  .meta b{color:var(--ink2);font-weight:600}
+
+  .qnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
+  .qnav a{font:600 12px/1 var(--mono);letter-spacing:.08em;color:var(--ink2);border:1px solid var(--line);padding:9px 12px;border-radius:4px}
+  .qnav a:hover{color:var(--ink);border-color:var(--ink3);text-decoration:none}
+  .qnav a b{color:var(--red);font-weight:700;margin-right:6px}
+
+  /* stat strip */
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+  .stat{background:var(--bg2);padding:22px 18px}
+  .stat .n{font-family:Georgia,serif;font-size:26px;font-weight:700;line-height:1.1}
+  .stat .n small{font-size:15px;color:var(--ink2)}
+  .stat .l{font:11px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:8px}
+  .stat.red .n{color:var(--red)} .stat.amber .n{color:var(--amber)} .stat.blue .n{color:var(--blue)} .stat.green .n{color:var(--green)}
+
+  /* sections */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .tag{font:600 11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+  h2{font-family:Georgia,serif;font-size:clamp(26px,3.4vw,36px);line-height:1.15;margin:14px 0 10px}
+  .lede{color:var(--ink2);max-width:780px;font-size:17px;margin-bottom:34px}
+  h3{font-size:19px;margin:36px 0 12px;color:var(--ink)}
+  h4{font-size:15px;margin:22px 0 8px;color:var(--ink);letter-spacing:.02em}
+  p{margin:10px 0;color:var(--ink2);max-width:820px}
+  p b, li b{color:var(--ink);font-weight:600}
+  ul,ol{margin:10px 0 10px 22px;color:var(--ink2);max-width:820px}
+  li{margin:7px 0}
+  .num{font-variant-numeric:tabular-nums}
+  .red{color:var(--red)} .amber{color:var(--amber)} .green{color:var(--green)} .blue{color:var(--blue)}
+
+  /* confidence badges */
+  .cf{display:inline-block;font:700 10px/1 var(--mono);letter-spacing:.1em;padding:4px 7px;border-radius:3px;vertical-align:2px;white-space:nowrap}
+  .cf.h{background:rgba(70,167,88,.15);color:#6fd08a;border:1px solid rgba(70,167,88,.4)}
+  .cf.m{background:rgba(245,166,35,.13);color:#f5c05a;border:1px solid rgba(245,166,35,.4)}
+  .cf.l{background:rgba(229,72,77,.13);color:#f2878b;border:1px solid rgba(229,72,77,.4)}
+  .cf.d{background:rgba(120,132,143,.13);color:var(--ink3);border:1px solid var(--line)}
+
+  /* cards */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+  .card h4{margin-top:0;font-size:15px}
+  .card .big{font-family:Georgia,serif;font-size:30px;font-weight:700;line-height:1.15;margin:6px 0}
+  .card p{font-size:14px}
+  .card .src{font:11px/1.5 var(--mono);color:var(--ink3);margin-top:12px}
+  .card .src a{color:var(--ink3)}
+
+  /* table */
+  .tbl{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0;overflow-x:auto;display:block}
+  .tbl th{font:600 11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:10px 12px;border-bottom:2px solid var(--line)}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+  .tbl td b{color:var(--ink)}
+  .tbl tr:hover td{background:rgba(255,255,255,.015)}
+  .tbl .r{text-align:right;font-variant-numeric:tabular-nums}
+  .tbl .l{text-align:left}
+
+  /* callout */
+  .callout{border-left:3px solid var(--red);background:linear-gradient(90deg,rgba(229,72,77,.07),transparent);padding:18px 22px;margin:22px 0;border-radius:0 8px 8px 0}
+  .callout.blue{border-color:var(--blue);background:linear-gradient(90deg,rgba(92,168,255,.06),transparent)}
+  .callout.amber{border-color:var(--amber);background:linear-gradient(90deg,rgba(245,166,35,.06),transparent)}
+  .callout p{margin:6px 0;font-size:15px}
+  .callout .t{font:600 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+
+  /* chart */
+  .chartbox{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px;margin:20px 0}
+  .chartbox .ct{font:600 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+  .chartbox .cs{font:11px/1.5 var(--mono);color:var(--ink3);margin-top:4px}
+  .chartbox svg{width:100%;height:auto;display:block;margin-top:14px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font:11px/1 var(--mono);color:var(--ink3)}
+  .legend span i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+  /* timeline */
+  .tl{position:relative;margin:28px 0 8px;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl .ev{position:relative;padding:0 0 26px 18px}
+  .tl .ev::before{content:"";position:absolute;left:-24px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--ink3)}
+  .tl .ev.red::before{border-color:var(--red)} .tl .ev.amber::before{border-color:var(--amber)} .tl .ev.green::before{border-color:var(--green)} .tl .ev.blue::before{border-color:var(--blue)}
+  .tl .yr{font:700 12px/1 var(--mono);letter-spacing:.1em;color:var(--ink3)}
+  .tl .ev h4{margin:6px 0 4px;font-size:15px}
+  .tl .ev p{font-size:14px}
+
+  /* network svg */
+  .net{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;margin:20px 0}
+
+  /* price ladder */
+  .ladder{display:flex;flex-direction:column;gap:0;margin:20px 0}
+  .rung{display:grid;grid-template-columns:170px 1fr 150px;gap:14px;align-items:center;padding:13px 16px;border:1px solid var(--line);border-bottom:none;background:var(--panel)}
+  .rung:last-child{border-bottom:1px solid var(--line)}
+  .rung .stage{font:600 12px/1.4 var(--mono);letter-spacing:.04em;color:var(--ink2)}
+  .rung .bar{height:22px;border-radius:3px;background:linear-gradient(90deg,rgba(229,72,77,.85),rgba(229,72,77,.35));min-width:4px}
+  .rung .val{font:700 13px/1.3 var(--mono);color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+
+  /* verdict */
+  .verdict{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:26px 28px;margin:20px 0}
+  .verdict .vh{font:600 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+  .verdict p{font-size:15.5px;color:var(--ink);max-width:none}
+  .verdict p+p{margin-top:10px}
+
+  .foot{padding:56px 0;color:var(--ink3);font-size:13px}
+  .foot p{font-size:13px;max-width:none}
+  .sources ol{list-style:decimal;margin-left:20px;font-size:13px}
+  .sources li{margin:9px 0;color:var(--ink2)}
+  .sources a{word-break:break-all}
+
+  .method-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:20px;padding:6px 14px;margin:6px 6px 0 0;font:12px/1.4 var(--mono);color:var(--ink2)}
+  .method-chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+  @media (max-width:640px){
+    .rung{grid-template-columns:1fr;gap:8px}
+    .rung .val{text-align:left}
+    header.hero{padding:56px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Data Investigation &nbsp;·&nbsp; 2010 – 2026</div>
+    <h1>The Chitta Pandemic:<br>Punjab's Drug Crisis, <em>the money, the politics, and the data</em></h1>
+    <p class="sub">A standalone, evidence-graded analysis of the drug pandemic in Punjab, India — consumption, crime, overdose deaths, the political economy of the trade, who is connected to whom (and how proven), where the money goes, and what everything costs. Every figure is tagged with a confidence score; every claim cites its source.</p>
+    <div class="meta">
+      <b>Compiled:</b> November 2026 &nbsp;·&nbsp; <b>Method:</b> primary official data (NCRB, MHA Parliament answers, court records, PODS 2015) → investigative press → academic reviews<br>
+      <b>Scope:</b> Punjab state (India) &nbsp;·&nbsp; <b>Disclaimer:</b> allegations are labelled as allegations. No conviction is claimed where none exists.
+    </div>
+    <nav class="qnav">
+      <a href="#q1"><b>Q1</b>WHAT: size of the crisis</a>
+      <a href="#q2"><b>Q2</b>WHO: the actors &amp; proof</a>
+      <a href="#q3"><b>Q3</b>WHY: causes &amp; failure</a>
+      <a href="#q4"><b>Q4</b>POLITICS: government-by-government</a>
+      <a href="#q5"><b>Q5</b>MONEY: prices &amp; flow</a>
+      <a href="#q6"><b>Q6</b>SPENDING: per addict &amp; state</a>
+      <a href="#method"><b>★</b>Method &amp; confidence</a>
+      <a href="#sources"><b>§</b>Sources</a>
+    </nav>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="stat red"><div class="n">232,856</div><div class="l">Opioid-dependent (PODS 2015, AIIMS)</div></div>
+  <div class="stat red"><div class="n">₹7,500 cr</div><div class="l">Annual drug-consumption market (PODS)</div></div>
+  <div class="stat amber"><div class="n">11,589</div><div class="l">NDPS cases in 2023 (NCRB)</div></div>
+  <div class="stat amber"><div class="n">106</div><div class="l">Overdose deaths 2024 — most in India*</div></div>
+  <div class="stat blue"><div class="n">₹1,000–5,000</div><div class="l">Street price of 1 g heroin (chitta)</div></div>
+  <div class="stat blue"><div class="n">₹6,830</div><div class="l">Avg monthly spend per addict (2022)</div></div>
+  <div class="stat green"><div class="n">₹2.96 cr</div><div class="l">Central rehab funding for Punjab (2024-25)</div></div>
+</div>
+
+<!-- ============ METHOD ============ -->
+<section id="method">
+  <div class="wrap">
+    <div class="tag">How to read this report</div>
+    <h2>Method &amp; confidence scores</h2>
+    <p class="lede">Drug data in Punjab is contested — politicians have quoted <b>0.06%</b> addiction while the same study they quoted says <b>~4.5% of adults are opioid users</b>. This report therefore grades every figure.</p>
+    <div>
+      <span class="method-chip"><i style="background:var(--green)"></i><b>HIGH</b>&nbsp;— official statistics: NCRB / MHA Parliament answers / court convictions / audited surveys (PODS, PGIMER)</span>
+      <span class="method-chip"><i style="background:var(--amber)"></i><b>MEDIUM</b>&nbsp;— credible research or press reporting that cites official records directly (names, FIRs, seizures)</span>
+      <span class="method-chip"><i style="background:var(--red)"></i><b>LOW</b>&nbsp;— estimates, extrapolations, or unproven allegations. Presented only as such.</span>
+      <span class="method-chip"><i style="background:var(--ink3)"></i><b>GAP</b>&nbsp;— where no reliable data exists (this is itself a finding)</span>
+    </div>
+    <div class="callout amber" style="margin-top:26px">
+      <div class="t">Three structural warnings before you read the numbers</div>
+      <p><b>1. Arrests ≠ control.</b> Arrest figures under NDPS were inflated after 2012 and then deliberately brought down — The Wire documents the state government issuing informal instructions both to arrest en masse and then to reduce arrests to make statistics look good. Arrests track political pressure, not the epidemic.</p>
+      <p><b>2. Deaths are a floor, not a count.</b> NCRB only records <i>certified</i> overdose deaths. In rural Punjab, overdose deaths are routinely registered as suicide or "accident" — families hide the cause. The real number is almost certainly several multiples higher. NCRB itself admits it "is not maintained" district-wise.</p>
+      <p><b>3. Seizures are the tip.</b> Punjab's 2023 seizure of ~47,600 kg of narcotics still left 11,589 cases being registered. A police officer quoted in The Guardian-era reporting: seizures "represent just a small proportion of the drugs making it through and being sold profitably."</p>
+    </div>
+    <h3>What "confidence" is applied to</h3>
+    <ul>
+      <li><b>Case / seizure / death counts:</b> HIGH when from NCRB or MHA's written answers in Parliament (auditable, signed); MEDIUM when via a newspaper's transcription of them; LOW when a politician's press-conference figure (e.g. AAP's "68,545 cases since March 2025").</li>
+      <li><b>Prevalence (how many addicts):</b> HIGH for PODS 2015 (peer-reviewed RDS survey, 3,620 respondents, multiplier method); MEDIUM for PGIMER 2022 (15.4% any substance use, cited but full study not public); LOW for political quotes like "70% of youth" (a misquote of a 600-person sample study).</li>
+      <li><b>Political links:</b> three tiers — <b>convicted</b> (court verdict), <b>charged</b> (chargesheet filed), <b>alleged</b> (named in statements/press, no charge). No one is described as "connected to drugs" unless they sit in one of these tiers.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Q1 ============ -->
+<section id="q1">
+  <div class="wrap">
+    <div class="tag">Question 1 · WHAT</div>
+    <h2>What exactly is the crisis? The numbers, year by year</h2>
+    <p class="lede">Punjab is not "a state with a drug problem." It is the single largest <b>consumption market, seizure point and overdose-death site</b> in India. Four independent series tell the same story: cases, seizures, deaths and addicts all moved in lockstep upward from 2010 to the mid-2020s.</p>
+
+    <h3>1.1 NDPS Act cases registered — the state's own alarm signal</h3>
+    <div class="chartbox">
+      <div class="ct">NDPS cases registered in Punjab per year <span class="cf h">HIGH</span> 2019–2024 · <span class="cf m">MEDIUM</span> 2010–2014 (derived from published crime rates)</div>
+      <div class="cs">Source: NCRB via MHA written answers in Parliament (2019–2024); NCRB rates per lakh population (2010: 19.7, 2012: 51.6, 2014: 50.5) applied to Census population for derived bars.</div>
+      <svg id="chart-cases" viewBox="0 0 980 340" role="img" aria-label="NDPS cases bar chart"></svg>
+      <div class="legend"><span><i style="background:var(--red)"></i>Official NCRB count</span><span><i style="background:var(--ink3)"></i>Derived from crime rate (approx.)</span></div>
+    </div>
+    <p>Punjab's NDPS crime rate was <b>51.6 per 1,00,000 population in 2012 — the highest of any Indian state, against a national average of 2.8</b>. <span class="cf h">HIGH</span> By 2023–24 the case count had fallen to ~9,000 (largely due to the AAP-era crackdown and a change in how cases are registered), but Punjab still ranks <b>second in India by cases per population</b> — and <b>carries ~44.5% of all NDPS convicts in the country</b> (end-2014, Livemint). <span class="cf h">HIGH</span></p>
+    <p><b>The pending-case backlog is the quiet scandal:</b> 45,962 cases were still pending trial at the end of 2023, and a Session Court takes <b>~7 years</b> to complete one trial at current rates. The AAP government itself estimated it needs <b>79 special NDPS courts</b> (≈ ₹60 cr/year for 10 years) just to clear the backlog. <span class="cf h">HIGH</span></p>
+
+    <h3>1.2 Narcotics seized — the supply kept growing even during "crackdowns"</h3>
+    <div class="chartbox">
+      <div class="ct">Total narcotics seized in Punjab, kilograms <span class="cf h">HIGH</span></div>
+      <div class="cs">Source: NCRB figures published in MHA's Rajya Sabha answer of 17 Dec 2025 (2019–2023); 2024 from Punjab Police annual briefing.</div>
+      <svg id="chart-seizures" viewBox="0 0 980 320" role="img" aria-label="Seizures bar chart"></svg>
+    </div>
+    <p>Heroin specifically: seizures jumped from <b>209 kg (2011) → 443 kg (2012) → 1,099 kg (2024) → 2,086 kg (2025)</b>. In 2025 Punjab alone accounted for <b>58% of all heroin seized in India</b> (2,086 kg of 3,567 kg). <span class="cf h">HIGH</span> Between 2015 and 2024: <b>217,000+ kg seized, 4,600+ kg of it heroin</b>. <span class="cf h">HIGH</span></p>
+    <p>The route changed: <b>drones</b>. In 2024 there were 513 drone sightings and 185 kg of heroin dropped by UAV; in 2025 Punjab accounted for <b>97% of India's drone-drug cases (298 of 305)</b> with 461 kg seized. A border officer's estimate: <b>10–15 drones cross the Punjab belt every 24 hours; only a handful are intercepted.</b> <span class="cf m">MEDIUM</span></p>
+
+    <h3>1.3 Overdose deaths — the number that finally became official</h3>
+    <div class="chartbox">
+      <div class="ct">Certified drug-overdose deaths in Punjab <span class="cf h">HIGH</span> (officially recorded only — see warning below)</div>
+      <div class="cs">Source: NCRB data in PIB/MHA releases and 2025 NCRB report. FY basis police affidavit (Apr-20→Mar-23: 36 / 71 / 159) differs slightly from calendar-year NCRB series; calendar years shown.</div>
+      <svg id="chart-deaths" viewBox="0 0 980 300" role="img" aria-label="Overdose deaths line chart"></svg>
+    </div>
+    <div class="callout">
+      <div class="t">Read this number as a floor</div>
+      <p>Punjab recorded the <b>highest certified overdose deaths in India in 2022 (144) and 2023 (89)</b>, and 106 in 2024 — second only to Tamil Nadu. But a High Court affidavit (BI, Punjab Police) showed 159 deaths in FY 2022-23 alone, and every qualitative study finds unreported deaths are the majority: rural families register overdose as suicide; "widow localities" (Maqboolpura, Amritsar) exist where six of seven relatives in a family died of drugs. Treat all official death counts as <b>a lower bound</b>. <span class="cf m">MEDIUM</span> on true scale; <span class="cf d">GAP</span> on pre-2019 state-level counts.</p>
+    </div>
+
+    <h3>1.4 Who is consuming — the profile of the addict</h3>
+    <div class="grid g3">
+      <div class="card"><div class="big num">76%</div><p>of opioid dependents are <b>aged 18–35</b>; ~90% male. The crisis is concentrated in the most productive working-age men.</p><div class="src">PODS 2015 <span class="cf h">HIGH</span></div></div>
+      <div class="card"><div class="big num">89% / 83%</div><p>of opioid dependents were <b>literate/educated</b> and <b>employed</b>. This is not a poverty-only story — it is an unemployment-and-meaning story in a rich state.</p><div class="src">PODS 2015 <span class="cf h">HIGH</span></div></div>
+      <div class="card"><div class="big num">27 yrs</div><p>Average age at reporting to a de-addiction centre. ~60% of users <b>started between 18 and 28</b>.</p><div class="src">PGIMER / CRRID studies <span class="cf m">MEDIUM</span></div></div>
+      <div class="card"><div class="big num">15.4%</div><p>of Punjab residents reported <b>any substance use</b> in the 2022 PGIMER survey — one in seven.</p><div class="src">PGIMER 2022 <span class="cf m">MEDIUM</span></div></div>
+      <div class="card"><div class="big num">~10,00,000</div><p>addicts <b>registered</b> in de-addiction centres by 2023 (Health Minister, in the Assembly) — the government admitted the true number is "likely under-reported".</p><div class="src">Assembly statement 2023 <span class="cf m">MEDIUM</span></div></div>
+      <div class="card"><div class="big num">70–75%</div><p>of the <b>15–25 age group in border areas</b> (2009 govt survey) — Tarn Taran was the worst rural district, Amritsar the worst urban.</p><div class="src">Punjab govt survey 2009 <span class="cf m">MEDIUM</span></div></div>
+    </div>
+    <div class="verdict">
+      <div class="vh">Simplified answer — WHAT</div>
+      <p>Punjab is India's ground zero: 2.3 lakh people opioid-dependent and ~8.6 lakh opioid users as of the 2015 national survey; 9,000–12,000 drug cases a year; ~50,000 kg of narcotics seized annually; the country's highest certified overdose deaths for three straight years (2022–24); and a state that holds a quarter of India's NDPS convicts while 46,000 cases wait in courts. The epidemic is young (18–35), male, and spread across both villages and cities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Q2 ============ -->
+<section id="q2">
+  <div class="wrap">
+    <div class="tag">Question 2 · WHO</div>
+    <h2>Who is who — and what is actually proven about them</h2>
+    <p class="lede">The trade is a five-layer machine: Afghan fields → Pakistani corridors → border mules → Punjabi distributors → NRI-backed financiers and local protectors. Below, every named actor is sorted by <b>legal status, not headlines</b>.</p>
+
+    <div class="net">
+      <svg viewBox="0 0 960 520" role="img" aria-label="Drug trade network diagram">
+        <defs>
+          <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#566"/></marker>
+        </defs>
+        <!-- supply layer -->
+        <rect x="20" y="40" width="250" height="86" rx="8" fill="#1a212b" stroke="#566"/>
+        <text x="145" y="66" text-anchor="middle" fill="#e8ecef" font-size="14" font-weight="700">Golden Crescent (Afghan poppy)</text>
+        <text x="145" y="86" text-anchor="middle" fill="#aab4bf" font-size="11">Heroin at field: ~₹1,00,000 / kg</text>
+        <text x="145" y="102" text-anchor="middle" fill="#78848f" font-size="10">also: opium &amp; husk via Rajasthan/MP; pharma via HP/UP</text>
+
+        <rect x="20" y="160" width="250" height="70" rx="8" fill="#1a212b" stroke="#566"/>
+        <text x="145" y="186" text-anchor="middle" fill="#e8ecef" font-size="14" font-weight="700">Pakistan syndicates / ISI allegations</text>
+        <text x="145" y="206" text-anchor="middle" fill="#aab4bf" font-size="11">"narco-terrorism" — senior police, 2010s</text>
+
+        <!-- route -->
+        <rect x="20" y="270" width="250" height="70" rx="8" fill="#1a212b" stroke="#f5a623"/>
+        <text x="145" y="296" text-anchor="middle" fill="#f5a623" font-size="14" font-weight="700">553 km porous border</text>
+        <text x="145" y="316" text-anchor="middle" fill="#aab4bf" font-size="11">drones (10–15/day), tunnels, rivers, mules</text>
+
+        <!-- border towns -->
+        <rect x="330" y="270" width="200" height="70" rx="8" fill="#1a212b" stroke="#f5a623"/>
+        <text x="430" y="296" text-anchor="middle" fill="#e8ecef" font-size="13" font-weight="700">Border hubs</text>
+        <text x="430" y="316" text-anchor="middle" fill="#aab4bf" font-size="11">Amritsar, Tarn Taran, Firozpur, Fazilka, Gurdaspur, Pathankot</text>
+
+        <!-- distributors -->
+        <rect x="330" y="120" width="200" height="70" rx="8" fill="#1a212b" stroke="#e5484d"/>
+        <text x="430" y="146" text-anchor="middle" fill="#e5484d" font-size="13" font-weight="700">Local distributors</text>
+        <text x="430" y="166" text-anchor="middle" fill="#aab4bf" font-size="11">Satta, Pindi, Bholu, Sunny Dyal…</text>
+
+        <!-- NRI -->
+        <rect x="330" y="30" width="200" height="66" rx="8" fill="#1a212b" stroke="#a78bfa"/>
+        <text x="430" y="54" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="700">NRI financiers &amp; kingpins</text>
+        <text x="430" y="74" text-anchor="middle" fill="#aab4bf" font-size="11">Canada / UK / Australia — hawala back</text>
+
+        <!-- protectors -->
+        <rect x="590" y="120" width="190" height="70" rx="8" fill="#1a212b" stroke="#e5484d"/>
+        <text x="685" y="146" text-anchor="middle" fill="#e5484d" font-size="13" font-weight="700">Police &amp; official complicity</text>
+        <text x="685" y="166" text-anchor="middle" fill="#aab4bf" font-size="11">100+ cops arrested since 2014; ex-DSP kingpin</text>
+
+        <!-- politics -->
+        <rect x="590" y="270" width="190" height="70" rx="8" fill="#1a212b" stroke="#e5484d"/>
+        <text x="685" y="296" text-anchor="middle" fill="#e5484d" font-size="13" font-weight="700">Political patronage</text>
+        <text x="685" y="316" text-anchor="middle" fill="#aab4bf" font-size="11">chargesheets vs SAD leaders; election funding</text>
+
+        <!-- demand -->
+        <rect x="590" y="410" width="350" height="86" rx="8" fill="#20161a" stroke="#e5484d"/>
+        <text x="765" y="436" text-anchor="middle" fill="#f2878b" font-size="14" font-weight="700">Demand: Punjab's youth</text>
+        <text x="765" y="456" text-anchor="middle" fill="#aab4bf" font-size="11">2.33 lakh dependent · 8.6 lakh users · 76% aged 18–35</text>
+        <text x="765" y="472" text-anchor="middle" fill="#aab4bf" font-size="11">avg ₹6,830/month per addict → ₹7,500 cr/year market</text>
+
+        <!-- arrows -->
+        <line x1="145" y1="126" x2="145" y2="158" stroke="#566" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="145" y1="230" x2="145" y2="268" stroke="#566" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="270" y1="305" x2="328" y2="305" stroke="#f5a623" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="430" y1="270" x2="430" y2="192" stroke="#e5484d" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="430" y1="96" x2="430" y2="118" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="530" y1="155" x2="588" y2="155" stroke="#566" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="685" y1="190" x2="685" y2="268" stroke="#566" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="430" y1="190" x2="590" y2="410" stroke="#e5484d" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+        <line x1="685" y1="340" x2="740" y2="408" stroke="#e5484d" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+        <text x="560" y="330" fill="#78848f" font-size="10">chitta + pharma (pregabalin "green pill", ice)</text>
+        <text x="700" y="390" fill="#78848f" font-size="10">protection + election money</text>
+        <text x="470" y="60" fill="#78848f" font-size="10">₹1 lakh/kg in → ₹10–50 lakh/kg out (10–50× margin)</text>
+      </svg>
+    </div>
+
+    <h3>Named actors — proof tier</h3>
+    <table class="tbl">
+      <tr><th>Actor</th><th>Role</th><th>Legal status</th><th>Key evidence</th></tr>
+      <tr><td><b>Jagdish Singh "Bhola"</b></td><td>Kingpin; ex-DSP Punjab Police; international wrestler</td><td><b>CONVICTED</b> — 24 yrs (2019 CBI court); +10 yrs PMLA (2024)</td><td>₹700 cr (later pegged ₹6,000 cr) synthetic-drug racket busted 2013; ED attached ₹200 cr assets; 18 associates sought for extradition from UK/Canada <span class="cf h">HIGH</span></td></tr>
+      <tr><td><b>Bikram Singh Majithia</b></td><td>SAD cabinet minister (Revenue); brother-in-law of Sukhbir Singh Badal</td><td><b>CHARGED</b> — NDPS FIR Dec 2021; Vigilance chargesheet Oct 2026 (~40,000 pages); denies all charges</td><td>ED FIR (2013, PMLA); Satpreet "Satta" alleged he paid Majithia <b>₹35 lakh in instalments 2007–12 "for elections"</b>; trail: ₹161 cr unaccounted cash + ₹141 cr via foreign entities + ₹236 cr company deposits, incl. Saraya Industries <span class="cf m">MEDIUM</span> (chargesheet, not conviction)</td></tr>
+      <tr><td><b>Satpreet "Satta" / Parminder "Pindi" / Gurjant "Bholu" / Sunny Dyal</b></td><td>Distributors; several foreign-based</td><td>Charged / fugitive / under trial — varies</td><td>Core of the Bhola-network statements; Bholu-Sunny Dyal syndicate: ₹1.07 cr drug money seized mid-2024, hawala transfers <span class="cf m">MEDIUM</span></td></tr>
+      <tr><td><b>Police &amp; BSF personnel</b></td><td>Complicit middle layer</td><td><b>100+ police personnel arrested</b> for drug smuggling since 2014 (media count of court cases); individual convictions exist</td><td>Bhola himself was a serving DSP dismissed in 2012, arrested in 2013; two constables nabbed with 500 g heroin + ₹70,000 in a 2013 case (court record) <span class="cf m">MEDIUM</span></td></tr>
+      <tr><td><b>"Narco-political elite" (unnamed ministers/MLAs)</b></td><td>Election funding + protection</td><td><b>ALLEGED</b> — no named charges on record for most</td><td>Retired DGP Shashi Kant: "the new narco-politician elite used drug money to fund elections"; his intelligence report allegedly listed sitting ministers of multiple parties (Al Jazeera 2014, Tribune 2015) <span class="cf l">LOW</span> — credible source, unverified list</td></tr>
+      <tr><td><b>Drug mules / drone pickers</b></td><td>Supply chain base</td><td>Mostly users turned carriers</td><td>Unemployed rural youth; ₹20,000–30,000 per drone pick-up/delivery; ₹1 lakh per long run <span class="cf m">MEDIUM</span></td></tr>
+    </table>
+
+    <div class="callout blue">
+      <div class="t">The structural who: why it can't be "just criminals"</div>
+      <p>The kingpin of Punjab's largest busted racket was <b>a police officer</b>. A sitting cabinet minister carries a 40,000-page drug-money chargesheet. A retired ED official publicly joined the SAD-led anti-drug protest movement in 2026. The DGP's own words: "It is impossible to stop the drug menace because of the strong nexus between [politicians and smugglers]." The who is therefore: <b>an international supply chain wearing local police, local politics and local unemployment as its three layers.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Q3 ============ -->
+<section id="q3">
+  <div class="wrap">
+    <div class="tag">Question 3 · WHY</div>
+    <h2>Why did it explode — and why have every government failed?</h2>
+    <p class="lede">Two different questions. The epidemic exploded for <b>structural</b> reasons. It persisted because fighting it is <b>politically and financially costly to the people in power</b>. Both are documented.</p>
+
+    <h3>3.1 Why the demand exploded (structural causes)</h3>
+    <div class="grid g2">
+      <div class="card"><h4>Rich state, no jobs <span class="cf m">MEDIUM</span></h4><p>Punjab grew at ~4% (2022) with unemployment ~6.8%. Young people in a cash-rich, aspiration-driven society with shrinking farms and no industry — "frustration, boredom and laziness experienced simultaneously" (The Tribune, 2015). The addicts are 83% <i>employed</i>: drugs replaced jobs, not supplemented poverty.</p></div>
+      <div class="card"><h4>Porosity by design <span class="cf h">HIGH</span></h4><p>553 km international border, canals and rivers, good roads right to the fence. After the 1990s insurgency ended, a senior police officer says Pakistan "began pumping drugs into Punjab to weaken the border state." Drones now carry the trade over the fence: 10–15 cross daily, only a few intercepted.</p></div>
+      <div class="card"><h4>Historical acceptance <span class="cf m">MEDIUM</span></h4><p>Opium (afeem) was socially normal in pre-Independence Punjab (Royal Commission on Opium, 1894); desi daru was the default "nasha". A 1979 rural study found widespread opium use even when illegal; a village tracked for 32 years saw drug/tobacco/alcohol use rise 30% → 39% (1979 → 2011). The epidemic grafted onto a pre-existing culture of use.</p></div>
+      <div class="card"><h4>Price shock &amp; product switch <span class="cf m">MEDIUM</span></h4><p>As cheaper opium/husk supply was disrupted, the market moved up to <b>heroin (chitta)</b> and pharma drugs (pregabalin, ice) — more addictive, deadlier, and more profitable. 90% of dependent injectors in 2015 injected heroin. Overdose deaths (a largely heroin/polydrug phenomenon) only became visible in official counts from 2019 — consistent with the product shift.</p></div>
+      <div class="card"><h4>Culture &amp; music <span class="cf l">LOW</span></h4><p>Multiple academic and journalistic accounts document Punjabi music glorifying drugs and the "NRI lifestyle"; a study cited in defence journals links this to youth initiation. Direction is well-supported; magnitude is not measurable.</p></div>
+      <div class="card"><h4>Border-vulnerability of specific districts <span class="cf m">MEDIUM</span></h4><p>Tarn Taran, Ferozepur, Fazilka, Amritsar, Gurdaspur, Pathankot consistently top every metric — geography, not just policy, maps the epidemic.</p></div>
+    </div>
+
+    <h3>3.2 Why governments keep failing (10 documented reasons)</h3>
+    <ol>
+      <li><b>The trade funds the politics that must stop it.</b> "A part of what they earn through drugs sales goes into election campaigns… It's a vicious circle" (Al Jazeera, 2014). Every incumbent has an incentive to be loud and slow. <span class="cf m">MEDIUM</span> (Majithia chargesheet shows the mechanism in one case: ₹35 lakh paid "for elections".)</li>
+      <li><b>The police are inside the product.</b> 100+ officers arrested since 2014; the 2013 kingpin was a DSP. Officers who make big seizures get transferred ("harassment for anti-drug work", per a senior officer's public account) — the system punishes enforcement. <span class="cf m">MEDIUM</span></li>
+      <li><b>Statistics are managed, not measured.</b> The Wire documents the SAD govt ordering mass arrests in 2012-14, then informal instructions to cut arrests; the arrest series (6,125 → 17,001 → sharp drop) tracks orders, not the epidemic. The 2015 PODS report — the first scientific estimate — was never formally published; its author's key finding (16% hard-drug addiction claim in the 2009 affidavit vs 0.84% in PODS) was weaponised both ways. <span class="cf m">MEDIUM</span></li>
+      <li><b>Treatment is a business, not a service.</b> 117 of 177 private de-addiction centres are run by 10 people; 60%+ of private centres diverted free government BNX medicine to the black market (Vigilance, 2025); one doctor ran 22 centres; over 5 crore BNX tablets went missing in 2019; relapse within six months exceeds 65%; the government's own recovery rate 2017–2023 was <b>1.4%</b>. <span class="cf m">MEDIUM</span></li>
+      <li><b>Courts can't keep up.</b> 46,000 cases pending (2023); a trial takes ~7 years; 79 special courts needed. Traffickers are free to work while cases drift. <span class="cf h">HIGH</span></li>
+      <li><b>The border problem is national, not state.</b> BSF deployment, fences and anti-drone systems are Centre's domain. Punjab's CMs have had to <i>ask</i> Delhi for anti-drone guns and money. Every state government therefore blames the Centre; the Centre blames state politics. <span class="cf h">HIGH</span></li>
+      <li><b>Election-cycle politics.</b> SAD-BJP (2012): "Punjab is a transit point, not a consumer." Congress (2017): Gutka Sahib oath, 4-week eradication. AAP (2022-): four successive deadlines (6 months; Aug 2024; Dec 2024; Mar 2025) — all missed, each reframed as "battle won, war continues." No party is ever punished for a missed deadline because <b>every party needs the next election</b>. <span class="cf h">HIGH</span></li>
+      <li><b>The money is hard to trace.</b> Hawala (up to ~30% of India's remittance flow in grey estimates), NRI accounts in Canada/UK/Australia, shell companies (Saraya Industries), sand mining, liquor companies, real estate. ED's own Bhola case took a decade and still relies on asset attachment, not recovery. <span class="cf m">MEDIUM</span></li>
+      <li><b>Denial is electorally rational.</b> 2016: Deputy CM Sukhbir Badal quoted "0.06% addiction — lowest in the nation" from the very study that found 4.5% of adults are opioid <i>users</i>. Admitting the scale costs votes; under-counting is the default. <span class="cf h">HIGH</span> (the misquote is documented).</li>
+      <li><b>Success is undefinable.</b> No government measures outcome (addicts per 100,000; overdose deaths; first-time use age) — they measure inputs (FIRs, arrests, seizures), which can be faked up or down. Under the AAP the case count fell 27% (12,442 → 9,025) while certified deaths <b>rose</b> (89 → 106) — the input/outcome divergence is the clearest proof of the measurement problem. <span class="cf m">MEDIUM</span></li>
+    </ol>
+    <div class="verdict">
+      <div class="vh">Simplified answer — WHY</div>
+      <p>The epidemic exploded because a cash-rich, job-poor, bordering state with a history of opium culture met the world's biggest heroin supply. Governments fail because the same three institutions that must stop it — <b>police, politicians, courts</b> — are each captured, underfunded, or slow, and because every party benefits electorally from under-selling the problem and over-selling the crackdown. It is not incompetence alone; parts of it are rational behaviour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Q4 ============ -->
+<section id="q4">
+  <div class="wrap">
+    <div class="tag">Question 4 · POLITICS</div>
+    <h2>Government by government: promises, records, and the documented links</h2>
+    <p class="lede">Three governments have held Punjab since the crisis went public: <b>SAD-BJP (2007–2017)</b>, <b>Congress (2017–2022)</b>, <b>AAP (2022–present)</b>. Each one is documented below with what it promised, what the record shows, and the concrete legal links to drugs.</p>
+
+    <h3>The political timeline</h3>
+    <div class="tl">
+      <div class="ev"><div class="yr">2007–2017 · SAD + BJP · CM Parkash Singh Badal</div><h4>The epidemic goes from hidden to visible — and then gets politicised</h4><p>2009: govt's own secretary admits <b>16%+ hard-drug addiction</b> in a High Court affidavit; 67% of rural households have an addict. 2012: Rahul Gandhi's "70% of youth" (a misquote) ignites the issue; the state spends just ~₹2 cr/year on de-addiction. 2012–14: mass-arrest drive, then instructions to reduce arrests. 2013: Bhola racket (₹700 cr+) busted <i>from within the police</i>; politicians' names surface. 2015: PODS study (2.33 lakh dependent) submitted — never formally published. CM Badal (Jan 2015): "drug menace is hardly an election issue." <span class="cf m">MEDIUM</span></p></div>
+      <div class="ev red"><div class="yr">2017–2022 · Congress · CM Captain Amarinder Singh</div><h4>Gutka Sahib oath → crackdown optics → the Majithia problem</h4><p>Oath on the Gutka Sahib to eradicate drugs in 4 weeks (2017 election). Special Task Force: 1,400+ arrests in the first month. 100+ police officers arrested for drug links (media count). But: the party's most serious drug-money case <b>concerns a SAD minister (Majithia) whose case the Congress govt's Vigilance later built</b> — and in 2018 Kejriwal retracted his "Amarinder complicit" allegation after The Tribune's front-page apology to Majithia, signalling the limits of the evidence even on the opposition side. 3 lakh abusers identified per the state's 2015 affidavit. Conviction-rate claims rose; deaths and pending cases also rose. <span class="cf m">MEDIUM</span></p></div>
+      <div class="ev green"><div class="yr">2022–present · AAP · CM Bhagwant Singh Mann</div><h4>Four missed deadlines, the biggest enforcement surge, and a murdered crusader</h4><p>Elected on "war on drugs." Deadlines: 6 months (2022) → Aug 2024 → Dec 2024 → 3 months from Mar 2025 — all missed, each re-narrated. Results: 2024: 8,935 drug arrests, 1,099 kg heroin, ₹14.73 cr drug money; 602 properties worth ₹324 cr seized (2024); campaign since Mar 2025: 26,256 cases, 38,687 accused, ₹14.83 cr drug money (MHA-verified); 11,000+ addicts given Section 64A immunity (treatment over prosecution); J-PAL anti-drug school curriculum; special NDPS courts sought. Counter-evidence: certified deaths rose 89 → 106 (2023 → 2024); anti-drug activist Parvinder Singh Jhota shot dead (Oct 2026) after exposing a medicine-shop drug seller; opposition calls the "win" a "ceasefire." <span class="cf m">MEDIUM</span></p></div>
+      <div class="ev amber"><div class="yr">2026 · Pre-2027 elections</div><h4>The drug is now the election itself</h4><p>Internal party surveys (reported, unverified) suggest ~a third of voters are personally affected by drugs. SAD proposes a women-led anti-drug ministry; BJP launches a "Nasha Mukt Punjab" yatra with an eradication deadline of Dec 31, 2029; AAP points to its seizure numbers. A retired DGP's warning frames the stakes: "it is impossible to stop this trade because of the strong nexus." <span class="cf l">LOW</span> (poll-survey claims)</p></div>
+    </div>
+
+    <h3>The concrete legal links (what is actually charged, per party)</h3>
+    <table class="tbl">
+      <tr><th>Party / period</th><th>Documented legal links to drug money</th><th>Status</th><th>Counter-claims</th></tr>
+      <tr><td><b>SAD</b> (in govt 2007–17)</td><td><b>Majithia</b> (cabinet minister, Badal's brother-in-law): ED FIR 2013, NDPS FIR 2021, Vigilance chargesheets 2025-26 — ₹736.96 cr alleged drug-money trail, ₹161 cr cash + ₹141 cr foreign + ₹236 cr company deposits; "₹35 lakh for elections 2007–12" (Satta's statement). Vigilance: liquor-company transfers and "international drug dealers" in focus.</td><td>Chargesheet filed (2026); trial pending; Majithia denies everything</td><td>Badals call it a "false case" / "political vendetta" by the Congress govt (2021 FIR) and now AAP govt; chargesheets are <i>accusations, not convictions</i></td></tr>
+      <tr><td><b>BJP</b> (coalition 2007–17)</td><td>No individual BJP leader in Punjab carries a public drug-money chargesheet in this dataset; the coalition inherits the 2007–17 period (Chitta spread; AAP minister Cheema: "the Akali-BJP government oversaw the spread of chitta between 2007 and 2017").</td><td><span class="cf d">GAP</span> — no individual charges found in research</td><td>BJP argues it was minority partner; challenges AAP to explain Punjab's trajectory vs BJP-ruled states</td></tr>
+      <tr><td><b>Congress</b> (in govt 2017–22)</td><td>Kejriwal's 2017 "Amarinder complicit" allegation was <b>retracted in 2018</b> as "unfounded"; The Tribune front-page apology to Majithia (2017). 100+ police arrests under the Congress govt — the enforcement record is the strongest of the three governments.</td><td>No senior Congress leader charged in this dataset</td><td>Congress accuses both SAD-BJP and AAP of the nexus; points to the Majithia case it initiated</td></tr>
+      <tr><td><b>AAP</b> (in govt 2022– )</td><td>No senior AAP leader charged. Failure-of-execution evidence: 4 missed deadlines; deaths up in 2024; Jhota murder (2026); High Court notices over bulldozer demolitions of drug peddlers' properties.</td><td>Political accountability, not legal</td><td>AAP cites MHA-verified enforcement numbers (26,256 cases, 38,687 accused since Mar 2025) and 164% rise in treatment admissions</td></tr>
+    </table>
+    <div class="callout">
+      <div class="t">Honest read — "the connection that made drugs explode"</div>
+      <p>The strongest <b>documented</b> political link in 15 years of records is the <b>SAD leadership ↔ Bhola-network drug money</b> trail (Majithia: charged, ₹736 cr alleged, "for elections" payments) and the <b>police-inside-the-racket</b> pattern (Bhola: convicted; 100+ officers arrested). The broader claim — that drug money <i>routinely</i> funds elections in Punjab — is repeatedly asserted by credible officials (two DGPs, an ED probe into sand-mining links, a 40,000-page chargesheet) but <b>proven in court only in the Bhola case</b>. What is proven: every government has failed; the failure pattern is identical across parties — <b>loud deadlines, input-based metrics, under-counted outcomes</b> — which is the signature of a problem where incumbents benefit from the trade or fear its exposure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Q5 ============ -->
+<section id="q5">
+  <div class="wrap">
+    <div class="tag">Question 5 · MONEY</div>
+    <h2>Where is the money going? The full price breakdown</h2>
+    <p class="lede">Heroin is one of the highest-margin products on earth, and Punjab sits at its most profitable point: cheap enough to be a mass market, rich enough to pay. Here is the ladder.</p>
+
+    <h3>5.1 The price ladder — ₹1 lakh in, ₹5 crore out</h3>
+    <div class="ladder">
+      <div class="rung"><div class="stage">AFGHAN FIELD (1 kg)</div><div class="bar" style="width:4%"></div><div class="val">~₹1,00,000 <span class="cf m">MED</span></div></div>
+      <div class="rung"><div class="stage">PAKISTAN TRANSIT (1 kg)</div><div class="bar" style="width:12%"></div><div class="val">~₹2–4 lakh <span class="cf l">EST</span></div></div>
+      <div class="rung"><div class="stage">PUNJAB STREET (1 kg)</div><div class="bar" style="width:38%"></div><div class="val">₹10–50 lakh <span class="cf m">MED</span> <span style="color:var(--ink3);font-weight:400">(₹1,000–5,000/g)</span></div></div>
+      <div class="rung"><div class="stage">GLOBAL MARKET (1 kg)</div><div class="bar" style="width:100%"></div><div class="val">~₹5 crore <span class="cf m">MED</span></div></div>
+    </div>
+    <p style="font:12px var(--mono);color:var(--ink3)">Bar lengths are illustrative of relative value. Field→street margin: <b>10–50×</b>; field→global: <b>~50×</b>. A mule earns ₹20,000–30,000 per drone pick-up — which is why mules are always young, unemployed and expendable. <span class="cf m">MEDIUM</span></p>
+
+    <h3>5.2 The size of the money pool</h3>
+    <div class="grid g3">
+      <div class="card"><div class="big num">₹7,500 cr/yr</div><p>Total value of opioids + synthetic drugs <b>consumed</b> in Punjab (PODS 2015 estimate); of which <b>₹6,500 cr is heroin alone</b>.</p><div class="src">PODS via press <span class="cf m">MEDIUM</span></div></div>
+      <div class="card"><div class="big num">~₹900 cr/yr</div><p>Lower-bound press figure: "₹2.5 crore a day" spent by druggies (Rediff, 2016). The gap between the two figures is itself the uncertainty in consumption modelling.</p><div class="src">Press <span class="cf l">LOW</span></div></div>
+      <div class="card"><div class="big num">₹335 cr</div><p>Properties <b>forfeited from major smugglers in 2024 alone</b>; a further ₹103.5 cr under review. Drug money recovered in cash: ₹14.73 cr (2024) + ₹14.83 cr (Mar–Dec 2025).</p><div class="src">Punjab Police briefings <span class="cf m">MEDIUM</span></div></div>
+    </div>
+
+    <h3>5.3 Where the money actually goes (traced channels)</h3>
+    <table class="tbl">
+      <tr><th>Channel</th><th>Documented example</th><th>Confidence</th></tr>
+      <tr><td><b>Election campaigns</b></td><td>Satta's statement: ₹35 lakh paid to Majithia 2007–12 "for elections" (2021 FIR record). Retired DGP: "narco-politician elite used drug money to fund elections."</td><td><span class="cf m">MEDIUM</span> one proven case; <span class="cf l">LOW</span> systemic claim</td></tr>
+      <tr><td><b>Hawala / cross-border</b></td><td>₹1.07 cr seized in transit to foreign-based Bholu-Sunny Dyal syndicate (2024); ED extradition cases UK/Canada; ₹141 cr "channelled through foreign entities" in Majithia trail.</td><td><span class="cf m">MEDIUM</span></td></tr>
+      <tr><td><b>Shell companies</b></td><td>Saraya Industries and a "network of companies" in the 40,000-page Vigilance chargesheet (2026): unexplained growth + ₹50.81 cr unaccounted funds.</td><td><span class="cf m">MEDIUM</span> (charged, not convicted)</td></tr>
+      <tr><td><b>Properties &amp; real estate</b></td><td>ED attached ₹200 cr in Bhola case; 602 properties (₹324 cr) seized by police (2024); property forfeiture now a flagship AAP tool.</td><td><span class="cf m">MEDIUM</span></td></tr>
+      <tr><td><b>Legalised industries</b></td><td>Vigilance: "transactions involving liquor companies" in Majithia probe; illegal sand-mining on ED-attached land (₹3.5 cr cash seized, 2024).</td><td><span class="cf m">MEDIUM</span></td></tr>
+      <tr><td><b>Consumer loop</b></td><td>Most of the pool simply circulates back into consumption: ₹6,830/month per addict, ₹7,500 cr/year — the trade's real customer base is the state's own youth.</td><td><span class="cf m">MEDIUM</span></td></tr>
+    </table>
+    <div class="callout amber">
+      <div class="t">The black-economy framing (2026)</div>
+      <p>A 2026 study commissioned for Thapar University ("The Black Economy in Punjab") concludes the <b>narcotics trade is a driving force behind Punjab's black economy</b> — substance dependence concentrated among young, under-employed males, with early initiation. The academic establishment now treats drug money as a macro variable for Punjab, not a police footnote. <span class="cf m">MEDIUM</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Q6 ============ -->
+<section id="q6">
+  <div class="wrap">
+    <div class="tag">Question 6 · SPENDING</div>
+    <h2>What it costs: per addict, per year, per government</h2>
+    <p class="lede">The most damning ratio in this entire report: <b>for every ₹1 the state spends on treatment, the trade moves roughly ₹2,500.</b></p>
+
+    <h3>6.1 Per addict</h3>
+    <div class="grid g3">
+      <div class="card"><div class="big num">₹6,830</div><p><b>average monthly spend</b> of an addict (field survey 2022, CRRID) — ≈ <b>₹82,000 per year</b>, comparable to a skilled worker's salary.</p><div class="src">IJRSS 2023 <span class="cf m">MEDIUM</span></div></div>
+      <div class="card"><div class="big num">₹1,000–5,000</div><p>street price per gram of chitta → an addict on a daily dose spends <b>₹30,000–1,50,000/month</b> on heroin alone (derived from price × typical dose).</p><div class="src">Derived <span class="cf l">LOW</span></div></div>
+      <div class="card"><div class="big num">₹25–40</div><p>per BNX maintenance tablet at <b>private</b> centres (free in government) — the treatment itself became a second income stream.</p><div class="src">The Print 2025 <span class="cf m">MEDIUM</span></div></div>
+    </div>
+
+    <h3>6.2 The annual ledger</h3>
+    <div class="chartbox">
+      <div class="ct">Punjab's drug ledger, per year (₹ crore) — consumption vs everything the state spends <span class="cf m">MEDIUM</span></div>
+      <div class="cs">Consumption: PODS estimate ₹7,500 cr/yr (2015, still the only scientific state total). Government figures: central rehab funding to Punjab (MoSJ&E); state de-addiction budget ~₹2 cr (2012 reporting); enforcement-adjacent spend (CCTV ₹45 cr 2024). Scale note: the right-hand bars are less than 1/100th of the consumption bar.</div>
+      <svg id="chart-money" viewBox="0 0 980 300" role="img" aria-label="Money ledger bar chart"></svg>
+    </div>
+
+    <h3>6.3 Treatment: funded like a pilot, sized like a pandemic</h3>
+    <table class="tbl">
+      <tr><th>Year (FY)</th><th>Central fund to Punjab de-addiction</th><th>Persons rehabilitated</th><th>Per-person cost</th><th>Confidence</th></tr>
+      <tr><td class="num">2022-23</td><td class="num">₹1.01 cr</td><td class="num">11,239</td><td class="num">₹900</td><td><span class="cf h">HIGH</span></td></tr>
+      <tr><td class="num">2023-24</td><td class="num">₹1.33 cr</td><td class="num">11,486</td><td class="num">₹1,158</td><td><span class="cf h">HIGH</span></td></tr>
+      <tr><td class="num">2024-25</td><td class="num">₹2.96 cr</td><td class="num">11,603</td><td class="num">₹2,551</td><td><span class="cf h">HIGH</span></td></tr>
+    </table>
+    <p>₹2,551 is roughly what the Centre pays <b>per person rehabilitated</b> in Punjab. Against 2.3 lakh+ dependents and ~10 lakh registered addicts, the state supports 7 central IRCAs + 2 ODICs + 1 CPLI — and 33–32 government de-addiction centres for a population of 3 crore. <span class="cf h">HIGH</span> (numbers); the conclusion is arithmetic.</p>
+    <div class="grid g3">
+      <div class="card"><h4>Enforcement spend</h4><p>CCTV: ₹45.19 cr (2024). Special NDPS courts: ₹60 cr/yr × 10 years <i>requested</i> (not yet funded). 16th Finance Commission demand: ₹2,829 cr. <span class="cf m">MEDIUM</span></p></div>
+      <div class="card"><h4>What the crackdown recovered</h4><p>₹30.83 cr drug money + 602 properties (₹324 cr) in the first 2.5 years of the AAP govt — impressive, but ~4% of the annual consumption pool. <span class="cf m">MEDIUM</span></p></div>
+      <div class="card"><h4>What it returns</h4><p>2025: de-addiction admissions +164% (9,577 → 25,290); rehab admissions +224%; 17,702 new OOAT registrations — the first time treatment demand, not just enforcement, is growing. <span class="cf m">MEDIUM</span></p></div>
+    </div>
+    <div class="verdict">
+      <div class="vh">Simplified answer — SPENDING</div>
+      <p>An addict in Punjab spends ~₹6,830 a month (≈ ₹82,000 a year). The trade consumes ~₹7,500 crore a year in the state. The government's entire central-subsidised treatment budget for Punjab is under ₹3 crore a year. The ratio is not a policy gap — it is the entire explanation for why three governments, three ideologies, and ten years of "wars" have not moved the epidemic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GAPS ============ -->
+<section id="gaps">
+  <div class="wrap">
+    <div class="tag">Data gaps (a finding in itself)</div>
+    <h2>What nobody can tell you — and why that matters</h2>
+    <div class="grid g2">
+      <div class="card"><h4>Pre-2019 overdose deaths, district-wise <span class="cf d">GAP</span></h4><p>NCRB explicitly states district-wise death data "is not maintained." Punjab's death time-series starts in 2019. The decade 2010–2018 has no official mortality count — a period that corresponds to the epidemic's steepest climb.</p></div>
+      <div class="card"><h4>True prevalence since 2015 <span class="cf d">GAP</span></h4><p>PODS (2015) was never formally published, and no state-wide survey has repeated it. The 2022 PGIMER 15.4% figure is cited but the study itself is not public. All current "improvement" claims lack a like-for-like baseline.</p></div>
+      <div class="card"><h4>Women's data <span class="cf d">GAP</span></h4><p>Nil reporting of women to de-addiction centres (PGIMER review); the only women-only centre (Kapurthala, opened 2017) was discontinued. Women's consumption is effectively unmeasured.</p></div>
+      <div class="card"><h4>Black-market BNX scale <span class="cf d">GAP</span></h4><p>5 crore+ tablets missing (2019), 60%+ of private centres diverting (2025) — but no complete accounting of substitution-medicine leakage exists, which also breaks any model of opioid consumption.</p></div>
+      <div class="card"><h4>Drug money, total laundered <span class="cf d">GAP</span></h4><p>ED/PMLA cases give point estimates (₹200 cr attached, ₹736 cr alleged trail) but no agency has quantified Punjab's total narcotics-derived laundered flows. The 2026 "black economy" study is the first academic attempt.</p></div>
+      <div class="card"><h4>Border interception rate <span class="cf d">GAP</span></h4><p>"10–15 drones per day, a handful intercepted" is an officer's estimate. There is no official interception success rate — a number that would tell us how much of the supply actually stops.</p></div>
+    </div>
+    <p style="margin-top:18px"><b>Pattern:</b> every missing number sits exactly where accountability would bite — mortality by district, prevalence over time, the money, the border. The absence of data is not accidental; it is the state's first line of defence.</p>
+  </div>
+</section>
+
+<!-- ============ CONCLUSION ============ -->
+<section id="conclusion">
+  <div class="wrap">
+    <div class="tag">Synthesis</div>
+    <h2>The six questions, in six lines</h2>
+    <div class="grid g2">
+      <div class="verdict"><div class="vh">WHAT</div><p>India's largest drug-consumption market: 2.33 lakh opioid-dependent, 8.6 lakh users, ~50,000 kg seized/yr, the nation's top certified overdose deaths (2022–24), a quarter of India's NDPS convicts and 46,000 pending cases.</p></div>
+      <div class="verdict"><div class="vh">WHO</div><p>A five-layer chain — Afghan fields, Pakistani corridors, border mules, Punjabi distributors, NRI financiers — with police and politicians inside the middle layers. One kingpin convicted (Bhola), one minister charged (Majithia), 100+ officers arrested.</p></div>
+      <div class="verdict"><div class="vh">WHY IT EXPLODED</div><p>A rich, job-poor, opium-culture border state met the world's largest heroin supply at the moment its youth lost work, meaning and outlets. Drones then made the border irrelevant.</p></div>
+      <div class="verdict"><div class="vh">WHY GOVERNMENTS FAIL</div><p>The institutions that must stop it are each compromised: police are inside the product, politicians are funded by it (one proven, one charged), courts take 7 years per trial — and every party wins elections by under-counting the problem and over-counting the crackdown.</p></div>
+      <div class="verdict"><div class="vh">WHERE THE MONEY GOES</div><p>₹1 lakh/kg at the Afghan field becomes ₹10–50 lakh/kg on the Punjabi street and ~₹5 crore/kg globally. The traced sinks: elections, hawala to Canada/UK/Australia, shell companies, real estate, mines, liquor — and mostly back into the mouths of the state's own youth (₹7,500 cr/yr).</p></div>
+      <div class="verdict"><div class="vh">WHAT IT COSTS</div><p>₹6,830/month per addict; ₹7,500 crore/yr for the trade; under ₹3 crore/yr for all of Punjab's central-subsidised treatment. A 2,500 : 1 ratio. No government has failed by accident — the budget tells you exactly how much the problem was expected to matter.</p></div>
+    </div>
+    <div class="callout blue" style="margin-top:30px">
+      <div class="t">What would actually change the numbers</div>
+      <p>(1) A repeated, published, scientific prevalence survey every 2 years with district-level mortality — making the epidemic measurable and therefore governable. (2) Border technology funded by the Centre at the scale of the threat (anti-drone coverage of 553 km). (3) Asset-based prosecution as the default: attach first, try second — the Bhola and 2024 forfeiture records show it works. (4) Scaling treatment from a 1.4%-recovery pilot to a public health system (OST at every district hospital, BNX supply under electronic monitoring). (5) A fixed, court-supervised fund from drug-money forfeitures into de-addiction — forcing the trade to finance its own cure. None of these requires new politics. All of them require the current political arithmetic to change, which is why none has happened yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section id="sources" class="sources">
+  <div class="wrap">
+    <div class="tag">Documentation</div>
+    <h2>Sources (as scraped &amp; verified, Nov 2026)</h2>
+    <ol>
+      <li><b>NCRB data in MHA written answer, Rajya Sabha 17 Dec 2025 (Q.1987)</b> — seizures 2019–23, cases/convictions 2019–23, overdose deaths 2021–23, rehab funding 2022-25. <a href="https://www.mha.gov.in/MHA1/Par2017/pdfs/par2025-pdfs/RS17122025/1987.pdf">mha.gov.in</a></li>
+      <li><b>MHA written answer, Lok Sabha 16 Dec 2025 (Q.2597)</b> — Yudh Nashean Virudh outcomes (26,256 cases, 38,687 accused, ₹14.83 cr), Q3-2025 figures, district conviction data. <a href="https://www.mha.gov.in/MHA1/Par2017/pdfs/par2025-pdfs/LS16122025/2597.pdf">mha.gov.in</a></li>
+      <li><b>Punjab Opioid Dependence Survey (PODS) 2015</b> — AIIMS NDDTC / SPYM, RDS n=3,620, 10 districts: 232,856 dependent, 8.6 lakh users, 76% aged 18–35. <a href="https://ghdx.healthdata.org/record/india-punjab-opioid-dependence-survey-2015">ghdx.healthdata.org</a></li>
+      <li><b>PIB, MoSJ&amp;E release, 11 Aug 2021</b> — state-wise certified overdose deaths 2017–19 (Punjab 2019: 45). <a href="https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1744800">pib.gov.in</a></li>
+      <li><b>NCRB 2024 report (via Indian Express, 9 May 2026)</b> — 106 Punjab overdose deaths 2024; 29 NDPS cases/100k. <a href="https://indianexpress.com/article/cities/chandigarh/punjab-drug-overdose-deaths-ncrb-report-2024-ndps-trafficking-data-10680583">indianexpress.com</a></li>
+      <li><b>Indian Express Investigation (25 Dec 2023)</b> — BI affidavit to PHHC: 266 overdose deaths Apr-2020–Mar-2023 (36/71/159 by FY). <a href="https://indianexpress.com/article/express-exclusive/deaths-overdose-drugs-punjab-hinterland-9081656">indianexpress.com</a></li>
+      <li><b>Sachdeva, Sharma &amp; Maninder (2025), Discover Public Health</b> — "A narrative review of trends and challenges of substance use in Punjab: 2015–2024" — 51,000+ NDPS cases, 4,600+ kg heroin, PGIMER 15.4%, relapse &gt;65%. <a href="https://link.springer.com/article/10.1186/s12982-025-00887-x">link.springer.com</a></li>
+      <li><b>Frontline (24 Mar 2025)</b> — AAP deadlines (4 missed), Majithia SIT, 1.4% recovery rate, Gutka Sahib oath. <a href="https://frontline.thehindu.com/politics/punjab-drug-crisis-aap-government-political-challenges/article69340411.ece">frontline.thehindu.com</a></li>
+      <li><b>The Wire / Vidhi (18 Jun 2016)</b> — "Reckless Media Coverage…" — mass-arrest then reduce-arrest instructions; arrest series manipulation; "pyrrhic victory" 2013 crackdown. <a href="https://m.thewire.in/article/politics/reckless-media-coverage-has-ignored-real-problems-of-drug-abuse-in-punjab">m.thewire.in</a></li>
+      <li><b>The Tribune archive (18 Jan 2015)</b> — "How use turned to abue in Punjab" — retired DGP Shashi Kant: narco-politician elite, election funding. <a href="https://www.tribuneindia.com/news/archive/features/how-use-turned-to-abuse-in-punjab-31353">tribuneindia.com</a></li>
+      <li><b>Al Jazeera (29 Apr 2014)</b> — "Drug hurricane lashing India's Punjab" — Shashi Kant report listing ministers/MLAs; "vicious circle" election funding; Maqboolpura. <a href="https://www.aljazeera.com/features/2014/4/29/drug-hurricane-lashing-indias-punjab">aljazeera.com</a></li>
+      <li><b>Caravan (27 Dec 2021)</b> — Majithia NDPS FIR: Satta's ₹35-lakh "for elections" statement (2007–12), PMLA FIR 2013, sand-mining link. <a href="https://caravanmagazine.in/crime/majithia-drugs-punjab-eight-years-bhola-drugs-case">caravanmagazine.in</a></li>
+      <li><b>The Tribune (28 Oct 2026)</b> — 40,000-page supplementary chargesheet: ₹736.96 cr trail (₹161 cr cash, ₹141 cr foreign, ₹236 cr companies), Saraya Industries, liquor-company transactions. <a href="https://www.tribuneindia.com/news/punjab/breaking-punjab-vigilance-files-chargesheet-against-akali-leader-bikram-majithia">tribuneindia.com</a></li>
+      <li><b>Hindustan Times / Indian Express (2019, 2024)</b> — Bhola: 24-year sentence (Feb 2019), 10-year PMLA (Jul 2024), ₹200 cr ED attachment, 18 extradition targets. <a href="https://www.hindustantimes.com/punjab/ex-dsp-jagdish-bhola-sentenced-to-24-year-jail-in-multi-crore-drug-case/story-kQorEc6e8BlYD1Fvk98IvO.html">hindustantimes.com</a></li>
+      <li><b>The Print (1 Nov 2025)</b> — "Punjab's war on drugs fell victim to abuse" — BNX black market, 117/177 private centres run by 10 people, Amit Bansal's 22 centres, 5 crore missing tablets. <a href="https://theprint.in/india/governance/punjabs-war-on-drugs-fell-victim-to-abuse-8-years-on-an-overhaul-begins/2774918">theprint.in</a></li>
+      <li><b>Livemint (9 Jun 2016)</b> — "Six charts" — NDPS rate 50.5/100k (2014), 44.5% of India's NDPS convicts, 7,524 avg cases 2005-14. <a href="https://www.livemint.com/Opinion/CbtQvesZxzWezejNXECV8K/Six-charts-that-show-the-seriousness-of-Punjabs-drug-proble.html">livemint.com</a></li>
+      <li><b>Rediff (20 Jan 2016)</b> — PODS release: ₹7,500 cr/yr consumption, ₹6,500 cr heroin, "₹2.5 cr a day". <a href="https://www.rediff.com/news/special/druggies-in-punjab-spend-rs-25-crore-a-day-on-drugs/20160120.htm">rediff.com</a></li>
+      <li><b>IndiaSpend (18 Jun 2016)</b> — Badal "0.06%" misquote; 2009 affidavit: 16% hard-drug addiction, 67% of rural households, Tarn Taran/Amritsar hotspots. <a href="https://www.indiaspend.com/punjab-drug-addiction-16-or-as-dy-cm-says-0-06-86253">indiaspend.com</a></li>
+      <li><b>Indian Express Explained (29 Oct 2026)</b> — price ladder (₹1,000–5,000/g; ₹1 lakh/kg Afghan → ₹5 cr global), narco-terrorism assessment, routes. <a href="https://indianexpress.com/article/explained/why-punjab-cant-shake-off-drug-crisis-role-of-history-geography-economics-10940937">indianexpress.com</a></li>
+      <li><b>Outlook India (27 Aug 2026)</b> — NCB 2025: Punjab 58% of national heroin seizures; 97% of drone cases; ₹20–30k per drone pickup; 10–15 drones/day. <a href="https://www.outlookindia.com/national/indepth-punjab-ground-zero-of-drug-crisis-in-india">outlookindia.com</a></li>
+      <li><b>New Indian Express (31 Dec 2024)</b> — 2024 police year: 8,935 arrests, 1,099 kg heroin, ₹14.73 cr, 531 properties ₹335 cr forfeited, 513 drone sightings. <a href="https://www.newindianexpress.com/india/2024/Dec/31/punjab-police-arrest-559-gangsters-66-terrorists-in-2024-register-12255-cases-under-ndps-act">newindianexpress.com</a></li>
+      <li><b>India Today (7 Sep 2026)</b> — 2025 de-addiction admissions +164% (9,577 → 25,290), OOAT registrations 17,702, 11,000+ Section 64A immunities. <a href="https://www.indiatoday.in/india/story/punjab-de-addiction-centre-admissions-rise-164-under-yudh-nashean-virudh-2989359-2026-09-07">indiatoday.in</a></li>
+      <li><b>The Hindu (31 Oct 2026)</b> — DGP Shashi Kant on the impossible nexus; Jhota murder; 2027 poll stakes. <a href="https://www.thehindu.com/news/national/punjab/punjabs-drug-menace-why-it-is-hard-to-curb/article71649277.ece">thehindu.com</a></li>
+      <li><b>IJRSS (Aug 2023), Sandhir &amp; Sharma</b> — OOAT clinics; ₹6,830 average monthly addict spend (2022 field survey). <a href="https://www.ijmra.us/project%20doc/2023/IJRSS_AUGUST2023/IJRSS3Aug23_22830.pdf">ijmra.us</a></li>
+      <li><b>Defence Horizon Journal (6 Jul 2023)</b> — ₹1 lakh/kg Afghanistan → ₹5 cr international; unemployment 6.8%; 100+ police arrested (Tribune-sourced). <a href="https://tdhj.org/blog/post/drug-drone-punjab-1">tdhj.org</a></li>
+      <li><b>PIB/MHA, sansad.in</b> — NAPDDR Punjab projects (41 → 10), de-addiction funding annexures. <a href="https://sansad.in/getFile/annex/259/AU775.pdf?source=pqars">sansad.in</a></li>
+      <li><b>ANI (28 Jul 2024)</b> — Bholu-Sunny Dyal syndicate: ₹1.07 cr drug money, hawala transfers, encrypted messaging. <a href="https://www.aninews.in/news/national/general-news/punjab-police-busts-international-drug-network-2-held-with-rs-107-crore-drug-money20240728213531">aninews.in</a></li>
+      <li><b>The Hindu (8 May 2026)</b> — "Narcotics trade driving force behind Punjab's black economy" (Thapar 2026 study): 217,000 kg + 4,600 kg heroin seized 2015–24. <a href="https://www.thehindu.com/news/narcotics-trade-driving-force-behind-punjabs-black-economy-says-study/article70954978.ece">thehindu.com</a></li>
+    </ol>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Method note.</b> Compiled November 2026 by automated research (Scrapling-based scraping of primary official PDFs and press archives). Figures were cross-checked across at least two independent publications before inclusion; where sources disagree (e.g. FY vs calendar-year death counts, ₹7,500 cr vs ₹900 cr consumption estimates), both values are shown with their confidence grade. Nothing here is legal advice or a court finding; all charged-but-untried matters are labelled as such. This is a research showcase, not an official government document.</p>
+    <p style="margin-top:10px;color:var(--ink3)">Data vintage: NCRB 2023/2024 reports · MHA answers Dec 2025 · chargesheets Oct 2026 · press through 3 Nov 2026.</p>
+  </div>
+</footer>
+
+<script>
+// ---------- tiny chart kit (no dependencies) ----------
+const NS="http://www.w3.org/2000/svg";
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function txt(p,x,y,s,attrs){const t=el("text",Object.assign({x,y,fill:"#aab4bf","font-size":"11","font-family":"SFMono-Regular,Consolas,monospace"},attrs||{}),p);t.textContent=s;return t}
+
+function bars(id,labels,values,opts){
+  const svg=document.getElementById(id);if(!svg)return;
+  const W=980,H=opts.h||320,pad={t:24,r:20,b:46,l:64};
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const max=Math.ceil(Math.max(...values)/ (opts.step||1000)) * (opts.step||1000);
+  // gridlines
+  const ticks=5;
+  for(let i=0;i<=ticks;i++){
+    const y=pad.t+ih-(ih*i/ticks);
+    el("line",{x1:pad.l,y1:y,x2:W-pad.r,y2:y,stroke:"#262f3a","stroke-width":1},svg);
+    txt(svg,pad.l-8,y+4,(max*i/ticks).toLocaleString("en-IN"),{"text-anchor":"end","font-size":"10"});
+  }
+  const bw=iw/values.length*0.62, gap=iw/values.length;
+  values.forEach((v,i)=>{
+    const x=pad.l+gap*i+(gap-bw)/2;
+    const h=(v/max)*ih;
+    const y=pad.t+ih-h;
+    const c=opts.colors?opts.colors(i):"#e5484d";
+    const r=el("rect",{x,y,width:bw,height:h,rx:3,fill:c,opacity:0.92},svg);
+    const tip=el("title",{},r);tip.textContent=labels[i]+": "+v.toLocaleString("en-IN");
+    txt(svg,x+bw/2,y-6,v>=10000?(v/1000).toFixed(v>=100000?0:1)+"k":v,{"text-anchor":"middle","font-size":"10",fill:"#e8ecef"});
+    txt(svg,x+bw/2,H-14,labels[i],{"text-anchor":"middle","font-size":"10"});
+  });
+}
+function line(id,labels,values,opts){
+  const svg=document.getElementById(id);if(!svg)return;
+  const W=980,H=opts.h||300,pad={t:24,r:20,b:46,l:64};
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const max=Math.ceil(Math.max(...values)*1.15);
+  const ticks=4;
+  for(let i=0;i<=ticks;i++){
+    const y=pad.t+ih-(ih*i/ticks);
+    el("line",{x1:pad.l,y1:y,x2:W-pad.r,y2:y,stroke:"#262f3a","stroke-width":1},svg);
+    txt(svg,pad.l-8,y+4,Math.round(max*i/ticks),{"text-anchor":"end","font-size":"10"});
+  }
+  const gap=iw/(values.length-1||1);
+  const pts=values.map((v,i)=>[pad.l+gap*i,pad.t+ih-(v/max)*ih]);
+  // area
+  let d="M"+pts[0][0]+","+(pad.t+ih);
+  pts.forEach(p=>d+=" L"+p[0]+","+p[1]);
+  d+=" L"+pts[pts.length-1][0]+","+(pad.t+ih)+" Z";
+  el("path",{d,fill:"rgba(229,72,77,0.12)"},svg);
+  d="M"+pts.map(p=>p.join(",")).join(" L");
+  el("path",{d,fill:"none",stroke:"#e5484d","stroke-width":2.5},svg);
+  pts.forEach((p,i)=>{
+    el("circle",{cx:p[0],cy:p[1],r:4.5,fill:"#0b0e11",stroke:"#e5484d","stroke-width":2.5},svg);
+    txt(svg,p[0],p[1]-12,values[i],{"text-anchor":"middle","font-size":"11",fill:"#e8ecef","font-weight":"700"});
+    txt(svg,p[0],H-14,labels[i],{"text-anchor":"middle","font-size":"10"});
+    const t=el("title",{cx:0,cy:0},svg);
+  });
+}
+
+// Q1.1 cases: derived early + official late
+bars("chart-cases",
+  ["2010*","2012*","2014*","2019","2020","2021","2022","2023","2024"],
+  [5400,14300,14100,11536,6909,9972,12442,11589,9025],
+  {h:340,step:5000,colors:i=>["#78848f","#78848f","#78848f","#e5484d","#e5484d","#e5484d","#e5484d","#e5484d","#e5484d"][i]});
+
+// Q1.2 seizures (kg)
+bars("chart-seizures",
+  ["2019","2020","2021","2022","2023"],
+  [44239,37365,38783,49422,47609],
+  {h:320,step:10000,colors:()=>"#f5a623"});
+
+// Q1.3 deaths
+line("chart-deaths",
+  ["2019","2020","2021","2022","2023","2024"],
+  [45,34,78,144,89,106],
+  {h:300});
+
+// Q6 money ledger (log-feel: show labels honestly)
+bars("chart-money",
+  ["Consumption (trade)","CCTV 2024","Rehab FY24-25","State de-addiction (2012)","Court ask/yr"],
+  [7500,45.19,2.96,2,60],
+  {h:300,step:2000,colors:i=>["#e5484d","#5ca8ff","#46a758","#46a758","#f5a623"][i]});
+</script>
+</body>
+</html>

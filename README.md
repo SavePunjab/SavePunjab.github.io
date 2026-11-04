@@ -38,29 +38,3 @@ description: "A data-driven, evidence-graded research showcase on the Punjab dru
 ## License
 
 All content is research commentary — cite sources as listed in the page's footer; do not present the page as an official document.
-
-## Deploy
-
-```yaml
-# .github/workflows/pages.yml
-name: Deploy static site to Pages
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment: github-pages
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - uses: actions/deploy-pages@v4
-```

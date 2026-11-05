@@ -199,6 +199,19 @@
     header.hero{padding:56px 0 40px}
   }
 </style>
+  <style>
+  /* related-reports bar */
+  .related{border-top:1px solid var(--line);background:var(--bg2);padding:40px 0}
+  .related .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .related-head{font:600 12px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px}
+  .related-link{display:block;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin-bottom:12px;text-decoration:none;color:var(--ink);transition:border-color .15s}
+  .related-link:hover{border-color:var(--blue)}
+  .related-link > span:nth-child(1){font:700 17px/1.25 Georgia,serif;color:var(--ink);display:block}
+  .related-link > span:nth-child(2){font:700 15px/1.25 Georgia,serif;color:var(--blue);margin:4px 0 6px;display:block}
+  .related-link > span:nth-child(3){font:14px/1.55 -apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink2);display:block}
+  .related-link > span:nth-child(4){font:14px/1.55 Georgia,serif;color:var(--ink2);margin-top:4px;display:block}
+  @media (max-width:640px){ .related{padding:28px 0} .related-head{margin-bottom:14px} .related-link{padding:16px 18px} }
+</style>
 </head>
 <body>
 
@@ -637,7 +650,23 @@
     <p style="margin-top:10px;color:var(--ink3)">Data vintage: NCRB 2023/2024 reports · MHA answers Dec 2025 · chargesheets Oct 2026 · press through 3 Nov 2026.</p>
   </div>
 </footer>
-
+<nav class="related" aria-label="Related reports">
+  <div class="wrap">
+    <div class="related-head"><span class="en">Related reports on this site</span><span class="pa">ਇਸ ਸਾਈਟ 'ਤੇ ਸੰਬੰਧਿਤ ਰਿਪੋਰਟਾਂ</span></div>
+    <a class="related-link" href="punjabi.html">
+      <span class="en">The Record — Punjab's Drug Economy</span>
+      <span class="pa">ਰਿਕਾਰਡ — ਪੰਜਾਬ ਦੀ ਨਸ਼ਾ ਆਰਥਿਕਤਾ</span>
+      <span class="en">66 lakh users. 7 lakh children. The numbers, routes, money and the gap between claims and record — bilingual (Punjabi / English toggle).</span>
+      <span class="pa">66 ਲੱਖ ਉਪਭੋਗਤਾ। 7 ਲੱਖ ਬੱਚੇ। ਅੰਕੜੇ, ਰਸਤੇ, ਪੈਸਾ, ਅਤੇ ਦਾਅਵਿਆਂ-ਰਿਕਾਰਡ ਵਿਚਕਾਰ ਦਾ ਫਾਸਲਾ — ਦੋ-ਭਾਸ਼ੀ (ਪੰਜਾਬੀ / ਅੰਗਰੇਜ਼ੀ)।</span>
+    </a>
+    <a class="related-link" href="deepresearch.html">
+      <span class="en">Follow the Protection — the full research dossier</span>
+      <span class="pa">ਸੁਰੱਖਿਆ ਦਾ ਪਾਲਣ — ਪੂਰਾ ਖੋਜ ਡੋਸ਼ੀਅਰ</span>
+      <span class="en">The plain-language dossier: the allegation matrix, the five mechanisms of protection, the Kejriwal question answered, and the citizen verification checklist.</span>
+      <span class="pa">ਪਲੇਨ-ਲੈਂਗਵੇਜ਼ ਡੋਸ਼ੀਅਰ: ਦੋਸ਼ ਮੈਟ੍ਰਿਕਸ, ਸੁਰੱਖਿਆ ਦੇ ਪੰਜ ਤਰੀਕੇ, ਕੇਜਰੀਵਾਲ ਸਵਾਲ-ਜਵਾਬ, ਅਤੇ ਨਾਗਰਿਕ ਪ੍ਰਾਪਤੀ-ਚੈਕਲਿਸਟ।</span>
+    </a>
+  </div>
+</nav>
 <script>
 // ---------- tiny chart kit (no dependencies) ----------
 const NS="http://www.w3.org/2000/svg";
